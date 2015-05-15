@@ -32,18 +32,21 @@ namespace wmcb.repo
             using (var context = new wmcbContext())
             {
                 var encodedPwd = Helpers.SHA1.Encode(_password);
-                var user = context.Users
-                    .Where(u => u.Email.Equals(_username) && u.Password.Equals(encodedPwd))
-                    .Take(1)
-                    .Select(s => new WmcbUser()
-                    {
-                        ID = s.ID,
-                        FirstName = s.FirstName,
-                        LastName = s.LastName,
-                        AllowLogin = s.AllowLogin,
-                        Email = s.Email,
-                        Phone = s.Phone
-                    });
+                var user = from u in context.Users
+                           where u.Email.Equals(_username) && u.Password.Equals(encodedPwd)
+                           select new WmcbUser()
+                           {
+                               ID = u.ID,
+                               FirstName = u.FirstName,
+                               LastName = u.LastName,
+                               AllowLogin = u.AllowLogin,
+                               Email = u.Email,
+                               Phone = u.Phone,
+                               Roles = (from ur in context.UserRoles
+                                        join r in context.Roles on ur.RoleID equals r.ID
+                                        select r).ToList()
+
+                           };
                 return user.FirstOrDefault();
             }
         }

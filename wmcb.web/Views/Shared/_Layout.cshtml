@@ -19,7 +19,7 @@
             js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=622211794484959&version=v2.0";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-  
+
     <div class="navbar  navbar-fixed-top wmcbclearbackground">
         <div class="navbar-brand logo ">
             <a class="visible-lg" href="/Home/Index">
@@ -61,26 +61,29 @@
                 @*</li>*@
             </ul>
         </div>
-    </div>
-@if (Request.IsAuthenticated)
-{
-    Html.RenderPartial("_AdminMenu");
-}
-    
-
- 
-    <div id="body" class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <div class="row">
-                <div class="col-md-6"><p>&copy; @DateTime.Now.Year - Washington Metropolitan Cricket Board</p></div>
-                @*<div class="col-md-6 fb-like text-right" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>*@
-            </div>
-
-        </footer>
 
     </div>
+    <div class="row">
+        <div>
+            @if (Request.IsAuthenticated)
+            {
+                Html.RenderPartial("_AdminMenu");
+            }
+        </div>
+        <div id="body" class="col-md-offset-2 container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <div class="row">
+                    <div class="col-md-6"><p>&copy; @DateTime.Now.Year - Washington Metropolitan Cricket Board</p></div>
+                    @*<div class="col-md-6 fb-like text-right" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>*@
+                </div>
+
+            </footer>
+
+        </div>
+    </div>
+
 
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

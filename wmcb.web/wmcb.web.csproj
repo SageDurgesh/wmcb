@@ -133,8 +133,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IActionFilter.cs" />
+    <Compile Include="Controllers\IAuthenticationFilter.cs" />
+    <Compile Include="Controllers\IAutherizationFilter.cs" />
     <Compile Include="Controllers\ServiceAPIController.cs" />
+    <Compile Include="Controllers\WMCBAdminAuthorizeAttribute.cs" />
+    <Compile Include="Controllers\WMCBAuthenticationAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,6 +198,12 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Documents\Mark Twain Spring 2015.pdf" />
+    <Content Include="Documents\WMCB_StandardPlayingConditions_40Overs_Rev2015.pdf" />
+    <Content Include="Documents\Newsletter\WMCB_Newsletter_April_2015.pdf" />
+    <Content Include="Documents\Downloads\WMCB 2015 Transfer Form.docx" />
+    <Content Include="Documents\Downloads\WMCB 2015 Transfer Form.pdf" />
+    <Content Include="Documents\Downloads\Blank Umpire%27s Report.docx" />
+    <Content Include="Documents\Downloads\Blank Umpire%27s Report.pdf" />
     <None Include="Properties\PublishProfiles\wmcb.pubxml" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
@@ -996,6 +1008,7 @@
     <Content Include="Scripts\underscore-min.map" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Shared\_AdminMenu.cshtml" />
+    <Content Include="Views\Admin\NewsFeed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

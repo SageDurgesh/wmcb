@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using wmcb.web.Controllers;
 
 namespace wmcb.web
 {
@@ -7,7 +8,11 @@ namespace wmcb.web
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
+            
+            filters.Add(new AuthorizeAttribute());
             filters.Add(new HandleErrorAttribute());
         }
+
+
     }
 }

@@ -30,5 +30,26 @@ namespace wmcb.repo
            }
            return news;
        }
+        public List<NewsView> getAllNewsFeeds()
+        {
+            List<NewsView> news = new List<NewsView>();
+            using (var context = new wmcbContext())
+            {
+                var feeds = context.NewsFeeds
+                    .Join(context.Users, nf => nf.CreatedBy, u => u.ID, (nf, u) => new { Feed = nf, User = u })
+                             .OrderByDescending(n => n.Feed.CreatedOn)
+                             .Select(n => new NewsView()
+                             {
+                                 Headline = n.Feed.Headline,
+                                 Content = n.Feed.Content,
+                                 CreatedBy = n.User.FirstName,// + ' ' + n.User.LastName,
+                                 CreatedOn = n.Feed.CreatedOn
+                                
+                             });
+                if (feeds != null)
+                    news = feeds.ToList();
+            }
+            return news;
+        }
     }
 }

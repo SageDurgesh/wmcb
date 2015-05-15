@@ -50,7 +50,49 @@
 .navbar-collapse .navbar-nav.navbar-left:first-child {
     margin-left: 0px;
 }
+/* Side Navigation */
 
+@media(min-width:768px) {
+    .side-nav {
+        position: fixed;
+        top: 150px;
+        left: -100px;
+        width: 225px;
+        margin-left: 0px;
+        border: none;
+        border-radius: 0;
+        overflow-y: auto;
+        background-color: #222;
+        bottom: 0;
+        overflow-x: hidden;
+        padding-bottom: 40px;
+    }
+
+    .side-nav>li>a {
+        width: 225px;
+    }
+
+    .side-nav li a:hover,
+    .side-nav li a:focus {
+        outline: none;
+        background-color: #000 !important;
+    }
+}
+
+.side-nav>li>ul {
+    padding: 0;
+}
+
+.side-nav>li>ul>li>a {
+    display: block;
+    padding: 10px 15px 10px 38px;
+    text-decoration: none;
+    color: #999;
+}
+
+.side-nav>li>ul>li>a:hover {
+    color: #fff;
+}
 /*==========  Mobile First Method  ==========*/
 
 /* Custom, iPhone Retina */
@@ -75,6 +117,13 @@
         padding-top: 0;
         padding-bottom: 0;
         padding-left: 0px;
+    }
+    .admin-navbar{
+        max-height:50px;
+        overflow:visible;
+        padding-top:50px;
+        padding-bottom:0;
+        padding-left:0px;
     }
 }
 
@@ -103,6 +152,13 @@
         padding-bottom: 0;
         padding-left: 0px;
     }
+    .admin-navbar{
+        max-height:50px;
+        overflow:visible;
+        padding-top:50px;
+        padding-bottom:0;
+        padding-left:0px;
+    }
 }
 
 /* Small Devices, Tablets */
@@ -130,6 +186,13 @@
         padding-bottom: 0;
         padding-left: 0px;
     }
+    .admin-navbar{
+        max-height:50px;
+        overflow:visible;
+        padding-top:50px;
+        padding-bottom:0;
+        padding-left:0px;
+    }
 }
 
 /* Medium Devices, Desktops */
@@ -156,6 +219,13 @@
         padding-top: 0;
         padding-bottom: 0;
         padding-left: 70px;
+    }
+    .admin-navbar{
+        max-height:50px;
+        overflow:visible;
+        padding-top:50px;
+        padding-bottom:0;
+        padding-left:0px;
     }
 }
 

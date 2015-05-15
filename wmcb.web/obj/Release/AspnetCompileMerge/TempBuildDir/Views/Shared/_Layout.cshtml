@@ -27,7 +27,7 @@
             </a>
             <a class="visible-md visible-xs visible-sm" href="/Home/Index">
                 <img id="wmcblogo" src="~/Images/WMCB_LOGO_400x400.jpg" width="115" height="113" />
-            </a>            
+            </a>
         </div>
         <div class="logoname">Washington Metropolitan Cricket Board</div>
         <div class="navbar-header navbar-inverse wmcbnavbar">
@@ -48,11 +48,27 @@
                 <li>@Html.ActionLink("DOWNLOADS", "Downloads", "Home")</li>
                 <li class="hidden-md hidden-sm visible-xs">@Html.ActionLink("GALLERY", "Gallery", "Home")</li>
                 <li class="hidden-md hidden-sm visible-xs">@Html.ActionLink("NEWSLETTER", "Newsletter", "Home")</li>
-                <li class="hidden-md  hidden-sm visible-xs">@Html.ActionLink("CONTACT", "Contact", "Home")</li>
+                @*<li class="hidden-md  hidden-sm visible-xs dropdown-submenu">*@
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        ABOUT <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu wmcbnavbar navbar-inverse">
+                        <li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("LOGIN", "Index", "Account")</li>
+                    </ul>
+                </li>
+                @*</li>*@
             </ul>
         </div>
+        @if (Request.IsAuthenticated)
+        {
+            Html.RenderPartial("_AdminMenu");
+        }
+
 
     </div>
+
 
  
     <div id="body" class="container body-content">

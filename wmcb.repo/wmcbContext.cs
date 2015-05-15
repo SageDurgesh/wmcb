@@ -15,11 +15,15 @@ namespace wmcb.repo
         public DbSet<Team> Teams { get; set; }
         public DbSet<Ground> Grounds { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRoles> UserRoles { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<NewsFeed>().ToTable("NewsFeed");
             modelBuilder.Entity<wmcb.model.User>().ToTable("Users");
             modelBuilder.Entity<Schedule>().ToTable("TempSchedule");
+            modelBuilder.Entity<Role>().ToTable("Roles");
+            modelBuilder.Entity<UserRoles>().ToTable("UserRoles");
         }
     }
 }

@@ -13,10 +13,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2015 10:24:51</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>04/17/2015 12:15:59</publishTime>
+      <publishTime>04/30/2015 20:03:19</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>04/17/2015 12:15:59</publishTime>
+      <publishTime>04/30/2015 20:03:19</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/03/2015 16:14:48</publishTime>
@@ -64,13 +64,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2015 10:24:51</publishTime>
     </File>
     <File Include="bin/wmcb.model.dll">
-      <publishTime>04/17/2015 12:15:55</publishTime>
+      <publishTime>04/23/2015 08:29:09</publishTime>
     </File>
     <File Include="bin/wmcb.repo.dll">
-      <publishTime>04/17/2015 12:15:55</publishTime>
+      <publishTime>04/23/2015 08:29:09</publishTime>
     </File>
     <File Include="bin/wmcb.web.dll">
-      <publishTime>04/17/2015 12:15:55</publishTime>
+      <publishTime>04/30/2015 20:03:16</publishTime>
     </File>
     <File Include="Content/bootsnipp.css">
       <publishTime>02/11/2015 21:14:26</publishTime>
@@ -91,10 +91,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/11/2015 21:06:36</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>04/07/2015 22:46:06</publishTime>
+      <publishTime>04/23/2015 22:05:27</publishTime>
+    </File>
+    <File Include="Documents/Downloads/Blank Umpire%27s Report.docx">
+      <publishTime>04/30/2015 20:01:15</publishTime>
+    </File>
+    <File Include="Documents/Downloads/Blank Umpire%27s Report.pdf">
+      <publishTime>04/30/2015 20:01:02</publishTime>
+    </File>
+    <File Include="Documents/Downloads/WMCB 2015 Transfer Form.docx">
+      <publishTime>04/30/2015 19:24:24</publishTime>
+    </File>
+    <File Include="Documents/Downloads/WMCB 2015 Transfer Form.pdf">
+      <publishTime>04/30/2015 19:24:15</publishTime>
     </File>
     <File Include="Documents/Mark Twain Spring 2015.pdf">
       <publishTime>04/05/2015 21:15:50</publishTime>
+    </File>
+    <File Include="Documents/Newsletter/WMCB_Newsletter_April_2015.pdf">
+      <publishTime>04/27/2015 21:41:02</publishTime>
+    </File>
+    <File Include="Documents/WMCB_StandardPlayingConditions_40Overs_Rev2015.pdf">
+      <publishTime>04/24/2015 10:10:48</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>02/09/2015 10:24:47</publishTime>
@@ -127,7 +145,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/05/2015 15:32:53</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>04/17/2015 12:15:57</publishTime>
+      <publishTime>04/30/2015 20:03:17</publishTime>
     </File>
     <File Include="Scripts/angular-animate.js">
       <publishTime>04/05/2015 14:50:31</publishTime>
@@ -256,7 +274,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/08/2015 18:54:25</publishTime>
     </File>
     <File Include="Scripts/angular/services/wmcbService.js">
-      <publishTime>04/17/2015 10:47:23</publishTime>
+      <publishTime>04/27/2015 22:12:39</publishTime>
     </File>
     <File Include="Scripts/bootstrap-image-gallery.min.js">
       <publishTime>02/10/2015 11:43:49</publishTime>
@@ -2556,14 +2574,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/_references.js">
       <publishTime>04/17/2015 11:25:01</publishTime>
     </File>
+    <File Include="Views/Account/Index.cshtml">
+      <publishTime>04/20/2015 13:31:28</publishTime>
+    </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>04/03/2015 23:29:51</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
-      <publishTime>04/04/2015 15:34:38</publishTime>
+      <publishTime>04/23/2015 08:50:03</publishTime>
     </File>
     <File Include="Views/Home/Downloads.cshtml">
-      <publishTime>04/03/2015 23:29:51</publishTime>
+      <publishTime>04/30/2015 20:02:10</publishTime>
     </File>
     <File Include="Views/Home/Fixtures.cshtml">
       <publishTime>04/17/2015 12:14:41</publishTime>
@@ -2581,7 +2602,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/07/2015 20:53:43</publishTime>
     </File>
     <File Include="Views/Home/Newsletter.cshtml">
-      <publishTime>04/03/2015 23:29:51</publishTime>
+      <publishTime>04/27/2015 21:42:51</publishTime>
     </File>
     <File Include="Views/Home/Stats.cshtml">
       <publishTime>04/03/2015 23:29:51</publishTime>
@@ -2592,8 +2613,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>02/09/2015 10:24:47</publishTime>
     </File>
+    <File Include="Views/Shared/_AdminMenu.cshtml">
+      <publishTime>04/24/2015 10:12:49</publishTime>
+    </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>04/07/2015 22:25:29</publishTime>
+      <publishTime>04/23/2015 22:13:17</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>02/09/2015 10:24:47</publishTime>
@@ -2602,7 +2626,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2015 10:24:47</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/17/2015 12:15:56</publishTime>
+      <publishTime>04/24/2015 10:16:10</publishTime>
     </File>
   </ItemGroup>
 </Project>

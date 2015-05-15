@@ -54,9 +54,9 @@
 
 @media(min-width:768px) {
     .side-nav {
-        position: fixed;
+       position:fixed;
         top: 150px;
-        left: -100px;
+        left: 0px;
         width: 225px;
         margin-left: 0px;
         border: none;
@@ -118,6 +118,13 @@
         padding-bottom: 0;
         padding-left: 0px;
     }
+    .admin-navbar{
+        max-height:50px;
+        overflow:visible;
+        padding-top:50px;
+        padding-bottom:0;
+        padding-left:0px;
+    }
 }
 
 /* Extra Small Devices, Phones */
@@ -144,6 +151,13 @@
         padding-top: 0;
         padding-bottom: 0;
         padding-left: 0px;
+    }
+    .admin-navbar{
+        max-height:50px;
+        overflow:visible;
+        padding-top:50px;
+        padding-bottom:0;
+        padding-left:0px;
     }
 }
 
@@ -172,6 +186,13 @@
         padding-bottom: 0;
         padding-left: 0px;
     }
+    .admin-navbar{
+        max-height:50px;
+        overflow:visible;
+        padding-top:50px;
+        padding-bottom:0;
+        padding-left:0px;
+    }
 }
 
 /* Medium Devices, Desktops */
@@ -198,6 +219,13 @@
         padding-top: 0;
         padding-bottom: 0;
         padding-left: 70px;
+    }
+    .admin-navbar{
+        max-height:50px;
+        overflow:visible;
+        padding-top:50px;
+        padding-bottom:0;
+        padding-left:0px;
     }
 }
 

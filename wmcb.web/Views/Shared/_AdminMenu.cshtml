@@ -1,27 +1,22 @@
 ﻿@model wmcb.model.View.LoginViewModel
-
-<div class="collapse navbar-collapse navbar-ex1-collapse">
-    <ul class="nav navbar-nav side-nav">
-        <li>@if (Request.IsAuthenticated)
-        {
-            <strong>@Html.Encode(User.Identity.Name)</strong>
-            @Html.ActionLink("Sign Out", "Logout", "Account")
-        }</li>
-        <li class="active">
-            <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> News Feed</a>
-        </li>
+<div class="navbar-collapse collapse navbar-inverse admin-navbar" >
+    <ul class="nav side-nav">
         <li>
-            <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Teams</a>
+            @if (Request.IsAuthenticated)
+            {
+                <strong>@Html.Encode(User.Identity.Name)</strong>
+                @Html.ActionLink("Sign Out", "Logout", "Account")
+            }
         </li>
+
+        <li>@Html.ActionLink("News Feed", "NewsFeed", "Admin")</li>
+        <li>@Html.ActionLink("FIXTURES", "Fixtures", "Home")</li>
+        <li>@Html.ActionLink("TEAM PROFILES", "Teams", "Home")</li>
+        <li>@Html.ActionLink("STATISTICS", "Stats", "Home")</li>
+        <li>@Html.ActionLink("GROUNDS", "Grounds", "Home")</li>
+        <li>@Html.ActionLink("DOWNLOADS", "Downloads", "Home")</li>
+        <li class="hidden-md hidden-sm visible-xs">@Html.ActionLink("GALLERY", "Gallery", "Home")</li>
+        <li class="hidden-md hidden-sm visible-xs">@Html.ActionLink("NEWSLETTER", "Newsletter", "Home")</li>
        
     </ul>
-</div>
-<div style="width: auto; background-color: #728ea7;">
-    
-    @*else
-    {
-        @Html.ActionLink("Register", "Register", "Home")
-        <span> | </span>
-        @Html.ActionLink("Sign In", "Index", "Account")
-    }*@
 </div>

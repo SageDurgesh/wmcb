@@ -4,7 +4,7 @@
         $http({
             url: '/api/ServiceAPI/LatestNewsFeed',
             method: "GET",
-            params: { count: 3 }
+            params: { count: 4 }
         }).success(deferred.resolve).error(deferred.reject);
         return deferred.promise;
     };

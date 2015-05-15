@@ -21,12 +21,12 @@ namespace wmcb.adminportal.Controllers
                 var user = new UsersRepo().getLoggedInUser(model.UserName, model.Password);
                 if (user != null)
                 {
-                   // var roles = user.Roles.Select(m => m.RoleName).ToArray();
+                    var roles = user.Roles.Select(m => m.Name).ToArray();
                     CustomPrincipalSerializeModel serializeModel = new CustomPrincipalSerializeModel();
                     serializeModel.ID = user.ID;
                     serializeModel.FirstName = user.FirstName;
                     serializeModel.LastName = user.LastName;
-                    //serializeModel.roles = roles;
+                    serializeModel.roles = roles;
 
                     string userData = JsonConvert.SerializeObject(serializeModel);
                     FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
@@ -41,18 +41,18 @@ namespace wmcb.adminportal.Controllers
                     HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
                     Response.Cookies.Add(faCookie);
 
-                    //if (roles.Contains("Admin"))
-                    //{
-                    //    return RedirectToAction("Index", "Admin");
-                    //}
-                    //else if (roles.Contains("User"))
-                    //{
-                    //    return RedirectToAction("Index", "User");
-                    //}
-                    //else
-                    //{
+                    if (roles.Contains("Admin"))
+                    {
+                        return RedirectToAction("Fixtures", "Home");
+                    }
+                    else if (roles.Contains("User"))
+                    {
+                        return RedirectToAction("Index", "User");
+                    }
+                    else
+                    {
                         return RedirectToAction("Index", "Home");
-                    //}
+                    }
                 }
 
                 ModelState.AddModelError("", "Incorrect username and/or password");

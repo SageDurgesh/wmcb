@@ -7,6 +7,7 @@ using wmcb.repo;
 
 namespace wmcb.web.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         

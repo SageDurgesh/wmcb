@@ -9,12 +9,7 @@ namespace wmcb.model.Data
 {
     public class Role
     {
-        public int RoleId { get; set; }
-
-        [Required]
-        public string RoleName { get; set; }
-        public string Description { get; set; }
-
-        public virtual ICollection<WmcbUser> Users { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
     }
 }
