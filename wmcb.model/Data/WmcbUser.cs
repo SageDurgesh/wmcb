@@ -21,6 +21,9 @@ namespace wmcb.model.Data
         public String Phone { get; set; }
         public Boolean AllowLogin { get; set; }
         public DateTime RegDate { get; set; }
+        public virtual Team Team { get; set; }
+        public int TeamId { get; set; }
+
         public virtual ICollection<Role> Roles { get; set; }
     }
 }

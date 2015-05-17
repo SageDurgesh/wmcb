@@ -48,9 +48,11 @@
   <ItemGroup>
     <Compile Include="GroundRepo.cs" />
     <Compile Include="Helpers\SHA1.cs" />
+    <Compile Include="MatchRepo.cs" />
     <Compile Include="NewsFeedRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScheduleRepo.cs" />
+    <Compile Include="StatsRepo.cs" />
     <Compile Include="TeamRepo.cs" />
     <Compile Include="UsersRepo.cs" />
     <Compile Include="wmcbContext.cs" />

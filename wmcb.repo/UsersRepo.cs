@@ -16,40 +16,25 @@ namespace wmcb.repo
                 var user = context.Users
                     .Where(u => u.Email.Equals(email))
                     .Take(1)
-                    .Select(s => new WmcbUser() {
-                        ID = s.ID,
-                     FirstName =  s.FirstName,
-                     LastName = s.LastName,
-                     AllowLogin = s.AllowLogin,
-                     Email = s.Email,
-                     Phone = s.Phone
-                  });
+                    .Select(s => s);
+
                 return user.FirstOrDefault();
             }
         }
+
         public WmcbUser getLoggedInUser(string _username, string _password)
         {
             using (var context = new wmcbContext())
             {
                 var encodedPwd = Helpers.SHA1.Encode(_password);
-                var user = from u in context.Users
-                           where u.Email.Equals(_username) && u.Password.Equals(encodedPwd)
-                           select new WmcbUser()
-                           {
-                               ID = u.ID,
-                               FirstName = u.FirstName,
-                               LastName = u.LastName,
-                               AllowLogin = u.AllowLogin,
-                               Email = u.Email,
-                               Phone = u.Phone,
-                               Roles = (from ur in context.UserRoles
-                                        join r in context.Roles on ur.RoleID equals r.ID
-                                        select r).ToList()
-
-                           };
+                var user = context.Users
+                           .Where( u => u.Email.Equals(_username) && u.Password.Equals(encodedPwd))
+                           .Select(u => u);
+            
                 return user.FirstOrDefault();
             }
         }
+
         /// <summary>
         /// Checks if user with given password exists in the database
         /// </summary>
@@ -66,6 +51,20 @@ namespace wmcb.repo
                     .Take(1);
                 
                 return (user!=null && user.Count()>0);
+            }
+        }
+
+        public List<WmcbUser> GetTeamPlayers(int teamId)
+        {
+            using (var context = new wmcbContext())
+            {
+                var teamPlayers = context.Users.Include("Team")
+                                                .Where(p => p.TeamId == teamId)
+                                                .Select(p => p)
+                                                .OrderBy(p => p.LastName)
+                                                .ThenBy(p => p.FirstName);
+
+                return teamPlayers.ToList();
             }
         }
     }

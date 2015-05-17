@@ -90,3 +90,43 @@ D:\Other\wmcb\wmcb\wmcb.web\bin\Antlr3.Runtime.pdb
 D:\Other\wmcb\wmcb\wmcb.web\bin\Newtonsoft.Json.xml
 D:\Other\wmcb\wmcb\wmcb.web\obj\Debug\wmcb.web.dll
 D:\Other\wmcb\wmcb\wmcb.web\obj\Debug\wmcb.web.pdb
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\wmcb.web.dll.config
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\wmcb.web.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\wmcb.web.pdb
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\Antlr3.Runtime.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\EntityFramework.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\EntityFramework.SqlServer.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\Newtonsoft.Json.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Net.Http.Formatting.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.Helpers.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.Http.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.Http.WebHost.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.Mvc.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.Optimization.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.Razor.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.WebPages.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.WebPages.Razor.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\WebGrease.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\wmcb.model.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\wmcb.repo.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\wmcb.model.pdb
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\wmcb.repo.pdb
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\EntityFramework.xml
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\EntityFramework.SqlServer.xml
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Net.Http.Formatting.xml
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.Http.xml
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.Http.WebHost.xml
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.Helpers.xml
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.Mvc.xml
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.Optimization.xml
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.Razor.xml
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.WebPages.xml
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\System.Web.WebPages.Razor.xml
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\Antlr3.Runtime.pdb
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\bin\Newtonsoft.Json.xml
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\obj\Debug\wmcb.web.csprojResolveAssemblyReference.cache
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\obj\Debug\wmcb.web.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.web\obj\Debug\wmcb.web.pdb

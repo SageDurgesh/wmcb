@@ -1,0 +1,167 @@
+ID,Tournament,MatchDate,Week,Day,Date,Division,Home,Away,Field,Time
+1,WMCB Championship ,2015-04-25,Week 1,Saturday,25-Apr,WMCB Northern Division,Gladiators,A Money Matter,Laurel II,11:00 AM
+2,WMCB Championship ,2015-04-25,Week 1,Saturday,25-Apr,WMCB Southern Division,Challengers,Va Lions,Laurel I,11:00 AM
+3,WMCB Championship ,2015-04-25,Week 1,Saturday,25-Apr,WMCB Northern Division,Crescent,Punjab Lions,Mark Twain,11:00 AM
+4,WMCB Championship ,2015-04-26,Week 1,Sunday,26-Apr,WMCB Southern Division,Southern Cavaliers,Mavericks,Laurel I,11:00 AM
+5,WMCB Championship ,2015-04-26,Week 1,Sunday,26-Apr,WMCB Northern Division,Spartans,Damascus,Mark Twain,11:00 AM
+6,WMCB Championship ,2015-04-26,Week 1,Sunday,26-Apr,WMCB Southern Division,Columbia,Renegades,Laurel II,11:00 AM
+7,WMCB Championship ,2015-05-02,Week 2,Saturday,2-May,WMCB Northern Division,Damascus,A Money Matter,Laurel I,11:00 AM
+8,WMCB Championship ,2015-05-02,Week 2,Saturday,2-May,WMCB Southern Division,Renegades,Mavericks,Mark Twain,11:00 AM
+9,WMCB Championship ,2015-05-02,Week 2,Saturday,2-May,WMCB Northern Division,Crescent,United,Laurel II,11:00 AM
+10,WMCB Championship ,2015-05-03,Week 2,Sunday,3-May,WMCB Northern Division,Spartans,Punjab Lions,Laurel I,11:00 AM
+11,WMCB Championship ,2015-05-03,Week 2,Sunday,3-May,WMCB Southern Division,Southern Cavaliers,Washington Hurricanes,Laurel II,11:00 AM
+12,WMCB Championship ,2015-05-03,Week 2,Sunday,3-May,WMCB Southern Division,Columbia,Va Lions,Mark Twain,11:00 AM
+13,Americian Cricket Champions League,2015-05-09,Week 3,Saturday,9-May,Mid-Atlantic Division,Philadelphia,Washington Eagles,Philadelphia,12:00 PM
+14,WMCB Championship ,2015-05-09,Week 3,Saturday,9-May,WMCB Southern Division,Southern Cavaliers,Challengers,Laurel I,11:00 AM
+15,WMCB Championship ,2015-05-09,Week 3,Saturday,9-May,WMCB Southern Division,Renegades,Va Lions,Mark Twain,11:00 AM
+16,WMCB Championship ,2015-05-10,Week 3,Sunday,10-May,WMCB Southern Division,Washington Hurricanes,Columbia,Laurel I,11:00 AM
+17,WMCB Championship ,2015-05-10,Week 3,Sunday,10-May,WMCB Northern Division,Damascus,United,Laurel II,11:00 AM
+18,WMCB Championship ,2015-05-10,Week 3,Sunday,10-May,WMCB Northern Division,Gladiators,Crescent,Mark Twain,11:00 AM
+19,WMCB Championship ,2015-05-10,Week 3,Sunday,10-May,WMCB Northern Division,A Money Matter,Spartans,Laurel III,11:00 AM
+20,WMCB Championship ,2015-05-16,Week 4,Saturday,16-May,WMCB Southern Division,Renegades,Southern Cavaliers,Laurel II,11:00 AM
+21,WMCB Championship ,2015-05-16,Week 4,Saturday,16-May,WMCB Northern Division,Spartans,Gladiators,Mark Twain,11:00 AM
+22,WMCB Championship ,2015-05-16,Week 4,Saturday,16-May,WMCB Northern Division,Damascus,Crescent,Laurel I,11:00 AM
+23,WMCB Championship ,2015-05-16,Week 4,Saturday,16-May,WMCB Northern Division,United,Punjab Lions,Laurel III,11:00 AM
+24,WMCB Championship ,2015-05-17,Week 4,Sunday,17-May,WMCB Southern Division,Columbia,Southern Cavaliers,Laurel II,11:00 AM
+25,WMCB Championship ,2015-05-17,Week 4,Sunday,17-May,WMCB Southern Division,Mavericks,Washington Hurricanes,Laurel I,11:00 AM
+26,WMCB Championship ,2015-05-17,Week 4,Sunday,17-May,WMCB Southern Division,Challengers,Renegades,Laurel III,11:00 AM
+27,WMCB Championship ,2015-05-17,Week 4,Sunday,17-May,WMCB Northern Division,United,Spartans,Mark Twain,11:00 AM
+28,WMCB Championship ,2015-05-17,Week 4,Sunday,17-May,WMCB Northern Division,A Money Matter,Punjab Lions,Oxon Hill,11:00 AM
+29,Americian Cricket Champions League,2015-05-23,Week 5 - Memorial Day,Saturday,23-May,Mid-Atlantic Division,Washington Eagles,New Jersey,Washington,12:00 PM
+30,WMCB Friendly,2015-05-23,Week 5 - Memorial Day,Saturday,23-May,Friendly T20 ,Washington Eagles,Liberty of New York,Washington,1:00 PM
+31,WMCB Friendly,2015-05-24,Week 5 - Memorial Day,Saturday,24-May,Friendly 40 Over ,Washington Eagles,Liberty of New York,Washington,11:00 AM
+32,WMCB Championship ,2015-05-31,Week 6,Saturday,31-May,WMCB Super 8,United,Damascus,Laurel I,11:00 AM
+33,WMCB Championship ,2015-05-31,Week 6,Saturday,31-May,WMCB Super 8,Crescent,Va Lions,Mark Twain,11:00 AM
+34,WMCB Championship ,2015-05-31,Week 6,Saturday,31-May,WMCB Inter-Division,A Money Matter,Gladiators,Oxon Hill,11:00 AM
+35,WMCB Championship ,2015-06-01,Week 6,Sunday,1-Jun,WMCB Inter-Division,Mavericks,Spartans,Oxon Hill,11:00 AM
+36,WMCB Championship ,2015-06-01,Week 6,Sunday,1-Jun,WMCB Super 8,Challengers,Columbia,Mark Twain,11:00 AM
+37,WMCB Championship ,2015-06-01,Week 6,Sunday,1-Jun,WMCB Super 8,Washington Hurricanes,Punjab Lions,Laurel II,11:00 AM
+38,WMCB Championship ,2015-06-01,Week 6,Sunday,1-Jun,WMCB Inter-Division,Renegades,Southern Cavaliers,Laurel I,11:00 AM
+39,Americian Cricket Champions League,2015-06-06,Week 7,Saturday,6-Jun,Mid-Atlantic Division,Richmond,Washington Eagles,Richmond,12:00 PM
+40,WMCB Championship ,2015-06-06,Week 7,Saturday,6-Jun,WMCB Inter-Division,A Money Matter,Renegades,Oxon Hill,11:00 AM
+41,WMCB Championship ,2015-06-06,Week 7,Saturday,6-Jun,WMCB Super 8,Crescent,Punjab Lions,Mark Twain,11:00 AM
+42,WMCB Championship ,2015-06-07,Week 7,Sunday,7-Jun,WMCB Super 8,Gladiators,Mavericks,Oxon Hill,11:00 AM
+43,WMCB Championship ,2015-06-07,Week 7,Sunday,7-Jun,WMCB Super 8,United,Washington Hurricanes,Mark Twain,11:00 AM
+44,WMCB Championship ,2015-06-07,Week 7,Sunday,7-Jun,WMCB Super 8,Challengers,Damascus,Laural III,11:00 AM
+45,WMCB Championship ,2015-06-07,Week 7,Sunday,7-Jun,WMCB Super 8,Va Lions,Columbia,Laurel I,11:00 AM
+46,WMCB Championship ,2015-06-07,Week 7,Sunday,7-Jun,WMCB Inter-Division,Southern Cavaliers,Spartans,Laurel II,11:00 AM
+47,WMCB Twenty20 Round Robin,2015-06-13,Week 8,Saturday,13-Jun,WMCB T20 Group A,VA. Lions,United,Laurel I,9:00 AM
+48,WMCB Twenty20 Round Robin,2015-06-13,Week 8,Saturday,13-Jun,WMCB T20 Group A,Challangers,Columbia,Mark Twain,9:00 AM
+49,WMCB Twenty20 Round Robin,2015-06-13,Week 8,Saturday,13-Jun,WMCB T20 Group A,Mavericks,Gladiators,Oxon Hill,9:00 AM
+50,WMCB Twenty20 Round Robin,2015-06-13,Week 8,Saturday,13-Jun,WMCB T20 Group B,Renagades,Damascus,Laurel I,2:00 PM
+51,WMCB Twenty20 Round Robin,2015-06-13,Week 8,Saturday,13-Jun,WMCB T20 Group B,Punjab Lions,Crescent,Mark Twain,2:00 PM
+52,WMCB Twenty20 Round Robin,2015-06-13,Week 8,Saturday,13-Jun,WMCB T20 Group B,A Money Matter,Southern Cavaliers,Oxon Hill,2:00 PM
+53,WMCB Twenty20 Round Robin,2015-06-14,Week 8,Sunday,14-Jun,WMCB T20 Group B,Washington,Punjab Lions,Laurel I,9:00 AM
+54,WMCB Twenty20 Round Robin,2015-06-14,Week 8,Sunday,14-Jun,WMCB T20 Group B,Southern Cavaliers,Renagades,Mark Twain,9:00 AM
+55,WMCB Twenty20 Round Robin,2015-06-14,Week 8,Sunday,14-Jun,WMCB T20 Group B,Crescent,A Money Matter,Oxon Hill,9:00 AM
+56,WMCB Twenty20 Round Robin,2015-06-14,Week 8,Sunday,14-Jun,WMCB T20 Group A,Columbia,Gladiators,Laurel I,2:00 PM
+57,WMCB Twenty20 Round Robin,2015-06-14,Week 8,Sunday,14-Jun,WMCB T20 Group A,Challangers,VA. Lions,Mark Twain,2:00 PM
+58,WMCB Twenty20 Round Robin,2015-06-14,Week 8,Sunday,14-Jun,WMCB T20 Group A,Spartans,United,Oxon Hill,2:00 PM
+59,WMCB Twenty20 Round Robin,2015-06-20,Week 9,Saturday,20-Jun,WMCB T20 Group A,Spartans,Columbia,Laurel I,9:00 AM
+60,WMCB Twenty20 Round Robin,2015-06-20,Week 9,Saturday,20-Jun,WMCB T20 Group A,Mavericks,United,Mark Twain,9:00 AM
+61,WMCB Twenty20 Round Robin,2015-06-20,Week 9,Saturday,20-Jun,WMCB T20 Group A,Challangers,Gladiators,Oxon Hill,9:00 AM
+62,WMCB Twenty20 Round Robin,2015-06-20,Week 9,Saturday,20-Jun,WMCB T20 Group B,Southern Cavaliers,Damascus,Laurel I,2:00 PM
+63,WMCB Twenty20 Round Robin,2015-06-20,Week 9,Saturday,20-Jun,WMCB T20 Group B,Washington,A Money Matter,Mark Twain,2:00 PM
+64,WMCB Twenty20 Round Robin,2015-06-20,Week 9,Saturday,20-Jun,WMCB T20 Group B,Crescent,Renagades,Oxon Hill,2:00 PM
+65,WMCB Twenty20 Round Robin,2015-06-21,Week 9,Sunday,21-Jun,WMCB T20 Group B,A Money Matter,Punjab Lions,Laurel I,9:00 AM
+66,WMCB Twenty20 Round Robin,2015-06-21,Week 9,Sunday,21-Jun,WMCB T20 Group B,Damascus,Crescent,Mark Twain,9:00 AM
+67,WMCB Twenty20 Round Robin,2015-06-21,Week 9,Sunday,21-Jun,WMCB T20 Group B,Renagades,Washington,Oxon Hill,9:00 AM
+68,WMCB Twenty20 Round Robin,2015-06-21,Week 9,Sunday,21-Jun,WMCB T20 Group A,United,Gladiators,Laurel I,2:00 PM
+69,WMCB Twenty20 Round Robin,2015-06-21,Week 9,Sunday,21-Jun,WMCB T20 Group A,Mavericks,Spartans,Mark Twain,2:00 PM
+70,WMCB Twenty20 Round Robin,2015-06-21,Week 9,Sunday,21-Jun,WMCB T20 Group A,VA. Lions,Columbia,Oxon Hill,2:00 PM
+71,WMCB Twenty20 Round Robin,2015-06-27,Week 10,Saturday,27-Jun,WMCB T20 Group A,Mavericks,Challangers,Laurel I,9:00 AM
+72,WMCB Twenty20 Round Robin,2015-06-27,Week 10,Saturday,27-Jun,WMCB T20 Group A,United,Columbia,Mark Twain,9:00 AM
+73,WMCB Twenty20 Round Robin,2015-06-27,Week 10,Saturday,27-Jun,WMCB T20 Group A,VA. Lions,Spartans,Oxon Hill,9:00 AM
+74,WMCB Twenty20 Round Robin,2015-06-27,Week 10,Saturday,27-Jun,WMCB T20 Group B,Crescent,Washington,Mark Twain,2:00 PM
+75,WMCB Twenty20 Round Robin,2015-06-27,Week 10,Saturday,27-Jun,WMCB T20 Group B,Damascus,A Money Matter,Oxon Hill,2:00 PM
+76,WMCB Twenty20 Round Robin,2015-06-27,Week 10,Saturday,27-Jun,WMCB T20 Group B,Southern Cavaliers,Punjab Lions,Laurel I,2:00 PM
+77,WMCB Twenty20 Round Robin,2015-06-28,Week 10,Sunday,28-Jun,WMCB T20 Group B,Crescent,Southern Cavaliers,Mark Twain,9:00 AM
+78,WMCB Twenty20 Round Robin,2015-06-28,Week 10,Sunday,28-Jun,WMCB T20 Group B,Punjab Lions,Renagades,Laurel I,9:00 AM
+79,WMCB Twenty20 Round Robin,2015-06-28,Week 10,Sunday,28-Jun,WMCB T20 Group B,Washington,Damascus,Oxon Hill,9:00 AM
+80,WMCB Twenty20 Round Robin,2015-06-28,Week 10,Sunday,28-Jun,WMCB T20 Group A,VA. Lions,Mavericks,Laurel I,2:00 PM
+81,WMCB Twenty20 Round Robin,2015-06-28,Week 10,Sunday,28-Jun,WMCB T20 Group A,Gladiators,Spartans,Mark Twain,2:00 PM
+82,WMCB Twenty20 Round Robin,2015-06-28,Week 10,Sunday,28-Jun,WMCB T20 Group A,United,Challangers,Oxon Hill,2:00 PM
+83,Freedom Cup 2015,2015-07-04,Week 11 - Indep.  Day,Saturday,4-Jul,Freedom Cup T20,Draw 1,Draw II,Mark Twain,9:00 AM
+84,Freedom Cup 2015,2015-07-04,Week 11 - Indep.  Day,Saturday,4-Jul,Freedom Cup T20,Draw 1,Draw IV,Mark Twain,2:00 PM
+85,Freedom Cup 2015,2015-07-04,Week 11 - Indep.  Day,Saturday,4-Jul,Freedom Cup T20,Draw III,Draw II,Oxon Hill,2:00 PM
+86,Freedom Cup 2015,2015-07-04,Week 11 - Indep.  Day,Saturday,4-Jul,Freedom Cup T20,Draw III,Draw IV,Oxon Hill,9:00 AM
+87,Freedom Cup 2015,2015-07-05,Week 11 - Indep.  Day,Sunday,5-Jul,Freedom Cup T20,Draw II,Draw IV,Mark Twain,9:00 AM
+88,Freedom Cup 2015,2015-07-05,Week 11 - Indep.  Day,Sunday,5-Jul,Freedom Cup T20,Draw 1,Draw III,Oxon Hill,9:00 AM
+89,Freedom Cup 2015,2015-07-05,Week 11 - Indep.  Day,Sunday,5-Jul,Freedom Cup T20 Final,No. 1 Round Robin,No. 2 Round Robin,Oxon Hill,2:00 PM
+90,WMCB Twenty20 Round Robin,2015-07-11,Week 12,Saturday,11-Jul,WMCB T20 Group A,VA. Lions,United,Laurel I,9:00 AM
+91,WMCB Twenty20 Round Robin,2015-07-11,Week 12,Saturday,11-Jul,WMCB T20 Group A,Challangers,Columbia,Mark Twain,9:00 AM
+92,WMCB Twenty20 Round Robin,2015-07-11,Week 12,Saturday,11-Jul,WMCB T20 Group A,Mavericks,Gladiators,Oxon Hill,9:00 AM
+93,WMCB Twenty20 Round Robin,2015-07-11,Week 12,Saturday,11-Jul,WMCB T20 Group B,Renagades,A Money Matter,Oxon Hill,2:00 PM
+94,WMCB Twenty20 Round Robin,2015-07-11,Week 12,Saturday,11-Jul,WMCB T20 Group B,Southern Cavaliers,Washington,Mark Twain,2:00 PM
+95,WMCB Twenty20 Round Robin,2015-07-11,Week 12,Saturday,11-Jul,WMCB T20 Group B,Damascus,Punjab Lions,Laurel 1,2:00 PM
+96,WMCB Twenty20 Playoffs,2015-07-11,Week 12,Saturday,11-Jul,WMCB T20 Group Winners,No. 1,No. 2,,BYE
+97,WMCB Twenty20 Playoffs,2015-07-12,Week 12,Saturday,12-Jul,T20 QF 1,# 3,# 6,TBD,12:00 PM
+98,WMCB Twenty20 Playoffs,2015-07-12,Week 12,Saturday,12-Jul,T20 QF 2,# 4,# 5,TBD,12:00 PM
+99,WMCB Twenty20 Playoffs,2015-07-18,Week 13,Saturday,18-Jul,T20 SF 1,No. 1 ,Lowest Rank QF Winner,TBD,12:00 PM
+100,WMCB Twenty20 Playoffs,2015-07-18,Week 13,Saturday,18-Jul,T20 SF 2,No. 2,Highest Rank QF Winner,TBD,12:00 PM
+101,WMCB Twenty20 Playoffs,2015-07-19,Week 13,Sunday,19-Jul,T20 Final,SF 1 Winner,SF 2 Winner,TBD,12:00 PM
+102,Americian Cricket Champions League,2015-07-25,Week 14,Saturday,25-Jul,Mid-Atlantic Division,New Jersey,Washington Eagles,New Jersey,12:00 PM
+103,WMCB Championship ,2015-07-25,Week 14,Saturday,25-Jul,WMCB Inter-Division,Southern Cavaliers,Gladiators,Oxon Hill,11:00 AM
+104,WMCB Championship ,2015-07-25,Week 14,Saturday,25-Jul,WMCB Super 8,Va Lions,United,Mark Twain,11:00 AM
+105,WMCB Championship ,2015-07-26,Week 14,Sunday,26-Jul,WMCB Super 8,Damascus,Punjab Lions,Oxon Hill,11:00 AM
+106,WMCB Championship ,2015-07-26,Week 14,Sunday,26-Jul,WMCB Super 8,Washington Hurricanes,Challengers,Mark Twain,11:00 AM
+107,WMCB Championship ,2015-07-26,Week 14,Saturday,26-Jul,WMCB Super 8,Columbia,Crescent,Laurel III,11:00 AM
+108,WMCB Championship ,2015-07-26,Week 14,Sunday,26-Jul,WMCB Inter-Division,Mavericks,A Money Matter,Laurel II,11:00 AM
+109,WMCB Championship ,2015-07-26,Week 14,Sunday,26-Jul,WMCB Inter-Division,Spartans,Renegades,Laurel I,11:00 AM
+110,WMCB Championship,2015-08-01,Week 15,Saturday,1-Aug,WMCB Inter-Division,Mavericks,Southern Cavaliers,Oxon Hill,11:00 AM
+111,WMCB Championship,2015-08-01,Week 15,Saturday,1-Aug,WMCB Inter-Division,Gladiators,Renegades,Mark Twain,11:00 AM
+112,WMCB Championship,2015-08-01,Week 15,Saturday,1-Aug,WMCB Inter-Division,Spartans,A Money Matter,Laurel II,11:00 AM
+113,WMCB Championship,2015-08-02,Week 15,Sunday,2-Aug,WMCB Super 8,Va Lions,Damascus,Oxon Hill,11:00 AM
+114,WMCB Championship,2015-08-02,Week 15,Sunday,2-Aug,WMCB Super 8,Columbia,United,Mark Twain,11:00 AM
+115,WMCB Championship,2015-08-02,Week 15,Sunday,2-Aug,WMCB Super 8,Washington Hurricanes,Crescent,Laurel III,11:00 AM
+116,WMCB Championship,2015-08-02,Week 15,Sunday,2-Aug,WMCB Super 8,Punjab Lions,Challengers,Laurel II,11:00 AM
+117,WMCB Championship ,2015-08-08,Week 16,Saturday,8-Aug,WMCB Super 8,Damascus,Washington Hurricanes,Mark Twain,11:00 AM
+118,WMCB Championship ,2015-08-08,Week 16,Saturday,8-Aug,WMCB Super 8,Punjab Lions,Columbia,Laurel III,11:00 AM
+119,WMCB Championship ,2015-08-08,Week 16,Saturday,8-Aug,WMCB Super 8,Challengers,Va Lions,Oxon Hill,11:00 AM
+120,WMCB Championship ,2015-08-09,Week 16,Sunday,9-Aug,WMCB Super 8,Crescent,United,Mark Twain,11:00 AM
+121,WMCB Championship ,2015-08-09,Week 16,Sunday,9-Aug,WMCB Inter-Division,Renegades,Mavericks,Oxon Hill,11:00 AM
+122,WMCB Championship ,2015-08-09,Week 16,Sunday,9-Aug,WMCB Inter-Division,A Money Matter,Southern Cavaliers,Laurel I,11:00 AM
+123,WMCB Championship ,2015-08-09,Week 16,Sunday,9-Aug,WMCB Inter-Division,Spartans,Gladiators,Laurel III,11:00 AM
+124,Americian Cricket Champions League,2015-08-15,Week 17,Saturday,15-Aug,Mid-Atlantic Division,Washington Eagles,Philadelphia,Washington,12:00 PM
+125,WMCB Championship ,2015-08-15,Week 17,Saturday,15-Aug,WMCB Southern Division,Washington Hurricanes,Renegades,Mark Twain,11:00 AM
+126,WMCB Championship ,2015-08-15,Week 17,Saturday,15-Aug,WMCB Northern Division,Crescent,Spartans,Oxon Hill,11:00 AM
+127,WMCB Championship ,2015-08-16,Week 17,Sunday,16-Aug,WMCB Southern Division,Challengers,Columbia,Mark Twain,11:00 AM
+128,WMCB Championship ,2015-08-16,Week 17,Sunday,16-Aug,WMCB Northern Division,Punjab Lions,Gladiators,Laurel I,11:00 AM
+129,WMCB Championship ,2015-08-16,Week 17,Sunday,16-Aug,WMCB Northern Division,United,A Money Matter,Oxon Hill,11:00 AM
+130,WMCB Championship ,2015-08-16,Week 17,Sunday,16-Aug,WMCB Southern Division,Va Lions,Mavericks,Laurel II,11:00 AM
+131,WMCB Championship,2015-08-22,Week 18,Saturday,22-Aug,WMCB Super 8,Columbia,Damascus,Oxon Hill,11:00 AM
+132,WMCB Championship,2015-08-22,Week 18,Saturday,22-Aug,WMCB Inter-Division,Southern Cavaliers,Gladiators,Mark Twain,11:00 AM
+133,WMCB Championship,2015-08-22,Week 18,Saturday,22-Aug,WMCB Southern Division,Mavericks,Challengers,Laurel I,11:00 AM
+134,WMCB Championship,2015-08-22,Week 18,Saturday,22-Aug,WMCB Super 8,United,Punjab Lions,Laurel II,11:00 AM
+135,WMCB Championship,2015-08-22,Week 18,Saturday,22-Aug,WMCB Super 8,Crescent,Challengers,Laurel III,11:00 AM
+136,WMCB Championship,2015-08-23,Week 18,Sunday,23-Aug,WMCB Inter-Division,A Money Matter,Mavericks,Mark Twain,11:00 AM
+137,WMCB Championship,2015-08-23,Week 18,Sunday,23-Aug,WMCB Inter-Division,Spartans,Renegades,Oxon Hill,11:00 AM
+138,WMCB Championship,2015-08-23,Week 18,Sunday,23-Aug,WMCB Northern Division,Damascus,Gladiators,Laurel I,11:00 AM
+139,WMCB Championship,2015-08-23,Week 18,Sunday,23-Aug,WMCB Super 8,Va Lions,Washington Hurricanes,Laurel III,11:00 AM
+140,Americian Cricket Champions League,2015-08-29,Week 19,Saturday,29-Aug,Mid-Atlantic Division,Washington Eagles,Richmond,Washington,12:00 PM
+141,WMCB ChampionshipI,2015-08-29,Week 19,Saturday,29-Aug,WMCB Southern Division,Washington Hurricanes,Challengers,Oxon Hill,11:00 AM
+142,WMCB ChampionshipI,2015-08-29,Week 19,Saturday,29-Aug,WMCB Southern Division,Va Lions,Southern Cavaliers,Mark Twain,11:00 AM
+143,WMCB ChampionshipI,2015-08-30,Week 19,Saturday,30-Aug,WMCB Southern Division,Mavericks,Columbia,Laurel I,11:00 AM
+144,WMCB ChampionshipI,2015-08-30,Week 19,Sunday,30-Aug,WMCB Northern Division,Crescent,A Money Matter,Mark Twain,11:00 AM
+145,WMCB ChampionshipI,2015-08-30,Week 19,Sunday,30-Aug,WMCB Northern Division,Gladiators,United,Oxon Hill,11:00 AM
+146,WMCB ChampionshipI,2015-08-30,Week 19,Sunday,30-Aug,WMCB Northern Division,Punjab Lions,Damascus,Laurel III,11:00 AM
+147,WMCB ChampionshipI,2015-08-30,Week 19,Sunday,30-Aug,WMCB Southern Division,Va Lions,Washington Hurricanes,Laurel III,11:00 AM
+148,MCC of PGC Championship Weekend,2015-09-05,Week 20 - Labor Day ,Saturday,5-Sep,MCCof PGC T20,Draw ,Draw,TBD,900 AM
+149,MCC of PGC Championship Weekend,2015-09-06,Week 20 - Labor Day ,Saturday,6-Sep,MCCof PGC T20,Draw ,Draw,TBD,900 AM
+150,WMCB Championship,2015-09-12,Week 21,Saturday,12-Sep,WMCB Super 8,Damascus,Crescent,Oxon Hill,11:00 AM
+151,WMCB Championship,2015-09-12,Week 21,Saturday,12-Sep,WMCB Super 8,United,Challengers,Mark Twain,11:00 AM
+152,WMCB Championship,2015-09-12,Week 21,Saturday,12-Sep,WMCB Super 8,Columbia,Washington Hurricanes,Laurel I,11:00 AM
+153,WMCB Championship,2015-09-12,Week 21,Saturday,12-Sep,WMCB Inter-Division,Gladiators,Mavericks,Laurel III,11:00 AM
+154,WMCB Championship,2015-09-13,Week 21,Sunday,13-Sep,WMCB Super 8,Va Lions,Punjab Lions,Laurel I,11:00 AM
+155,WMCB Championship,2015-09-13,Week 21,Sunday,13-Sep,WMCB Inter-Division,Southern Cavaliers,Spartans,Oxon Hill,11:00 AM
+156,WMCB Championship,2015-09-13,Week 21,Sunday,13-Sep,WMCB Inter-Division,Renegades,A Money Matter,Mark Twain,11:00 AM
+157,WMCB Championship PLAYOFFS  ,2015-09-19,Week 22,Saturday,19-Sep,Quarter Final 1,TEAM 1,TEAM 8,TBD,11:00 AM
+158,WMCB Championship PLAYOFFS ,2015-09-19,Week 22,Saturday,19-Sep,Quarter Final II,TEAM 4,TEAM 5,TBD,11:00 AM
+159,WMCB Championship PLAYOFFS ,2015-09-19,Week 22,Saturday,19-Sep,Quarter Final III,TEAM 2,TEAM 7,TBD,11:00 AM
+160,WMCB Championship PLAYOFFS ,2015-09-19,Week 22,Saturday,19-Sep,Quarter Final IV,TEAM 3,TEAM 6,TBD,11:00 AM
+161,WMCB Championship PLAYOFFS ,2015-09-20,Week 22,Sunday,20-Sep,Quarter Final Reserve Day,,,,11:00 AM
+162,WMCB Championship PLAYOFFS ,2015-09-26,Week 23,Saturday,26-Sep,Semi-Final I,Winner of QF I,Winner of QF II,TBD,11:00 AM
+163,WMCB Championship PLAYOFFS ,2015-09-26,Week 23,Saturday,26-Sep,Semi-Final II,Winner of QF III,Winner of QF IV,TBD,11:00 AM
+164,WMCB Championship PLAYOFFS ,2015-09-27,Week 23,Sunday,27-Sep,Semi-Finals Reserve Day,,,,11:00 AM
+165,WMCB Championship PLAYOFFS  ,2015-10-03,Week 24,Saturday,3-Oct,Final ,Winner of SF 1,Winner of SF II,TBD,11:00 AM
+166,WMCB Championship PLAYOFFS  ,2015-10-04,Week 24,Sunday,4-Oct,FINAL Reserve Day,,,,11:00 AM

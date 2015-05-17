@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Ground.cs" />
+    <Compile Include="Data\Match.cs" />
+    <Compile Include="Data\PlayerStats.cs" />
     <Compile Include="Data\Schedule.cs" />
     <Compile Include="Data\UserRoles.cs" />
     <Compile Include="Data\WmcbUser.cs" />

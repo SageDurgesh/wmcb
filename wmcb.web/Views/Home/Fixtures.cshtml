@@ -57,6 +57,10 @@
                 <td>{{sch.Away}}</td>
                 <td>{{sch.Field}}</td>
                 <td>{{sch.Time}}</td>
+                <td><a ng-click="enterScores(sch.ID)" data-ng-href="@Url.Action("MatchScore", "Home")" ng-if="IsMatchComplete(sch.MatchDate)">View Score</a></td>
+                @*<td><a ng-click="enterScores(sch.ID)" data-ng-href="@Url.Action("MatchScore", "Home")" ng-if="IsMatchComplete(sch.MatchDate)">Add Score</a></td>
+                <td ng-if="IsMatchReviewed(sch.MatchDate)">>Under Review</td>*@
+                <td>{{sch.IsReviewed}}</td>
             </tr>
         </tbody>
     </table>  
