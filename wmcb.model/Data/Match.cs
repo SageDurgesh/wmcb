@@ -27,7 +27,7 @@ namespace wmcb.model.Data
         public int? AwayTeamId { get; set; }
 
         public bool IsReviewed { get; set; }
-        public int HomeTeamScore { get; set; }
-        public int AwayTeamScore { get; set; }
+        public int? HomeTeamScore { get; set; }
+        public int? AwayTeamScore { get; set; }
     }
 }

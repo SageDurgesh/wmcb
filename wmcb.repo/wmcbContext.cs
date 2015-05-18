@@ -24,7 +24,7 @@ namespace wmcb.repo
         {
             modelBuilder.Entity<NewsFeed>().ToTable("NewsFeed");
             modelBuilder.Entity<WmcbUser>().ToTable("Users");
-            modelBuilder.Entity<Schedule>().ToTable("Schedule");
+            modelBuilder.Entity<Schedule>().ToTable("Schedule").HasRequired(s => s.Match);
             modelBuilder.Entity<Role>().ToTable("Roles");
             modelBuilder.Entity<UserRoles>().ToTable("UserRoles");
             modelBuilder.Entity<PlayerStats>().ToTable("PlayerStats");

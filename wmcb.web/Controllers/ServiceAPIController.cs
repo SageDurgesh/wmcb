@@ -38,7 +38,8 @@ namespace wmcb.web.Controllers
         [Route("wmcb/schedule")]
         public List<Schedule> GetSchedule()
         {
-            return new ScheduleRepo().GetSchedule();
+            var result = new ScheduleRepo().GetSchedule();
+            return result;
         }
 
         [HttpGet]
