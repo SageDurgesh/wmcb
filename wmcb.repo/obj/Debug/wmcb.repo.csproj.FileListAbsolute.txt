@@ -1,0 +1,24 @@
+D:\Other\wmcb\wmcb\wmcb.repo\bin\Debug\wmcb.repo.dll.config
+D:\Other\wmcb\wmcb\wmcb.repo\bin\Debug\wmcb.repo.dll
+D:\Other\wmcb\wmcb\wmcb.repo\bin\Debug\wmcb.repo.pdb
+D:\Other\wmcb\wmcb\wmcb.repo\bin\Debug\EntityFramework.dll
+D:\Other\wmcb\wmcb\wmcb.repo\bin\Debug\EntityFramework.SqlServer.dll
+D:\Other\wmcb\wmcb\wmcb.repo\bin\Debug\wmcb.model.dll
+D:\Other\wmcb\wmcb\wmcb.repo\bin\Debug\wmcb.model.pdb
+D:\Other\wmcb\wmcb\wmcb.repo\bin\Debug\EntityFramework.xml
+D:\Other\wmcb\wmcb\wmcb.repo\bin\Debug\EntityFramework.SqlServer.xml
+D:\Other\wmcb\wmcb\wmcb.repo\obj\Debug\wmcb.repo.csprojResolveAssemblyReference.cache
+D:\Other\wmcb\wmcb\wmcb.repo\obj\Debug\wmcb.repo.dll
+D:\Other\wmcb\wmcb\wmcb.repo\obj\Debug\wmcb.repo.pdb
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.repo\bin\Debug\wmcb.repo.dll.config
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.repo\bin\Debug\wmcb.repo.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.repo\bin\Debug\wmcb.repo.pdb
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.repo\bin\Debug\EntityFramework.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.repo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.repo\bin\Debug\wmcb.model.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.repo\bin\Debug\wmcb.model.pdb
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.repo\bin\Debug\EntityFramework.xml
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.repo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.repo\obj\Debug\wmcb.repo.csprojResolveAssemblyReference.cache
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.repo\obj\Debug\wmcb.repo.dll
+C:\Users\Jattop\Documents\Visual Studio 2013\Projects\wmcb\wmcb\wmcb.repo\obj\Debug\wmcb.repo.pdb

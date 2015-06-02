@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Fixtures";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Fixtures</h2>
+<script src="~/Scripts/angular/controllers/FixtureController.js"></script>
+<div ng-controller="FixtureCtrl">
+    <div class="input-group pull-right col-lg-5 col-md-5">
+        <input class="form-control" ng-model="searchText" placeholder="Search" type="search" ng-change="search()" /> <span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </span>
+    </div>
+    <div class="pull-left">
+                <ul class="pagination">
+                    <li ng-class="{disabled: currentPage == 0}">
+                        <a href ng-click="prevPage()">&laquo; Prev</a>
+                    </li>
+                    <li ng-repeat="n in range(pagedItems.length, currentPage, currentPage + gap) "
+                        ng-class="{active: n == currentPage}"
+                        ng-click="setPage()">
+                        <a href ng-bind="n + 1">1</a>
+                    </li>
+                    <li ng-class="{disabled: (currentPage) == pagedItems.length - 1}">
+                        <a href ng-click="nextPage()">Next &raquo;</a>
+                    </li>
+                </ul>
+            </div>
+       
+    <table class="table table-hover data-table col-lg-12 col-md-12">
+        <thead>
+            <tr>
+                <th class="hidden">ID</th>
+                <th class="Tournament table-head-title">Tournament</th>
+                <th class="Week table-head-title">Week</th>
+                <th class="Day table-head-title" >Day</th>
+                <th class="Date table-head-title" >Date</th>
+                <th class="Division table-head-title" >Division</th>
+                <th class="Home table-head-title" >Home Team</th>
+                <th class="table-head-title" >Vs</th>
+                <th class="Away table-head-title">Away Team</th>
+                <th class="Field table-head-title" >Ground</th>
+                <th class="Time table-head-title" >Time</th>
+            </tr>
+        </thead>
+       
+        <tbody>
+            <tr ng-repeat="sch in pagedItems[currentPage] ">
+                <td class="hidden">{{sch.ID}}</td>
+                <td class="col-md-2 col-lg-2">{{sch.Tournament}}</td>
+                <td>{{sch.Week}}</td>
+                <td>{{sch.Day}}</td>
+                <td>{{sch.Date|date:'MM/dd'}}</td>
+                <td>{{sch.Division}}</td>
+                <td>{{sch.Home}}</td>
+                <td>Vs</td>
+                <td>{{sch.Away}}</td>
+                <td>{{sch.Field}}</td>
+                <td>{{sch.Time}}</td>
+            </tr>
+        </tbody>
+    </table>  
+</div>
+
+

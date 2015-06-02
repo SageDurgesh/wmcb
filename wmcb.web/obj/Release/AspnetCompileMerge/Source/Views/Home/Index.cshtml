@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+@*<style type="text/css">
+        .item {
+            background: #d3d3d3;
+            text-align: center;
+            padding: 30px 100px 50px 110px;
+            height: 220px !important;
+        }
+
+        .carousel {
+            margin-top: 20px;
+        }
+    </style>*@
+<script src="~/Scripts/angular/controllers/IndexController.js"></script>
+
+<div class="row" ng-controller="IndexCtrl">
+    <div class="visible-xs visible-sm"><br /><br /></div>
+    <div class="col-md-6">
+        <div ng-repeat="news in latestNewsFeed">
+            <h3>{{news.Headline}}</h3>
+            <h5><small>{{news.CreatedBy}}. <em> {{news.CreatedOn | date: 'longDate'}}</em></small></h5>
+            <div ng-bind-html="news.Content | sanitize">
+            </div>
+        </div>
+        <div class="text-right"><br/>
+            <a href="~/Home/News" class="btn btn-default">Read all updates <i class="glyphicon glyphicon-chevron-right"></i></a>
+        </div>
+    </div>
+    <div class="col-md-3">
+        @*<br /><br />
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color:none;background:none;">
+                <h3 class="panel-title"><strong>Top Players</strong></h3>
+            </div>
+            <div class="panel-body">
+                Coming Soon...
+            </div>
+        </div>*@
+        <br />
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color:none;background:none;">
+                <h3 class="panel-title"><strong>Upcoming Games</strong></h3>
+            </div>
+            <div class="panel-body">
+                <table class ="table table-hover col-md-5 col-lg-5">
+                    <tbody >
+                    <tr ng-repeat="game in UpcomingGames">
+                        <td>
+                            <span>{{game.Date | date:'EEE, MM/dd'}} &#64; {{game.Time}} : {{game.Home}} vs {{game.Away}}</span>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="well-sm text-center">
+            <div>
+                <div><h6>Sponsors</h6></div>
+                <div>
+                    <img src="~/Images/ads/zeesports.jpg" width="200" height="150" />
+                </div>
+                <div>
+                    <img src="~/Images/ads/lancesoft.jpg" width="200" height="150" />
+                </div><br />
+            </div>
+        </div>
+        @*<div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+                <!-- Carousel indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"> </li>
+                    <li data-target="#myCarousel" data-slide-to="1"> </li>
+                </ol>
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    <div class="active item">
+                        <img src="~/Images/ads/lancesoft.jpg" />
+
+                    </div> <div class="item">
+                        <img src="~/Images/ads/zeesports.jpg" />
+                    </div>
+                </div>
+                <!-- Carousel nav -->
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"> </span> </a> <a class="carousel-control right" href="#myCarousel" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"> </span> </a>
+            </div>*@
+        <div class="well-sm">
+            <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/WMCBcricket" data-widget-id="346647573181911040" data-chrome="noscrollbar">Tweets by &#64;WMCBcricket</a>
+            <script>
+                !function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id))
+                    { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); }
+                }(document, "script", "twitter-wjs");</script>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/index")
