@@ -16,7 +16,6 @@
         $scope.schedules = data;
     });
     $scope.$watch('schedules', function () {
-        debugger;
         var searchMatch = function (haystack, needle) {
             if (!needle) {
                 return true;

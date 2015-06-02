@@ -4,7 +4,15 @@
         $http({
             url: '/api/ServiceAPI/LatestNewsFeed',
             method: "GET",
-            params: { count: 4 }
+            params: { count: 1}
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    };
+    this.getNewsFeed = function () {
+        var deferred = $q.defer();
+        $http({
+            url: '/api/ServiceAPI/News',
+            method: "GET",
         }).success(deferred.resolve).error(deferred.reject);
         return deferred.promise;
     };
@@ -32,6 +40,22 @@
         }).success(deferred.resolve).error(deferred.reject);
         return deferred.promise;
     };
+    this.getUpcomingGames = function () {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/upcominggames/7',
+            method: "GET"
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    };
+    this.getPoints = function (type) {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/points/' + type,
+            method: "GET"
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    }
 }]);
 WMCBApp.service('filteredListService', function () {
     this.searched = function (valLists, toSearch) {

@@ -54,5 +54,13 @@ namespace wmcb.web.Controllers
 
             return View();
         }
+        public ActionResult Points()
+        {
+            return View();
+        }
+        public ActionResult News()
+        {
+            return View();
+        }
     }
 }

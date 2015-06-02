@@ -2,17 +2,17 @@
     ViewBag.Title = "Home";
 }
 @*<style type="text/css">
-    .item {
-        background: #d3d3d3;
-        text-align: center;
-        padding: 30px 100px 50px 110px;
-        height: 220px !important;
-    }
+        .item {
+            background: #d3d3d3;
+            text-align: center;
+            padding: 30px 100px 50px 110px;
+            height: 220px !important;
+        }
 
-    .carousel {
-        margin-top: 20px;
-    }
-</style>*@
+        .carousel {
+            margin-top: 20px;
+        }
+    </style>*@
 <script src="~/Scripts/angular/controllers/IndexController.js"></script>
 
 <div class="row" ng-controller="IndexCtrl">
@@ -24,9 +24,12 @@
             <div ng-bind-html="news.Content | sanitize">
             </div>
         </div>
+        <div class="text-right"><br/>
+            <a href="~/Home/News" class="btn btn-default">Read all updates <i class="glyphicon glyphicon-chevron-right"></i></a>
+        </div>
     </div>
     <div class="col-md-3">
-        <br /><br/>
+        @*<br /><br />
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color:none;background:none;">
                 <h3 class="panel-title"><strong>Top Players</strong></h3>
@@ -34,14 +37,23 @@
             <div class="panel-body">
                 Coming Soon...
             </div>
-        </div>
+        </div>*@
         <br />
         <div class="panel panel-default">
             <div class="panel-heading" style="background-color:none;background:none;">
                 <h3 class="panel-title"><strong>Upcoming Games</strong></h3>
             </div>
             <div class="panel-body">
-                Coming Soon...
+                <table class ="table table-hover col-md-5 col-lg-5">
+                    <tbody >
+                    <tr ng-repeat="game in UpcomingGames">
+                        <td>
+                            <span>{{game.Date | date:'EEE, MM/dd'}} &#64; {{game.Time}} : {{game.Home}} vs {{game.Away}}</span>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
             </div>
         </div>
     </div>
@@ -54,7 +66,7 @@
                 </div>
                 <div>
                     <img src="~/Images/ads/lancesoft.jpg" width="200" height="150" />
-                </div><br />               
+                </div><br />
             </div>
         </div>
         @*<div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">

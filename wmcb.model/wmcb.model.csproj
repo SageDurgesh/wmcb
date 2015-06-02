@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Ground.cs" />
+    <Compile Include="Data\ResultPoints.cs" />
     <Compile Include="Data\Schedule.cs" />
+    <Compile Include="Data\Point.cs" />
     <Compile Include="Data\UserRoles.cs" />
     <Compile Include="Data\WmcbUser.cs" />
     <Compile Include="NewsFeed.cs" />
@@ -51,6 +53,8 @@
     <Compile Include="Security\CustomPrincipalSerializeModel.cs" />
     <Compile Include="Team.cs" />
     <Compile Include="Data\Role.cs" />
+    <Compile Include="View\PointsView.cs" />
+    <Compile Include="View\TeamPoint.cs" />
     <Compile Include="View\TeamView.cs" />
     <Compile Include="User.cs" />
     <Compile Include="View\UserView.cs" />

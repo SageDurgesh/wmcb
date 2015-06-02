@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,27 @@ namespace wmcb.repo
         {
             using (var context = new wmcbContext())
             {
-                var schedule = context.Schedules.Select(s=>s).OrderBy(s=>s.ID);
+                DateTime currentDate = DateTime.Now.Date;
+
+                var schedule = from s in context.Schedules
+                               orderby s.Date
+                               where s.Date >= currentDate
+                               select s;
+
+                return schedule.ToList();
+            }
+        }
+        public List<Schedule> GetUpcomingGames(int numofdays)
+        {
+            DateTime currentDate = DateTime.Now.Date;
+            DateTime endEndDate = currentDate.AddDays(numofdays);
+            using (var context = new wmcbContext())
+            {
+                var schedule = from s in context.Schedules
+                               orderby s.Date
+                               where s.Date >= currentDate && s.Date <= endEndDate
+                               select s;
+
                 return schedule.ToList();
             }
         }

@@ -19,7 +19,7 @@
             js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=622211794484959&version=v2.0";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-  
+
     <div class="navbar  navbar-fixed-top wmcbclearbackground">
         <div class="navbar-brand logo ">
             <a class="visible-lg" href="/Home/Index">
@@ -42,14 +42,16 @@
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("HOME", "Index", "Home")</li>
                 <li>@Html.ActionLink("FIXTURES", "Fixtures", "Home")</li>
-                <li>@Html.ActionLink("TEAM PROFILES", "Teams", "Home")</li>
+                <li>@Html.ActionLink("POINTS", "Points", "Home")</li>
+                @*<li>@Html.ActionLink("TEAM PROFILES", "Teams", "Home")</li>*@
                 <li>@Html.ActionLink("STATISTICS", "Stats", "Home")</li>
                 <li>@Html.ActionLink("GROUNDS", "Grounds", "Home")</li>
                 <li>@Html.ActionLink("DOWNLOADS", "Downloads", "Home")</li>
                 <li class="hidden-md hidden-sm visible-xs">@Html.ActionLink("GALLERY", "Gallery", "Home")</li>
                 <li class="hidden-md hidden-sm visible-xs">@Html.ActionLink("NEWSLETTER", "Newsletter", "Home")</li>
+                <li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>
                 @*<li class="hidden-md  hidden-sm visible-xs dropdown-submenu">*@
-                <li class="dropdown">
+                @*<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         ABOUT <b class="caret"></b>
                     </a>
@@ -57,32 +59,33 @@
                         <li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>
                         <li>@Html.ActionLink("LOGIN", "Index", "Account")</li>
                     </ul>
-                </li>
+                </li>*@
                 @*</li>*@
             </ul>
         </div>
-        @if (Request.IsAuthenticated)
-        {
-            Html.RenderPartial("_AdminMenu");
-        }
-
 
     </div>
+    <div class="row">
+        <div>
+            @if (Request.IsAuthenticated)
+            {
+                Html.RenderPartial("_AdminMenu");
+            }
+        </div>
+        <div id="body" class="col-md-offset-2 container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <div class="row">
+                    <div class="col-md-6"><p>&copy; @DateTime.Now.Year - Washington Metropolitan Cricket Board</p></div>
+                    @*<div class="col-md-6 fb-like text-right" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>*@
+                </div>
 
+            </footer>
 
- 
-    <div id="body" class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <div class="row">
-                <div class="col-md-6"><p>&copy; @DateTime.Now.Year - Washington Metropolitan Cricket Board</p></div>
-                @*<div class="col-md-6 fb-like text-right" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>*@
-            </div>
-
-        </footer>
-
+        </div>
     </div>
+
 
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

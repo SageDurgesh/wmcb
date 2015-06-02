@@ -5,7 +5,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using wmcb.model.View;
-using wmcb.model.View;
 using wmcb.model.Data;
 using wmcb.model;
 using wmcb.repo;
@@ -18,6 +17,11 @@ namespace wmcb.web.Controllers
         public List<NewsView> GetLatestNewsFeed(int count)
         {
             return new NewsFeedRepo().getLastestNewsFeeds(count);
+        }
+        [HttpGet]
+        public List<NewsView> News()
+        {
+            return new NewsFeedRepo().getAllNewsFeeds();
         }
         [HttpGet]
         [Route("wmcb/teams")]
@@ -36,6 +40,19 @@ namespace wmcb.web.Controllers
         public List<Schedule> GetSchedule()
         {
             return new ScheduleRepo().GetSchedule();
+        }
+        [HttpGet]
+        [Route("wmcb/upcominggames/{numofdays}")]
+        public List<Schedule> GetUpcomingGames(int numofdays)
+        {
+            return new ScheduleRepo().GetUpcomingGames(numofdays);
+        }
+        
+        [HttpGet]
+        [Route("wmcb/points/{type}")]
+        public List<TeamPoint> GetPoints(int type)
+        {
+            return new PointsRepo().GetPoints(type);
         }
     }
 }

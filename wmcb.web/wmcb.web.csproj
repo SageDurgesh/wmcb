@@ -192,6 +192,8 @@
     <Content Include="Scripts\angular\controllers\FixtureController.js" />
     <Content Include="Scripts\angular\controllers\GroundController.js" />
     <Content Include="Scripts\angular\controllers\IndexController.js" />
+    <Content Include="Scripts\angular\controllers\NewsController.js" />
+    <Content Include="Scripts\angular\controllers\PointsController.js" />
     <Content Include="Scripts\angular\controllers\TeamController.js" />
     <Content Include="Scripts\angular\services\wmcbService.js" />
     <Content Include="Scripts\bootstrap-image-gallery.min.js" />
@@ -1009,6 +1011,8 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Shared\_AdminMenu.cshtml" />
     <Content Include="Views\Admin\NewsFeed.cshtml" />
+    <Content Include="Views\Home\Points.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
