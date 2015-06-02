@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Data\Ground.cs" />
     <Compile Include="Data\ResultPoints.cs" />
+     <Compile Include="Data\Match.cs" />
+    <Compile Include="Data\PlayerStats.cs" />
     <Compile Include="Data\Schedule.cs" />
     <Compile Include="Data\Point.cs" />
     <Compile Include="Data\UserRoles.cs" />

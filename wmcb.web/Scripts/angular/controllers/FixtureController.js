@@ -12,6 +12,15 @@
     $scope.itemsPerPage = 10;
     $scope.pagedItems = [];
     $scope.currentPage = 1;
+
+    //$scope.enterScores = function (matchId) {
+    //    MatchEntryService.setMatchId(matchIdd);
+    //};
+
+    $scope.CurrentDate = new Date();
+    $scope.IsMatchComplete = function (matchDate) {
+        return new Date() > new Date(matchDate);
+    };
     wmcbService.getSchedule().then(function (data) {
         $scope.schedules = data;
     });

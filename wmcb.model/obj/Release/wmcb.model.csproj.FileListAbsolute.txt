@@ -1,5 +1,0 @@
-D:\Other\wmcb\wmcb\wmcb.model\bin\Release\wmcb.model.dll
-D:\Other\wmcb\wmcb\wmcb.model\bin\Release\wmcb.model.pdb
-D:\Other\wmcb\wmcb\wmcb.model\obj\Release\wmcb.model.dll
-D:\Other\wmcb\wmcb\wmcb.model\obj\Release\wmcb.model.pdb
-D:\Other\wmcb\wmcb\wmcb.model\obj\Release\wmcb.model.csprojResolveAssemblyReference.cache
