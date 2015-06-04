@@ -1,4 +1,4 @@
-﻿WMCBApp.controller('FixtureCtrl', ["$scope","$filter", "wmcbService", "filteredListService", function ($scope,$filter, wmcbService,filteredListService) {
+﻿WMCBApp.controller('FixtureCtrl', ["$scope","$filter", "wmcbService", "filteredListService", function ($scope, $filter, wmcbService,filteredListService) {
     $scope.schedules = "";
     $scope.pageSize = 20;
     $scope.reverse = false;
@@ -12,11 +12,7 @@
     $scope.itemsPerPage = 10;
     $scope.pagedItems = [];
     $scope.currentPage = 1;
-
-    //$scope.enterScores = function (matchId) {
-    //    MatchEntryService.setMatchId(matchIdd);
-    //};
-
+    
     $scope.CurrentDate = new Date();
     $scope.IsMatchComplete = function (matchDate) {
         return new Date() > new Date(matchDate);

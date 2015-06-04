@@ -58,15 +58,21 @@ WMCBApp.service('filteredListService', function () {
 
 
 WMCBApp.service("MatchEntryService", ["$http", "$q", function ($http, $q) {
-    var MatchId = '';
-    this.setMatchId = function (matchId) {
-        MatchId = matchId;
-    };
+    
 
-    this.getMatch = function () {
+    this.getMatch = function (matchId) {
         var deferred = $q.defer();
         $http({
-            url: '/wmcb/match?matchId=1',
+            url: '/wmcb/match?matchId='+matchId,
+            method: "GET"
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    };
+
+    this.getCurrentTeam = function (userName) {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/userTeam?userName=' + userName,
             method: "GET"
         }).success(deferred.resolve).error(deferred.reject);
         return deferred.promise;
@@ -81,20 +87,45 @@ WMCBApp.service("MatchEntryService", ["$http", "$q", function ($http, $q) {
         return deferred.promise;
     };
 
-    this.getMatchStats = function (id) {
+    this.getMatchPlayerStats = function (id) {
         var deferred = $q.defer();
         $http({
-            url: '/wmcb/matchStats?matchId=' + id,
+            url: '/wmcb/matchPlayerStats?matchId=' + id,
             method: "GET"
-        }).success(deferred.resolve).error(deferred.reject);
+        }).success(deferred.resolve).error(function (data, status) { alert(JSON.stringify(data)); });
         return deferred.promise;
     };
 
-    this.SetPlayerStats = function (playerStats) {
+    this.getMatchTeamStats = function (id) {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/matchTeamStats?matchId=' + id,
+            method: "GET"
+        }).success(deferred.resolve).error(function (data, status) { alert(JSON.stringify(data)); });
+        return deferred.promise;
+    };
+
+    this.CompleteMatchScore = function (match) {
+        return $http({
+            url: '/wmcb/completeMatchScore',
+            method: "POST",
+            data: JSON.stringify(match)
+        });
+    };
+
+    this.setPlayerStats = function (playerStats) {
         return $http({
             url: '/wmcb/setPlayerStats',
             method: "POST",
             data: JSON.stringify(playerStats)
+        });
+    };
+
+    this.setTeamStats = function (teamStats) {
+        return $http({
+            url: '/wmcb/setTeamStats',
+            method: "POST",
+            data: JSON.stringify(teamStats)
         });
     };
 }]);

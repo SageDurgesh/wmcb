@@ -41,10 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Ground.cs" />
+    <Compile Include="Data\MatchDto.cs" />
     <Compile Include="Data\Match.cs" />
+    <Compile Include="Data\PlayerStatsDto.cs" />
     <Compile Include="Data\PlayerStats.cs" />
     <Compile Include="Data\Schedule.cs" />
+    <Compile Include="Data\TeamStats.cs" />
     <Compile Include="Data\UserRoles.cs" />
+    <Compile Include="Data\Player.cs" />
     <Compile Include="Data\WmcbUser.cs" />
     <Compile Include="NewsFeed.cs" />
     <Compile Include="NewsView.cs" />

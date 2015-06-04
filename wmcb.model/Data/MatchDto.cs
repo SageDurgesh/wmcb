@@ -8,20 +8,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace wmcb.model.Data
 {
-    public class Match
+    public class MatchDto
     {
         [Key]
         public int ID { get; set; }
         public string Description { get; set; }
-        
-        public virtual Team HomeTeam { get; set; }
-        [ForeignKey("HomeTeam")]
         public int? HomeTeamId { get; set; }
-
-        public virtual Team AwayTeam { get; set; }
-        [ForeignKey("AwayTeam")]
         public int? AwayTeamId { get; set; }
-
         public bool IsReviewed { get; set; }
         public int? HomeTeamScore { get; set; }
         public int? AwayTeamScore { get; set; }

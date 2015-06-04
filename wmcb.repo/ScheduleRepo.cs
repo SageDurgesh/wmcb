@@ -13,7 +13,7 @@ namespace wmcb.repo
         {
             using (var context = new wmcbContext())
             {
-                var schedule = context.Schedules.Include("Match").Select(s=>s).OrderBy(s=>s.ID);
+                var schedule = context.Schedules.Include("Match").Include("Match.HomeTeam").Include("Match.AwayTeam").Select(s => s).OrderBy(s => s.ID);
                 return schedule.ToList();
             }
         }

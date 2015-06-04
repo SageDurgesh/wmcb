@@ -54,8 +54,15 @@
                         ABOUT <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu wmcbnavbar navbar-inverse">
-                        <li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("LOGIN", "Index", "Account")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        @if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Sign Out", "Logout", "Account")</li>
+                        }
+                        else
+                        { 
+                            <li>@Html.ActionLink("Login", "Index", "Account")</li>
+                        }
                     </ul>
                 </li>
                 @*</li>*@
@@ -64,12 +71,12 @@
 
     </div>
     <div class="row">
-        <div>
+        @*<div>
             @if (Request.IsAuthenticated)
             {
                 Html.RenderPartial("_AdminMenu");
             }
-        </div>
+        </div>*@
         <div id="body" class="col-md-offset-2 container body-content">
             @RenderBody()
             <hr />

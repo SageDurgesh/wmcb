@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using wmcb.model;
 using wmcb.repo;
+using wmcb.model.Security;
+using wmcb.model.View;
+using wmcb.model.View;
+using wmcb.model.Data;
 
 namespace wmcb.web.Controllers
 {
@@ -22,5 +26,13 @@ namespace wmcb.web.Controllers
         {
             return new NewsFeedRepo().getLastestNewsFeeds(count);
         }
+
+        [WMCBAdminAuthorize("Admin", "League Official", "Team Official")]
+         public ActionResult MatchScore()
+         {
+             ViewBag.TeamId = ((WmcbPrincipal)HttpContext.User).TeamId;
+             ViewBag.IsLeagueOfficial = HttpContext.User.IsInRole("League Official");
+             return View();
+         }
     }
 }

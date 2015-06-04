@@ -21,12 +21,13 @@ namespace wmcb.adminportal.Controllers
                 var user = new UsersRepo().getLoggedInUser(model.UserName, model.Password);
                 if (user != null)
                 {
-                    var roles = user.Roles.Select(m => m.Name).ToArray();
+                    var roles = user.Roles.Select(m => m.Role);
                     CustomPrincipalSerializeModel serializeModel = new CustomPrincipalSerializeModel();
                     serializeModel.ID = user.ID;
                     serializeModel.FirstName = user.FirstName;
                     serializeModel.LastName = user.LastName;
-                    serializeModel.roles = roles;
+                    serializeModel.roles = roles.Select(r => r.Name).ToArray();
+                    serializeModel.TeamId = user.TeamId;
 
                     string userData = JsonConvert.SerializeObject(serializeModel);
                     FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(
@@ -41,11 +42,11 @@ namespace wmcb.adminportal.Controllers
                     HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
                     Response.Cookies.Add(faCookie);
 
-                    if (roles.Contains("Admin"))
+                    if (roles.Any(r => r.Name.Contains("Admin")))
                     {
                         return RedirectToAction("Fixtures", "Home");
                     }
-                    else if (roles.Contains("User"))
+                    else if (roles.Any(r => r.Name.Contains("User")))
                     {
                         return RedirectToAction("Index", "User");
                     }

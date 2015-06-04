@@ -1010,7 +1010,8 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Shared\_AdminMenu.cshtml" />
     <Content Include="Views\Admin\NewsFeed.cshtml" />
-    <Content Include="Views\Home\MatchScore.cshtml" />
+    <Content Include="Views\Admin\MatchScore.cshtml" />
+    <Content Include="Views\Home\ViewMatchScore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

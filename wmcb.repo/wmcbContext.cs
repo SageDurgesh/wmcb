@@ -18,6 +18,7 @@ namespace wmcb.repo
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<PlayerStats> PlayerStats { get; set; }
+        public DbSet<TeamStats> TeamStats { get; set; }
         public DbSet<Match> Match { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -26,8 +27,9 @@ namespace wmcb.repo
             modelBuilder.Entity<WmcbUser>().ToTable("Users");
             modelBuilder.Entity<Schedule>().ToTable("Schedule").HasRequired(s => s.Match);
             modelBuilder.Entity<Role>().ToTable("Roles");
-            modelBuilder.Entity<UserRoles>().ToTable("UserRoles");
+            modelBuilder.Entity<UserRoles>().ToTable("UserRoles").HasRequired(ur => ur.Role);
             modelBuilder.Entity<PlayerStats>().ToTable("PlayerStats");
+            modelBuilder.Entity<TeamStats>().ToTable("TeamStats");
             modelBuilder.Entity<Match>().ToTable("Matches");
         }
     }

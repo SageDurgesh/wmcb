@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace wmcb.model.Data
 {
-    public class PlayerStats
+    public class PlayerStatsDto
     {
         [Key]
         public int ID { get; set; }
@@ -17,11 +17,11 @@ namespace wmcb.model.Data
         [ForeignKey("Team")]
         public int TeamId { get; set; }
 
-        public virtual Match Match { get; set; }
+        public virtual MatchDto Match { get; set; }
         [ForeignKey("Match")]
         public int MatchId { get; set; }
 
-        public virtual WmcbUser Player { get; set; }
+        public virtual Player Player { get; set; }
         [ForeignKey("Player")]
         public int PlayerId { get; set; }
 
@@ -36,11 +36,5 @@ namespace wmcb.model.Data
         public int? MaidenOvers { get; set; }
         public int? BowlingRuns { get; set; }
 
-        [NotMapped]
-        public string BowlerName { get; set; }
-        [NotMapped]
-        public string FielderName { get; set; }
-        [NotMapped]
-        public bool IsDeleted { get; set; }
     }
 }

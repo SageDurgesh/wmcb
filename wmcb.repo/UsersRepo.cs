@@ -13,9 +13,8 @@ namespace wmcb.repo
         {
             using (var context = new wmcbContext())
             {
-                var user = context.Users
+                var user = context.Users.Include("Team").Include("Roles").Include("Roles.Role")
                     .Where(u => u.Email.Equals(email))
-                    .Take(1)
                     .Select(s => s);
 
                 return user.FirstOrDefault();
@@ -27,7 +26,7 @@ namespace wmcb.repo
             using (var context = new wmcbContext())
             {
                 var encodedPwd = Helpers.SHA1.Encode(_password);
-                var user = context.Users
+                var user = context.Users.Include("Roles").Include("Roles.Role").Include("Team")
                            .Where( u => u.Email.Equals(_username) && u.Password.Equals(encodedPwd))
                            .Select(u => u);
             
@@ -54,13 +53,21 @@ namespace wmcb.repo
             }
         }
 
-        public List<WmcbUser> GetTeamPlayers(int teamId)
+        public List<Player> GetTeamPlayers(int teamId)
         {
             using (var context = new wmcbContext())
             {
                 var teamPlayers = context.Users.Include("Team")
-                                                .Where(p => p.TeamId == teamId)
-                                                .Select(p => p)
+                                                .Where(p => teamId == p.TeamId.Value)
+                                                .Select(p => new Player
+                                                                    {
+                                                                        ID = p.ID,
+                                                                        FirstName = p.FirstName,
+                                                                        LastName = p.LastName,
+                                                                        Team = p.Team,
+                                                                        TeamId = p.TeamId,
+                                                                        Email = p.Email
+                                                                    })
                                                 .OrderBy(p => p.LastName)
                                                 .ThenBy(p => p.FirstName);
 

@@ -16,5 +16,15 @@ namespace wmcb.repo
                 return context.Match.Include("HomeTeam").Include("AwayTeam").FirstOrDefault(m => m.ID == matchId);
             }
         }
+
+        public void SetMatchComplete(Match match)
+        {
+            using (var context = new wmcbContext())
+            {
+                var incompleteMatch = context.Match.FirstOrDefault(m => m.ID == match.ID);
+                incompleteMatch.IsReviewed = true;
+                context.SaveChanges();
+            }
+        }
     }
 }

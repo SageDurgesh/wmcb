@@ -43,6 +43,15 @@ namespace wmcb.web.Controllers
         }
 
         [HttpGet]
+        [Route("wmcb/teamPlayers")]
+        public List<Player> GetTeamPlayers(int teamId)
+        {
+            var teamPlayers = new UsersRepo().GetTeamPlayers(teamId);
+            return teamPlayers;
+        }
+
+        [WMCBAdminAuthorize("Admin", "League Official", "Team Official")]
+        [HttpGet]
         [Route("wmcb/match")]
         public Match GetMatch(int matchId)
         {
@@ -50,14 +59,26 @@ namespace wmcb.web.Controllers
             return match;
         }
 
+        [WMCBAdminAuthorize("Admin", "League Official", "Team Official")]
         [HttpGet]
-        [Route("wmcb/matchStats")]
-        public List<PlayerStats> GetMatchStats(int matchId)
+        [Route("wmcb/matchPlayerStats")]
+        public List<PlayerStatsDto> GetMatchPlayerStats(int matchId)
         {
-            var result = new StatsRepo().GetMatchStats(matchId);
+            var result = new StatsRepo().GetMatchPlayerStats(matchId);
             return result;
         }
 
+        [WMCBAdminAuthorize("Admin", "League Official", "Team Official")]
+        [HttpGet]
+        [Route("wmcb/matchTeamStats")]
+        public List<TeamStats> GetMatchTeamsStats(int matchId)
+        {
+            var result = new StatsRepo().GetMatchTeamStats(matchId);
+
+            return result;
+        }
+
+        [WMCBAdminAuthorize("League Official", "Team Official")]
         [HttpPost]
         [Route("wmcb/setPlayerStats")]
         public void SetPlayerStats(List<PlayerStats> players)
@@ -65,11 +86,20 @@ namespace wmcb.web.Controllers
             new StatsRepo().SetPlayerStats(players);
         }
 
-        [HttpGet]
-        [Route("wmcb/teamPlayers")]
-        public List<WmcbUser> GetTeamPlayers(int teamId)
+        [WMCBAdminAuthorize("League Official", "Team Official")]
+        [HttpPost]
+        [Route("wmcb/setTeamStats")]
+        public void SetPlayerStats(List<TeamStats> teamStats)
         {
-            return new UsersRepo().GetTeamPlayers(teamId);
+            new StatsRepo().SetTeamStats(teamStats);
+        }
+
+        [WMCBAdminAuthorize("Admin", "League Official")]
+        [HttpPost]
+        [Route("wmcb/completeMatchScore")]
+        public void CompleteMatchScore(Match match)
+        {
+            new MatchRepo().SetMatchComplete(match);
         }
     }
 }
