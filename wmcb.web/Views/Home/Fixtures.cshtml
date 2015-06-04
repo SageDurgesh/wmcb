@@ -59,10 +59,10 @@
                 <td>{{sch.Time}}</td>
                 <td>
                     @if (ViewContext.HttpContext.User.Identity.IsAuthenticated && !ViewContext.HttpContext.User.IsInRole("Player"))
-                    { 
-                        <a data-ng-href="@Url.Action("MatchScore", "Admin")#/?MatchId={{sch.ID}}" ng-if="IsMatchComplete(sch.MatchDate) && sch.Match.HomeTeamScore == null || sch.Match.AwayTeamScore == null">Add Score</a>
+                    {
+                        <div><a data-ng-href="@Url.Action("MatchScore", "Admin")#/?MatchId={{sch.ID}}" ng-if="IsMatchComplete(sch.MatchDate) ">Add Score</a></div>
                     }
-                    <a data-ng-href="@Url.Action("ViewMatchScore", "Home")#/?MatchId={{sch.ID}}" ng-if="sch.Match.IsReviewed">View Score</a>
+                    <div><a data-ng-href="@Url.Action("ViewMatchScore", "Home")#/?MatchId={{sch.ID}}" ng-if="sch.Match.IsReviewed">View Score</a></div>
                     @*<span ng-if="sch.Match.HomeTeamScore != null && sch.Match.AwayTeamScore != null && !sch.Match.IsReviewed">Under Review</span>*@
                 </td>
                 
