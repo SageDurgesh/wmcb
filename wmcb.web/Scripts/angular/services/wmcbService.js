@@ -56,6 +56,14 @@
         }).success(deferred.resolve).error(deferred.reject);
         return deferred.promise;
     }
+    this.getConfPoints = function (id) {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/points/conf/' + id,
+            method: "GET"
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    }
 }]);
 WMCBApp.service('filteredListService', function () {
     this.searched = function (valLists, toSearch) {

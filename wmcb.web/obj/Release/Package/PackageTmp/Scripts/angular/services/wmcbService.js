@@ -56,6 +56,14 @@
         }).success(deferred.resolve).error(deferred.reject);
         return deferred.promise;
     }
+    this.getConfPoints = function (id) {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/points/conf/' + id,
+            method: "GET"
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    }
 }]);
 WMCBApp.service('filteredListService', function () {
     this.searched = function (valLists, toSearch) {
@@ -78,3 +86,47 @@ WMCBApp.service('filteredListService', function () {
         return retVal;
     };
 });
+
+
+
+WMCBApp.service("MatchEntryService", ["$http", "$q", function ($http, $q) {
+    var MatchId = '';
+    this.setMatchId = function (matchId) {
+        MatchId = matchId;
+    };
+
+    this.getMatch = function () {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/match?matchId=1',
+            method: "GET"
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    };
+
+    this.getTeamPlayers = function (id) {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/teamPlayers?teamId=' + id,
+            method: "GET"
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    };
+
+    this.getMatchStats = function (id) {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/matchStats?matchId=' + id,
+            method: "GET"
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    };
+
+    this.SetPlayerStats = function (playerStats) {
+        return $http({
+            url: '/wmcb/setPlayerStats',
+            method: "POST",
+            data: JSON.stringify(playerStats)
+        });
+    };
+}]);

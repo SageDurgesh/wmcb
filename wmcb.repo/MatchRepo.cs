@@ -9,12 +9,12 @@ namespace wmcb.repo
 {
     public class MatchRepo
     {
-        public Match GetMatch(int matchId)
-        {
-            using (var context = new wmcbContext())
-            {
-                return context.Match.Include("HomeTeam").Include("AwayTeam").FirstOrDefault(m => m.ID == matchId);
-            }
-        }
+        //public Match GetMatch(int matchId)
+        //{
+        //    using (var context = new wmcbContext())
+        //    {
+        //        return context.Match.Include("HomeTeam").Include("AwayTeam").FirstOrDefault(m => m.ID == matchId);
+        //    }
+        //}
     }
 }

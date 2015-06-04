@@ -10,7 +10,7 @@ namespace wmcb.model.Data
 {
     public class Schedule
     {
-        [Key, ForeignKey("Match")]
+        [Key]//, ForeignKey("Match")]
         public int ID { get; set; }
         public String Tournament { get; set; }
         public String Week { get; set; }
@@ -21,8 +21,6 @@ namespace wmcb.model.Data
         public String Away { get; set; }
         public String Field { get; set; }
         public String Time { get; set; }
-        public DateTime MatchDate { get; set; }
-
-        public virtual Match Match { get; set; }
+        //public virtual Match Match { get; set; }
     }
 }

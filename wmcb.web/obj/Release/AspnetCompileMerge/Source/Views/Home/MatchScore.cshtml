@@ -1,0 +1,144 @@
+﻿@model wmcb.model.Data.Match
+@{
+    ViewBag.Title = "Match Score";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Enter Match Score</h2>
+<script src="~/Scripts/angular/controllers/MatchScoreController.js"></script>
+<div ng-controller="MatchScoreCtrl" >
+    <form name="MatchScoreForm">
+        <select data-ng-model="PlayerToAdd" data-ng-options="p.FullName for p in HomeTeamPlayers" ng-change="EnableScore()">
+            <option value="">-- Add Player --</option>
+        </select>
+
+        <div ng-show="PlayerSelected">
+
+            <span>Enter scores for <label> {{PlayerToAdd.FullName}}</label></span>
+            <div style="font-weight:bold">Batting</div>
+            <table>
+                <tr>
+                    <th style="padding:5px">Balls</th>
+                    <th style="padding:5px">Runs</th>
+                    <th style="padding:5px">Out</th>
+                    <th style="padding:5px">Bowler</th>
+                </tr>
+                <tr>
+                    <td style="padding:5px" align="center"><input style="height:20px;width:50px;" type="text" data-ng-model="BallsFaced" /></td>
+                    <td style="padding:5px" align="center"><input style="height:20px;width:50px;" type="text" data-ng-model="BattingRuns" /></td>
+                    <td style="padding:5px" align="center">
+                        <select ng-model="HowOut" data-ng-options="o.Type for o in OutList" style="height:20px">
+                            <option value="">-- Out --</option>
+                        </select>
+                    </td>
+                    <td style="padding:5px" align="center">
+                        <select data-ng-model="Bowler" data-ng-options="p.FullName for p in AwayTeamPlayers" style="height:20px">
+                            <option value="">-- Select Bowler --</option>
+                        </select>
+                    </td>
+                    <td style="padding:5px;" align="center" ng-show="HowOut.Id==2 || HowOut.Id==3 || HowOut.Id==4">
+                        <span ng-if="HowOut.Id == 2">Caught By</span>
+                        <span ng-if="HowOut.Id == 3">Stumped By</span>
+                        <span ng-if="HowOut.Id == 4">Run Out By</span>
+                        <select data-ng-model="Fielder" data-ng-options="p.FullName for p in AwayTeamPlayers" style="height:20px">
+                            <option value="">-- Select Fielder --</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+            <div style="font-weight:bold">Bowling</div>
+            <table>
+                <tr>
+                    <th style="padding:10px">Bowler Number</th>
+                    <th style="padding:10px">Overs</th>
+                    <th style="padding:10px">Maiden</th>
+                    <th style="padding:10px">Runs</th>
+                    <th style="padding:10px">Wickets</th>
+                    <th style="padding:10px">W</th>
+                    <th style="padding:10px">NB</th>
+                </tr>
+                <tr>
+                    <td style="padding:5px" align="center">
+                        <select data-ng-model="BowlerNumber" name="BowlerNumber" style="height:20px" ng-change="ValidateBowler()" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                        </select>
+                        @*<validation-tooltip target="MatchScoreForm.BowlerNumber">
+                            <ul class="list-unstyled">
+                                <li validation-message ng-if="$field.$error.required">Required field.</li>
+                                <li validation-message ng-if="$field.$error.number">incorrect value for number. correct value 1-11</li>
+                            </ul>
+                        </validation-tooltip>*@
+                        
+                        <div style="background-color:red; position: absolute; z-index:3000; display:inline-block;opacity:.5;color:white;border-radius:0.5em;" ng-show="MatchScoreForm.BowlerNumber.$error.Duplicate">
+                            Duplicate Bowler Number!
+                        </div>
+                        <div style="background-color:red; position: absolute; z-index:3000; display:inline-block;opacity:.5;color:white;border-radius:0.5em; vertical-align:bottom;" ng-show="MatchScoreForm.BowlerNumber.$error.required">
+                            Required Field!
+                        </div>
+                    </td>
+                    <td style="padding:5px" align="center"><input style="height:20px;width:50px;" type="text" data-ng-model="Overs" /></td>
+                    <td style="padding:5px" align="center"><input style="height:20px;width:50px;" type="text" data-ng-model="Maiden" /></td>
+                    <td style="padding:5px" align="center"><input style="height:20px;width:50px;" type="text" data-ng-model="BowlingRuns" /></td>
+                    <td style="padding:5px" align="center"><input style="height:20px;width:50px;" type="text" data-ng-model="Wickets" /></td>
+                    <td style="padding:5px" align="center"><input style="height:20px;width:50px;" type="text" data-ng-model="Wides" /></td>
+                    <td style="padding:5px" align="center"><input style="height:20px;width:50px;" type="text" data-ng-model="NoBalls" /></td>
+
+                </tr>
+            </table>
+            <button style="margin-top:20px" ng-disabled="MatchScoreForm.BowlerNumber.$invalid" ng-click="AddPlayerScore()">Add</button>
+        </div>
+    </form>
+
+    <table ng-show="AddedPlayers.length > 0">
+        <tr>
+            <th style="padding:5px;" align="center"></th>
+            <th style="padding:5px;" align="center"></th>
+            <th style="padding:5px;" align="center">Balls</th>
+            <th style="padding:5px;" align="center">Runs</th>
+        </tr>
+        <tr ng-repeat="player in AddedPlayers">
+            <td style="padding:5px;font-weight:bold" align="left">{{player.FullName}}</td>
+            <td style="padding:5px;" align="left" ng-switch on="player.HowOut">
+                <div ng-switch-when="1">b {{player.BowlerName}}</div>
+                <div ng-switch-when="2">c {{player.FielderName}} b {{player.BowlerName}}</div>
+                <div ng-switch-when="4">run out {{player.FielderName}}</div>
+                <div ng-switch-when="3">st {{player.FielderName}}</div>
+                <div ng-switch-default>DNB</div>
+            </td>
+            <td style="padding:5px;" align="center">{{player.BallsFaced}}</td>
+            <td style="padding:5px;" align="center">{{player.BattingRuns}}</td>
+        </tr>
+    </table>
+    
+    @*<div ng-show="AddedPlayers.length > 0" style="font-weight:bold">Bowling</div>*@
+    <table ng-show="AddedPlayers.length > 0">
+        <tr>
+            <th style="padding:5px;" align="center"></th>
+            <th style="padding:5px;" align="center">Overs</th>
+            <th style="padding:5px;" align="center">Maiden</th>
+            <th style="padding:5px;" align="center">Runs</th>
+            <th style="padding:5px;" align="center">Wickets</th>
+        </tr>
+        <tr ng-repeat="player in AddedPlayers | filter:bowlersFilter | orderBy:'BowlerNumber'">
+            <td style="padding:5px;font-weight:bold" align="left">{{player.FullName}}</td>
+            <td style="padding:5px;" align="center">{{player.OversBowled}}</td>
+            <td style="padding:5px;" align="center">{{player.MaidenOvers}}</td>
+            <td style="padding:5px;" align="center">{{player.BowlingRuns}}</td>
+            <td style="padding:5px;" align="center">{{player.Wickets}}</td>
+        </tr>
+    </table>
+    <button ng-show="IsDirty" ng-click="SavePlayerStats()">Save</button>
+</div>
+
+

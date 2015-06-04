@@ -18,19 +18,19 @@ namespace wmcb.repo
         public DbSet<Point> Points { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
-        public DbSet<PlayerStats> PlayerStats { get; set; }
-        public DbSet<Match> Match { get; set; }
+        //public DbSet<PlayerStats> PlayerStats { get; set; }
+       // public DbSet<Match> Match { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<NewsFeed>().ToTable("NewsFeed");
             modelBuilder.Entity<WmcbUser>().ToTable("Users");
-            modelBuilder.Entity<Schedule>().ToTable("Schedule").HasRequired(s => s.Match);
+            modelBuilder.Entity<Schedule>().ToTable("TempSchedule");//.HasRequired(s => s.Match);
             modelBuilder.Entity<Role>().ToTable("Roles");
             modelBuilder.Entity<UserRoles>().ToTable("UserRoles");
             modelBuilder.Entity<Point>().ToTable("Points");
-            modelBuilder.Entity<PlayerStats>().ToTable("PlayerStats");
-            modelBuilder.Entity<Match>().ToTable("Matches");
+           // modelBuilder.Entity<PlayerStats>().ToTable("PlayerStats");
+           // modelBuilder.Entity<Match>().ToTable("Matches");
         }
     }
 }

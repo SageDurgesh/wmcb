@@ -9,10 +9,10 @@
     wmcbService.getPoints(2).then(function (data) {
         $scope.southernDivPoints = data;
     });
-    wmcbService.getPoints(1).then(function (data) {
+    wmcbService.getConfPoints(1).then(function (data) {
         $scope.northernConfPoints = data;
     });
-    wmcbService.getPoints(2).then(function (data) {
+    wmcbService.getConfPoints(2).then(function (data) {
         $scope.southernConfPoints = data;
     });
 }]);

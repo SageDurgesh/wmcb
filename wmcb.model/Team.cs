@@ -14,6 +14,7 @@ namespace wmcb.model
         public int? ContactID2 { get; set; }
         public int? ContactID3 { get; set; }       
         public bool Active { get; set; }
-        public int Points { get; set; }
+        public int Division { get; set; }
+        //public int Points { get; set; }
     }
 }

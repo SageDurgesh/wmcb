@@ -13,10 +13,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2015 10:24:51</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>06/01/2015 21:54:03</publishTime>
+      <publishTime>06/03/2015 22:30:00</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>06/01/2015 21:54:03</publishTime>
+      <publishTime>06/03/2015 22:30:00</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/03/2015 16:14:48</publishTime>
@@ -64,13 +64,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2015 10:24:51</publishTime>
     </File>
     <File Include="bin/wmcb.model.dll">
-      <publishTime>06/01/2015 18:54:40</publishTime>
+      <publishTime>06/03/2015 22:29:56</publishTime>
     </File>
     <File Include="bin/wmcb.repo.dll">
-      <publishTime>06/01/2015 18:54:40</publishTime>
+      <publishTime>06/03/2015 22:29:56</publishTime>
     </File>
     <File Include="bin/wmcb.web.dll">
-      <publishTime>06/01/2015 18:54:41</publishTime>
+      <publishTime>06/03/2015 22:29:56</publishTime>
     </File>
     <File Include="Content/bootsnipp.css">
       <publishTime>02/11/2015 21:14:26</publishTime>
@@ -145,7 +145,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/05/2015 15:32:53</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>06/01/2015 21:54:01</publishTime>
+      <publishTime>06/03/2015 22:29:58</publishTime>
     </File>
     <File Include="Scripts/angular-animate.js">
       <publishTime>04/05/2015 14:50:31</publishTime>
@@ -262,7 +262,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/17/2015 10:59:14</publishTime>
     </File>
     <File Include="Scripts/angular/controllers/FixtureController.js">
-      <publishTime>06/01/2015 16:14:59</publishTime>
+      <publishTime>06/02/2015 15:18:39</publishTime>
     </File>
     <File Include="Scripts/angular/controllers/GroundController.js">
       <publishTime>04/08/2015 19:28:33</publishTime>
@@ -270,17 +270,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/angular/controllers/IndexController.js">
       <publishTime>06/01/2015 16:43:44</publishTime>
     </File>
+    <File Include="Scripts/angular/controllers/MatchScoreController.js">
+      <publishTime>06/02/2015 15:18:39</publishTime>
+    </File>
     <File Include="Scripts/angular/controllers/NewsController.js">
       <publishTime>06/01/2015 17:28:58</publishTime>
     </File>
     <File Include="Scripts/angular/controllers/PointsController.js">
-      <publishTime>06/01/2015 15:05:57</publishTime>
+      <publishTime>06/03/2015 22:06:37</publishTime>
     </File>
     <File Include="Scripts/angular/controllers/TeamController.js">
       <publishTime>04/08/2015 18:54:25</publishTime>
     </File>
     <File Include="Scripts/angular/services/wmcbService.js">
-      <publishTime>06/01/2015 17:28:58</publishTime>
+      <publishTime>06/03/2015 22:16:42</publishTime>
     </File>
     <File Include="Scripts/bootstrap-image-gallery.min.js">
       <publishTime>02/10/2015 11:43:49</publishTime>
@@ -2578,7 +2581,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/05/2015 14:48:45</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>06/01/2015 17:28:02</publishTime>
+      <publishTime>06/02/2015 15:30:29</publishTime>
     </File>
     <File Include="Views/Account/Index.cshtml">
       <publishTime>04/20/2015 13:31:28</publishTime>
@@ -2596,7 +2599,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/30/2015 20:02:10</publishTime>
     </File>
     <File Include="Views/Home/Fixtures.cshtml">
-      <publishTime>06/01/2015 16:13:24</publishTime>
+      <publishTime>06/02/2015 15:18:39</publishTime>
     </File>
     <File Include="Views/Home/Gallery.cshtml">
       <publishTime>04/04/2015 15:26:43</publishTime>
@@ -2610,6 +2613,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Home/Index1.cshtml">
       <publishTime>04/07/2015 20:53:43</publishTime>
     </File>
+    <File Include="Views/Home/MatchScore.cshtml">
+      <publishTime>06/02/2015 15:18:39</publishTime>
+    </File>
     <File Include="Views/Home/News.cshtml">
       <publishTime>06/01/2015 17:30:14</publishTime>
     </File>
@@ -2620,7 +2626,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/01/2015 21:44:10</publishTime>
     </File>
     <File Include="Views/Home/Stats.cshtml">
-      <publishTime>04/03/2015 23:29:51</publishTime>
+      <publishTime>06/03/2015 22:24:28</publishTime>
     </File>
     <File Include="Views/Home/Teams.cshtml">
       <publishTime>04/08/2015 19:11:09</publishTime>
@@ -2641,7 +2647,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/09/2015 10:24:47</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/01/2015 21:44:20</publishTime>
+      <publishTime>06/03/2015 22:29:57</publishTime>
     </File>
   </ItemGroup>
 </Project>

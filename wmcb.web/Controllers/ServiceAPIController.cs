@@ -46,35 +46,35 @@ namespace wmcb.web.Controllers
             return result;
         }
 
-        [HttpGet]
-        [Route("wmcb/match")]
-        public Match GetMatch(int matchId)
-        {
-            var match = new MatchRepo().GetMatch(matchId);
-            return match;
-        }
+        //[HttpGet]
+        //[Route("wmcb/match")]
+        //public Match GetMatch(int matchId)
+        //{
+        //    var match = new MatchRepo().GetMatch(matchId);
+        //    return match;
+        //}
 
-        [HttpGet]
-        [Route("wmcb/matchStats")]
-        public List<PlayerStats> GetMatchStats(int matchId)
-        {
-            var result = new StatsRepo().GetMatchStats(matchId);
-            return result;
-        }
+        //[HttpGet]
+        //[Route("wmcb/matchStats")]
+        //public List<PlayerStats> GetMatchStats(int matchId)
+        //{
+        //    var result = new StatsRepo().GetMatchStats(matchId);
+        //    return result;
+        //}
 
-        [HttpPost]
-        [Route("wmcb/setPlayerStats")]
-        public void SetPlayerStats(List<PlayerStats> players)
-        {
-            new StatsRepo().SetPlayerStats(players);
-        }
+        //[HttpPost]
+        //[Route("wmcb/setPlayerStats")]
+        //public void SetPlayerStats(List<PlayerStats> players)
+        //{
+        //    new StatsRepo().SetPlayerStats(players);
+        //}
 
-        [HttpGet]
-        [Route("wmcb/teamPlayers")]
-        public List<WmcbUser> GetTeamPlayers(int teamId)
-        {
-            return new UsersRepo().GetTeamPlayers(teamId);
-        }
+        //[HttpGet]
+        //[Route("wmcb/teamPlayers")]
+        //public List<WmcbUser> GetTeamPlayers(int teamId)
+        //{
+        //    return new UsersRepo().GetTeamPlayers(teamId);
+        //}
         [HttpGet]
         [Route("wmcb/upcominggames/{numofdays}")]
         public List<Schedule> GetUpcomingGames(int numofdays)
@@ -86,7 +86,13 @@ namespace wmcb.web.Controllers
         [Route("wmcb/points/{type}")]
         public List<TeamPoint> GetPoints(int type)
         {
-            return new PointsRepo().GetPoints(type);
+            return new PointsRepo().GetDivisionPoints(type);
+        }
+        [HttpGet]
+        [Route("wmcb/points/conf/{id}")]
+        public List<TeamPoint> GetConfPoints(int id)
+        {
+            return new PointsRepo().GetConferencePoints(id);
         }
     }
 }
