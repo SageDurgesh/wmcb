@@ -48,7 +48,7 @@
                     <tbody >
                     <tr ng-repeat="game in UpcomingGames">
                         <td>
-                            <span>{{game.Date | date:'EEE, MM/dd'}} &#64; {{game.Time}} : {{game.Home}} vs {{game.Away}}</span>
+                            <span>{{game.DateTime | date:'EEE, MM/dd'}} &#64; {{game.DateTime | date: 'h a'}} : {{game.Home}} vs {{game.Away}}</span>
                         </td>
                     </tr>
                     </tbody>

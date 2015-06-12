@@ -1,0 +1,122 @@
+﻿@using Newtonsoft.Json;
+@model wmcb.model.View.MatchScoreView
+@{
+    ViewBag.Title = "Match Score";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/Scripts/angular/controllers/MatchScoreController.js"></script>
+<div ng-controller="MatchScoreCtrl" ng-init="init(@JsonConvert.SerializeObject(Model.hasPermission),@Model.TeamID)">
+    <h4>Enter Match Score</h4>
+    <div ng-show="done">
+        <h4>  {{displaymessage}}</h4>
+    </div>
+    <div ng-show="!done">
+        <div>
+            Select a Match :
+            <div class="btn-group" dropdown>
+                <button type="button" class="btn btn-warning">{{SelectedMatchText}}</button>
+                <button type="button" class="btn btn-warning dropdown-toggle" dropdown-toggle>
+                    <span class="caret"></span>
+                    <span class="sr-only">Split button!</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li ng-repeat="m in AgainstTeams"><a href="#" ng-click="SelectMatch(m)">Vs {{m.AgainstTeamName}} - {{m.DateTime| date:'EEE , MM/dd'}}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div ng-hide="SelectedMatch==''">
+            <h5>Batting Score</h5>
+            <table class="table table-hover data-table col-lg-10 col-md-8">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="col-lg-2 col-md-2">Batsman</th>
+                        <th style="width:10px;">How Out</th>
+                        <th class="col-lg-2 col-md-2">Bowler</th>
+                        <th>Run</th>
+                        <th>Balls</th>
+                        <th>Wicket#</th>
+                        <th>FOW Runs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="i in [] | range:11">
+                        <td>{{i+1}}</td>
+                        <td>
+                            <div class='container-fluid'>
+                                <input type="text" ng-model="BattingScore[i].Batsman" typeahead="player as player.FullName for player in HomePlayers  | filter:$viewValue|limitTo:10">
+                            </div>
+                        </td>
+                        <td style="width:10px;"><input type="text" ng-model="BattingScore[i].HowOut" typeahead="out as out.Type for out in OutList  | filter:$viewValue" /></td>
+                        <td><input type="text" ng-model="BattingScore[i].Bowler" typeahead="player as player.FullName for player in AwayPlayers  | filter:$viewValue|limitTo:10" /></td>
+                        <td><input type="text" ng-model="BattingScore[i].Runs" /></td>
+                        <td><input type="number" ng-model="BattingScore[i].Balls" /></td>
+                        <td><input type="number" ng-model="BattingScore[i].WicketNumber" /></td>
+                        <td><input type="number" ng-model="BattingScore[i].FOWRuns" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5>Extras Received</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Wides</th>
+                        <th>No Balls</th>
+                        <th>Byes</th>
+                        <th>Leg Byes</th>
+                        <th>Penalty</th>
+                        <th>Total Extras</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="number" ng-model="HTWides"></td>
+                        <td><input type="number" ng-model="HTNoBalls"></td>
+                        <td><input type="number" ng-model="HTByes"></td>
+                        <td><input type="number" ng-model="HTLegByes"></td>
+                        <td><input type="number" ng-model="HTPenaltyRuns"></td>
+                        <td class="pull-right">{{HTWides + HTNoBalls + HTByes + HTLegByes + HTPenaltyRuns}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5>Bowling Score</h5>
+            <table class="table table-hover data-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Bowler</th>
+                        <th>Over</th>
+                        <th>Maiden</th>
+                        <th>Runs</th>
+                        <th>Wickets</th>
+                        <th>WD</th>
+                        <th>NB</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="i in [] | range:10">
+                        <td>{{i+1}}</td>
+                        <td>
+                            <div class='container-fluid'>
+                                <input type="text" ng-model="BowlingScore[i].Bowler" typeahead="player as player.FullName for player in HomePlayers  | filter:$viewValue|limitTo:10">
+                            </div>
+                        </td>
+                        <td><input type="number" ng-model="BowlingScore[i].Overs" /></td>
+                        <td><input type="number" ng-model="BowlingScore[i].Maiden" /></td>
+                        <td><input type="number" ng-model="BowlingScore[i].RunsGiven" /></td>
+                        <td><input type="number" ng-model="BowlingScore[i].Wickets" /></td>
+                        <td><input type="number" ng-model="BowlingScore[i].Wide" /></td>
+                        <td><input type="number" ng-model="BowlingScore[i].NoBalls" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr />
+            <button type="button" class="btn btn-primary" ng-click="SubmitMatchScore()">Submit Match Score</button>
+        </div>
+    </div>
+</div>
+
+

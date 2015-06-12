@@ -11,20 +11,16 @@ namespace wmcb.model.Data
     public class PlayerStats
     {
         [Key]
-        public int ID { get; set; }
-
+        public Int64 ID { get; set; }
         public virtual Team Team { get; set; }
         [ForeignKey("Team")]
         public int TeamId { get; set; }
-
         public virtual Match Match { get; set; }
         [ForeignKey("Match")]
         public int MatchId { get; set; }
-
         public virtual WmcbUser Player { get; set; }
         [ForeignKey("Player")]
-        public int UserId { get; set; }
-
+        public int PlayerId { get; set; }
         public int? BattingRuns { get; set; }
         public int? BallsFaced { get; set; }
         public int? HowOut { get; set; }
@@ -35,5 +31,13 @@ namespace wmcb.model.Data
         public int? Wickets { get; set; }
         public int? MaidenOvers { get; set; }
         public int? BowlingRuns { get; set; }
+        public int? Wide { get; set; }
+        public int? NoBalls { get; set; }
+        [NotMapped]
+        public string BowlerName { get; set; }
+        [NotMapped]
+        public string FielderName { get; set; }
+        [NotMapped]
+        public bool IsDeleted { get; set; }
     }
 }

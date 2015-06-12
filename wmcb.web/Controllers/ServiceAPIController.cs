@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,6 +8,7 @@ using wmcb.model.View;
 using wmcb.model.Data;
 using wmcb.model;
 using wmcb.repo;
+using wmcb.model.Security;
 
 namespace wmcb.web.Controllers
 {
@@ -30,22 +31,55 @@ namespace wmcb.web.Controllers
         {
             return new TeamRepo().GetTeams();
         }
-
         [HttpGet]
         [Route("wmcb/grounds")]
         public List<Ground> GetGrounds()
         {
             return new GroundRepo().GetGrounds();
         }
-
         [HttpGet]
         [Route("wmcb/schedule")]
-        public List<Schedule> GetSchedule()
+        public List<ScheduleView> GetSchedule()
         {
             var result = new ScheduleRepo().GetSchedule();
             return result;
         }
+        [HttpGet]
+        [Route("wmcb/upcominggames/{numofdays}")]
+        public List<ScheduleView> GetUpcomingGames(int numofdays)
+        {
+            return new ScheduleRepo().GetUpcomingGames(numofdays);
+        }
+        [HttpGet]
+        [Route("wmcb/points/lastweek")]
+        public DateTime GetLastWeek()
+        {
+            return new PointsRepo().GetLastWeek();
+        }
+        [HttpGet]
+        [Route("wmcb/teamPlayers/{teamId}")]
+        public List<Player> GetTeamPlayers(int teamId)
+        {
+            var teamPlayers = new UsersRepo().GetTeamPlayers(teamId);
+            return teamPlayers;
+        }
+        [HttpGet]
+        [Route("wmcb/myMatches/{teamId}")]
+        public List<ScheduleView> GetMyMatches(int teamId)
+        {
+            var macthes = new ScheduleRepo().GetMyMatches(teamId);
+            return macthes;
+        }
 
+        [WMCBAdminAuthorize("Admin", "League Official", "Team Official")]
+        [HttpGet]
+        [Route("wmcb/Matches")]
+        public List<ReviewMatchView> GetMatches()
+        {
+            var match = new MatchRepo().GetMatches();
+            return match;
+        }
+        //[WMCBAdminAuthorize("Admin", "League Official", "Team Official")]
         //[HttpGet]
         //[Route("wmcb/match")]
         //public Match GetMatch(int matchId)
@@ -54,34 +88,26 @@ namespace wmcb.web.Controllers
         //    return match;
         //}
 
+        [WMCBAdminAuthorize("Admin", "League Official", "Team Official")]
+        [HttpGet]
+        [Route("wmcb/matchPlayerStats/{matchId}")]
+        public List<PlayerStatsDto> GetMatchPlayerStats(int matchId)
+        {
+            var result = new StatsRepo().GetMatchPlayerStats(matchId);
+            return result;
+        }
+
+        //[WMCBAdminAuthorize("Admin", "League Official", "Team Official")]
         //[HttpGet]
-        //[Route("wmcb/matchStats")]
-        //public List<PlayerStats> GetMatchStats(int matchId)
+        //[Route("wmcb/matchTeamStats")]
+        //public List<TeamStats> GetMatchTeamsStats(int matchId)
         //{
-        //    var result = new StatsRepo().GetMatchStats(matchId);
+        //    var result = new StatsRepo().GetMatchTeamStats(matchId);
+
         //    return result;
         //}
-
-        //[HttpPost]
-        //[Route("wmcb/setPlayerStats")]
-        //public void SetPlayerStats(List<PlayerStats> players)
-        //{
-        //    new StatsRepo().SetPlayerStats(players);
-        //}
-
-        //[HttpGet]
-        //[Route("wmcb/teamPlayers")]
-        //public List<WmcbUser> GetTeamPlayers(int teamId)
-        //{
-        //    return new UsersRepo().GetTeamPlayers(teamId);
-        //}
-        [HttpGet]
-        [Route("wmcb/upcominggames/{numofdays}")]
-        public List<Schedule> GetUpcomingGames(int numofdays)
-        {
-            return new ScheduleRepo().GetUpcomingGames(numofdays);
-        }
         
+
         [HttpGet]
         [Route("wmcb/points/{type}")]
         public List<TeamPoint> GetPoints(int type)
@@ -94,5 +120,51 @@ namespace wmcb.web.Controllers
         {
             return new PointsRepo().GetConferencePoints(id);
         }
+        [HttpPost]
+        [Route("wmcb/user/add")]
+        public bool AddUser(NewUser user)
+        {
+           return new UsersRepo().AddUser(user);
+        }
+        [WMCBAdminAuthorize("League Official", "Team Official")]
+        [HttpPost]
+        [Route("wmcb/setPlayerStats")]
+        public void SetPlayerStats(List<PlayerStats> players)
+        {
+            //new StatsRepo().SetPlayerStats(players);
+        }
+
+        //[WMCBAdminAuthorize("League Official", "Team Official")]
+        //[HttpPost]
+        //[Route("wmcb/setPlayerStats")]
+        //public void SetPlayerStats(List<PlayerStats> players)
+        //{
+        //    new StatsRepo().SetPlayerStats(players);
+        //}
+
+        [WMCBAdminAuthorize("League Official", "Team Official")]
+        [HttpPost]
+        [Route("wmcb/SavePlayerStats")]
+        public void SavePlayerStats(List<PlayerStats> stats)
+        {
+            new StatsRepo().SavePlayerStats(stats);
+        }
+        [WMCBAdminAuthorize("League Official", "Team Official")]
+        [HttpPost]
+        [Route("wmcb/SetTeamStats")]
+        public void SetTeamStats(TeamStats stats)
+        {
+            new StatsRepo().SetTeamStats(stats);//, ((WmcbPrincipal) HttpContext.User));
+        }
+
+        [WMCBAdminAuthorize("Admin", "League Official")]
+        [HttpPost]
+        [Route("wmcb/completeMatchScore")]
+        public void CompleteMatchScore(Match match)
+        {
+           // new MatchRepo().SetMatchComplete(match);
+        }
+
+        
     }
 }

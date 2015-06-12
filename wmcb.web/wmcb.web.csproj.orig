@@ -1014,10 +1014,12 @@
     <Content Include="Views\Admin\NewsFeed.cshtml" />
 <<<<<<< HEAD
     <Content Include="Views\Home\Points.cshtml" />
+    <Content Include="Views\Home\MatchScore.cshtml" />
     <Content Include="Views\Home\News.cshtml" />
 =======
-    <Content Include="Views\Home\MatchScore.cshtml" />
->>>>>>> c82a23a33e16f9638214a4293234ce1fcf4cb3c0
+    <Content Include="Views\Admin\MatchScore.cshtml" />
+    <Content Include="Views\Home\ViewMatchScore.cshtml" />
+>>>>>>> 8b19c182ce485de16438168e7e2bea4adbbe01ca
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

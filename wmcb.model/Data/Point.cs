@@ -16,12 +16,12 @@ namespace wmcb.model.Data
         public int Result { get; set; }
         public int innings { get; set; }
         public int RunScored { get; set; }
-        public int OversPlayed { get; set; }
-        public int WicketLosst{ get; set; }
+        public decimal OversPlayed { get; set; }
+        public int WicketLost{ get; set; }
         public bool AllOut { get; set; }
         public int MaxOvers { get; set; }
         public int RunsAgainst { get; set; }
-        public int OversBowled { get; set; }
+        public decimal OversBowled { get; set; }
         public int WicketsTaken { get; set; }
         public bool BowledOut { get; set; }
         public decimal NRROversFor { get; set; }

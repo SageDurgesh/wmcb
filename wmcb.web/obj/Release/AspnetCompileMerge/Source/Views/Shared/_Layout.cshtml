@@ -21,7 +21,7 @@
         }(document, 'script', 'facebook-jssdk'));</script>
 
     <div class="navbar  navbar-fixed-top wmcbclearbackground">
-        <div class="navbar-brand logo ">
+       <div class="navbar-brand logo ">
             <a class="visible-lg" href="/Home/Index">
                 <img id="wmcblogo" src="~/Images/WMCB_LOGO_400x400.jpg" height="140" width="150" />
             </a>
@@ -49,18 +49,24 @@
                 <li>@Html.ActionLink("DOWNLOADS", "Downloads", "Home")</li>
                 <li class="hidden-md hidden-sm visible-xs">@Html.ActionLink("GALLERY", "Gallery", "Home")</li>
                 <li class="hidden-md hidden-sm visible-xs">@Html.ActionLink("NEWSLETTER", "Newsletter", "Home")</li>
-                <li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>
-                @*<li class="hidden-md  hidden-sm visible-xs dropdown-submenu">*@
-                @*<li class="dropdown">
+                @*<li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>*@
+               
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         ABOUT <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu wmcbnavbar navbar-inverse">
-                        <li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("LOGIN", "Index", "Account")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        @if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Sign Out", "Logout", "Account")</li>
+                        }
+                        else
+                        { 
+                            <li>@Html.ActionLink("Login", "Index", "Account")</li>
+                        }
                     </ul>
-                </li>*@
-                @*</li>*@
+                </li>
             </ul>
         </div>
 

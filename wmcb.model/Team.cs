@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using wmcb.model.Data;
+using wmcb.model.View;
 
 namespace wmcb.model
 {
@@ -15,6 +17,8 @@ namespace wmcb.model
         public int? ContactID3 { get; set; }       
         public bool Active { get; set; }
         public int Division { get; set; }
-        //public int Points { get; set; }
+        //public int? Points { get; set; }
+        public virtual ICollection<WmcbUser> Players { get; set; }
+
     }
 }

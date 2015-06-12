@@ -37,8 +37,8 @@ namespace wmcb.repo
                                select s;
 
 =======
-                var schedule = context.Schedules.Include("Match").Select(s=>s).OrderBy(s=>s.ID);
->>>>>>> c82a23a33e16f9638214a4293234ce1fcf4cb3c0
+                var schedule = context.Schedules.Include("Match").Include("Match.HomeTeam").Include("Match.AwayTeam").Select(s => s).OrderBy(s => s.ID);
+>>>>>>> 8b19c182ce485de16438168e7e2bea4adbbe01ca
                 return schedule.ToList();
             }
         }

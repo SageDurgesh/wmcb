@@ -26,6 +26,7 @@ namespace wmcb.model.Security
             this.Identity = new GenericIdentity(Username);
         }
         public int ID { get; set; }
+        public int? TeamId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string[] roles { get; set; }

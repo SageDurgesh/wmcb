@@ -1,0 +1,137 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Match Score</h2>
+<script src="~/Scripts/angular/controllers/MatchScoreController.js"></script>
+<div ng-controller="MatchScoreCtrl" ng-init="init('', '')">
+
+    <div name="HomeTeam">
+        <label>{{Match.HomeTeam.Name}}</label>
+        <hr />
+        <table ng-show="HomeTeamMatchPlayers.length > 0">
+            <tr>
+                <th style="padding:5px;" align="center"></th>
+                <th style="padding:5px;" align="center"></th>
+                <th style="padding:5px;" align="center">Balls</th>
+                <th style="padding:5px;" align="center">Runs</th>
+            </tr>
+            <tr ng-repeat="player in HomeTeamMatchPlayers">
+                <td style="padding:5px;font-weight:bold" align="left">{{player.Player.FullName}}</td>
+                <td style="padding:5px;" align="left" ng-switch on="player.HowOut">
+                    <div ng-switch-when="1">b {{player.BowlerName}}</div>
+                    <div ng-switch-when="2">c {{player.FielderName}} b {{player.BowlerName}}</div>
+                    <div ng-switch-when="4">run out {{player.FielderName}}</div>
+                    <div ng-switch-when="3">st {{player.FielderName}}</div>
+                    <div ng-switch-when="5">Not Out</div>
+                    <div ng-switch-default>DNB</div>
+                </td>
+                <td style="padding:5px;" align="center">{{player.BallsFaced}}</td>
+                <td style="padding:5px;" align="center">{{player.BattingRuns}}</td>
+            </tr>
+        </table>
+        <div>
+            <table>
+                <tr>
+                    <th style="padding:5px">Byes</th>
+                    <th style="padding:5px">Leg Byes</th>
+                    <th style="padding:5px">Wides</th>
+                    <th style="padding:5px">No Balls</th>
+                    <th style="padding:5px">Penalty Runs</th>
+                    <th style="padding:5px">Extras</th>
+                </tr>
+                <tr>
+                    <td style="padding:5px">{{HTByes}}</td>
+                    <td style="padding:5px">{{HTLegByes}}</td>
+                    <td style="padding:5px">{{HTWides}}</td>
+                    <td style="padding:5px">{{HTNoBalls}}</td>
+                    <td style="padding:5px">{{HTPenaltyRuns}}</td>
+                    <td style="padding:5px">{{HTExtras}}</td>
+                </tr>
+            </table>
+        </div>
+        <div><label>Total Score: {{HTBattingRuns*1 + HTExtras*1}}</label></div>
+        @*Bowling*@
+        <table ng-show="AwayTeamMatchPlayers.length > 0">
+            <tr>
+                <th style="padding:5px;" align="center"></th>
+                <th style="padding:5px;" align="center">Overs</th>
+                <th style="padding:5px;" align="center">Maiden</th>
+                <th style="padding:5px;" align="center">Runs</th>
+                <th style="padding:5px;" align="center">Wickets</th>
+            </tr>
+            <tr ng-repeat="player in AwayTeamMatchPlayers | filter: bowlersFilter | orderBy:'BowlerNumber'">
+                <td style="padding:5px;font-weight:bold" align="left">{{player.FullName}}</td>
+                <td style="padding:5px;" align="center">{{player.OversBowled}}</td>
+                <td style="padding:5px;" align="center">{{player.MaidenOvers}}</td>
+                <td style="padding:5px;" align="center">{{player.BowlingRuns}}</td>
+                <td style="padding:5px;" align="center">{{player.Wickets}}</td>
+            </tr>
+        </table>
+    </div>
+    <hr />
+    <div name="AwayTeam" >
+        <label>{{Match.AwayTeam.Name}}</label>
+        <hr />
+        <table ng-show="AwayTeamMatchPlayers.length > 0">
+            <tr>
+                <th style="padding:5px;" align="center"></th>
+                <th style="padding:5px;" align="center"></th>
+                <th style="padding:5px;" align="center">Balls</th>
+                <th style="padding:5px;" align="center">Runs</th>
+            </tr>
+            <tr ng-repeat="player in AwayTeamMatchPlayers">
+                <td style="padding:5px;font-weight:bold" align="left">{{player.FullName}}</td>
+                <td style="padding:5px;" align="left" ng-switch on="player.HowOut">
+                    <div ng-switch-when="1">b {{player.BowlerName}}</div>
+                    <div ng-switch-when="2">c {{player.FielderName}} b {{player.BowlerName}}</div>
+                    <div ng-switch-when="4">run out {{player.FielderName}}</div>
+                    <div ng-switch-when="3">st {{player.FielderName}}</div>
+                    <div ng-switch-when="5">Not Out</div>
+                    <div ng-switch-default>DNB</div>
+                </td>
+                <td style="padding:5px;" align="center">{{player.BallsFaced}}</td>
+                <td style="padding:5px;" align="center">{{player.BattingRuns}}</td>
+            </tr>
+        </table>
+        <div>
+            <table>
+                <tr>
+                    <th style="padding:5px">Byes</th>
+                    <th style="padding:5px">Leg Byes</th>
+                    <th style="padding:5px">Wides</th>
+                    <th style="padding:5px">No Balls</th>
+                    <th style="padding:5px">Penalty Runs</th>
+                    <th style="padding:5px">Extras</th>
+                </tr>
+                <tr>
+                    <td style="padding:5px">{{ATByes}}</td>
+                    <td style="padding:5px">{{ATLegByes}}</td>
+                    <td style="padding:5px">{{ATWides}}</td>
+                    <td style="padding:5px">{{ATNoBalls}}</td>
+                    <td style="padding:5px">{{ATPenaltyRuns}}</td>
+                    <td style="padding:5px">{{ATExtras}}</td>
+                </tr>
+            </table>
+        </div>
+        <div><label>Total Score: {{ATBattingRuns*1 + ATExtras*1}}</label></div>
+        @*Bowling*@
+        <table >
+            <tr>
+                <th style="padding:5px;" align="center"></th>
+                <th style="padding:5px;" align="center">Overs</th>
+                <th style="padding:5px;" align="center">Maiden</th>
+                <th style="padding:5px;" align="center">Runs</th>
+                <th style="padding:5px;" align="center">Wickets</th>
+            </tr>
+            <tr ng-repeat="player in HomeTeamMatchPlayers | filter: bowlersFilter | orderBy:'BowlerNumber'">
+                <td style="padding:5px;font-weight:bold" align="left">{{player.FullName}}</td>
+                <td style="padding:5px;" align="center">{{player.OversBowled}}</td>
+                <td style="padding:5px;" align="center">{{player.MaidenOvers}}</td>
+                <td style="padding:5px;" align="center">{{player.BowlingRuns}}</td>
+                <td style="padding:5px;" align="center">{{player.Wickets}}</td>
+            </tr>
+        </table>
+    </div>
+    <hr />
+</div>

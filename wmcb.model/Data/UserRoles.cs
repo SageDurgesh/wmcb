@@ -10,9 +10,11 @@ namespace wmcb.model.Data
 {
     public class UserRoles
     {
-        [Column(Order = 0), Key]
+        [Column(Order = 0), Key, ForeignKey("User")]
         public int UserID { get; set; }
-        [Column(Order = 1), Key]
+        [Column(Order = 1), Key, ForeignKey("Role")]
         public int RoleID { get; set; }
+        public virtual WmcbUser User { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

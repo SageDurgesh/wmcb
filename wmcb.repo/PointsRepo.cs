@@ -86,5 +86,15 @@ namespace wmcb.repo
             }
         }
 
+
+        public DateTime GetLastWeek()
+        {
+            using (var context = new wmcbContext())
+            {
+                int wk = context.Points.AsEnumerable().Max(p => p.Matchday);
+                DateTime dateTime = context.Schedules.AsEnumerable().Where(s => s.Week == wk).Select(s=>s.DateTime).ToList().FirstOrDefault();
+                return dateTime;
+            }
+        }
     }
 }

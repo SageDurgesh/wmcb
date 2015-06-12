@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using wmcb.repo;
+using wmcb.model.Security;
 
 namespace wmcb.web.Controllers
 {
@@ -35,6 +36,13 @@ namespace wmcb.web.Controllers
         {
             return View();
         }
+        public ActionResult ViewMatchScore()
+        {
+            ViewBag.TeamId = ((WmcbPrincipal)HttpContext.User).TeamId;
+            ViewBag.IsLeagueOfficial = HttpContext.User.IsInRole("League Official");
+            return View();
+        }
+        
         public ActionResult Gallery()
         {
             return View();

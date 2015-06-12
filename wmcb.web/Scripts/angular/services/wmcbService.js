@@ -64,7 +64,18 @@
         }).success(deferred.resolve).error(deferred.reject);
         return deferred.promise;
     }
+    this.addnewuser = function (user) {        
+        return $http({
+            url: '/wmcb/user/add',
+            data: user,
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    };
 }]);
+
 WMCBApp.service('filteredListService', function () {
     this.searched = function (valLists, toSearch) {
         return _.filter(valLists,
@@ -90,15 +101,35 @@ WMCBApp.service('filteredListService', function () {
 
 
 WMCBApp.service("MatchEntryService", ["$http", "$q", function ($http, $q) {
-    var MatchId = '';
-    this.setMatchId = function (matchId) {
-        MatchId = matchId;
-    };
-
-    this.getMatch = function () {
+    this.getMyMatches = function (teamID) {
         var deferred = $q.defer();
         $http({
-            url: '/wmcb/match?matchId=1',
+            url: '/wmcb/myMatches/' + teamID,
+            method: "GET"
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    }
+    this.getMatches = function () {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/Matches/',
+            method: "GET"
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    }
+    this.getMatch = function (matchId) {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/match?matchId='+matchId,
+            method: "GET"
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    };
+
+    this.getCurrentTeam = function (userName) {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/userTeam?userName=' + userName,
             method: "GET"
         }).success(deferred.resolve).error(deferred.reject);
         return deferred.promise;
@@ -107,26 +138,58 @@ WMCBApp.service("MatchEntryService", ["$http", "$q", function ($http, $q) {
     this.getTeamPlayers = function (id) {
         var deferred = $q.defer();
         $http({
-            url: '/wmcb/teamPlayers?teamId=' + id,
+            url: '/wmcb/teamPlayers/' + id,
             method: "GET"
         }).success(deferred.resolve).error(deferred.reject);
         return deferred.promise;
     };
 
-    this.getMatchStats = function (id) {
+    this.getMatchPlayerStats = function (id) {
         var deferred = $q.defer();
         $http({
-            url: '/wmcb/matchStats?matchId=' + id,
+            url: '/wmcb/matchPlayerStats?matchId=' + id,
             method: "GET"
-        }).success(deferred.resolve).error(deferred.reject);
+        }).success(deferred.resolve).error(function (data, status) { alert(JSON.stringify(data)); });
         return deferred.promise;
     };
 
-    this.SetPlayerStats = function (playerStats) {
+    this.getMatchTeamStats = function (id) {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/matchTeamStats?matchId=' + id,
+            method: "GET"
+        }).success(deferred.resolve).error(function (data, status) { alert(JSON.stringify(data)); });
+        return deferred.promise;
+    };
+
+    this.CompleteMatchScore = function (match) {
+        return $http({
+            url: '/wmcb/completeMatchScore',
+            method: "POST",
+            data: JSON.stringify(match)
+        });
+    };
+
+    this.setPlayerStats = function (playerStats) {
         return $http({
             url: '/wmcb/setPlayerStats',
             method: "POST",
             data: JSON.stringify(playerStats)
         });
     };
+    
+    this.setTeamStats = function (teamStats) {
+        return $http({
+            url: '/wmcb/SetTeamStats',
+            method: "POST",
+            data: JSON.stringify(teamStats)
+        });
+    };
+    this.SavePlayerStats = function (playerStats) {
+        return $http({
+            url: '/wmcb/SavePlayerStats',
+            method: "POST",
+            data: JSON.stringify(playerStats)
+        });
+    }; 
 }]);

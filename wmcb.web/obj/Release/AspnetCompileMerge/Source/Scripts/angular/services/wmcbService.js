@@ -64,7 +64,32 @@
         }).success(deferred.resolve).error(deferred.reject);
         return deferred.promise;
     }
+    this.addnewuser = function (user) {        
+        return $http({
+            url: '/wmcb/user/add',
+            data: user,
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    };
+    //function handleError(response) {
+    //    // The API response from the server should be returned in a
+    //    // nomralized format. However, if the request was not handled by the
+    //    // server (or what not handles properly - ex. server error), then we
+    //    // may have to normalize it on our end, as best we can.
+    //    if (response==undefined || response.data == undefined || !response.data) {
+    //            return ($q.reject("An unknown error occurred."));
+    //    }
+    //}
+    //// I transform the successful response, unwrapping the application data
+    //// from the API response payload.
+    //function handleSuccess(response) {
+    //    return (response.data);
+    //}
 }]);
+
 WMCBApp.service('filteredListService', function () {
     this.searched = function (valLists, toSearch) {
         return _.filter(valLists,
@@ -90,15 +115,21 @@ WMCBApp.service('filteredListService', function () {
 
 
 WMCBApp.service("MatchEntryService", ["$http", "$q", function ($http, $q) {
-    var MatchId = '';
-    this.setMatchId = function (matchId) {
-        MatchId = matchId;
-    };
+    
 
-    this.getMatch = function () {
+    this.getMatch = function (matchId) {
         var deferred = $q.defer();
         $http({
-            url: '/wmcb/match?matchId=1',
+            url: '/wmcb/match?matchId='+matchId,
+            method: "GET"
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    };
+
+    this.getCurrentTeam = function (userName) {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/userTeam?userName=' + userName,
             method: "GET"
         }).success(deferred.resolve).error(deferred.reject);
         return deferred.promise;
@@ -113,20 +144,45 @@ WMCBApp.service("MatchEntryService", ["$http", "$q", function ($http, $q) {
         return deferred.promise;
     };
 
-    this.getMatchStats = function (id) {
+    this.getMatchPlayerStats = function (id) {
         var deferred = $q.defer();
         $http({
-            url: '/wmcb/matchStats?matchId=' + id,
+            url: '/wmcb/matchPlayerStats?matchId=' + id,
             method: "GET"
-        }).success(deferred.resolve).error(deferred.reject);
+        }).success(deferred.resolve).error(function (data, status) { alert(JSON.stringify(data)); });
         return deferred.promise;
     };
 
-    this.SetPlayerStats = function (playerStats) {
+    this.getMatchTeamStats = function (id) {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/matchTeamStats?matchId=' + id,
+            method: "GET"
+        }).success(deferred.resolve).error(function (data, status) { alert(JSON.stringify(data)); });
+        return deferred.promise;
+    };
+
+    this.CompleteMatchScore = function (match) {
+        return $http({
+            url: '/wmcb/completeMatchScore',
+            method: "POST",
+            data: JSON.stringify(match)
+        });
+    };
+
+    this.setPlayerStats = function (playerStats) {
         return $http({
             url: '/wmcb/setPlayerStats',
             method: "POST",
             data: JSON.stringify(playerStats)
+        });
+    };
+
+    this.setTeamStats = function (teamStats) {
+        return $http({
+            url: '/wmcb/setTeamStats',
+            method: "POST",
+            data: JSON.stringify(teamStats)
         });
     };
 }]);

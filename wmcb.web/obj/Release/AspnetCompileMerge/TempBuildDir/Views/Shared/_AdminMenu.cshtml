@@ -1,4 +1,4 @@
-﻿@model wmcb.model.View.LoginViewModel
+﻿
 <div class="navbar-collapse collapse navbar-inverse admin-navbar" >
     <ul class="nav side-nav">
         <li>
@@ -11,12 +11,10 @@
 
         <li>@Html.ActionLink("News Feed", "NewsFeed", "Admin")</li>
         <li>@Html.ActionLink("FIXTURES", "Fixtures", "Home")</li>
-        <li>@Html.ActionLink("TEAM PROFILES", "Teams", "Home")</li>
-        <li>@Html.ActionLink("STATISTICS", "Stats", "Home")</li>
+        <li>@Html.ActionLink("Team Manager", "TeamManager", "Admin")</li>
+        <li>@Html.ActionLink("Match Score", "MatchScore", "Admin")</li>
         <li>@Html.ActionLink("GROUNDS", "Grounds", "Home")</li>
         <li>@Html.ActionLink("DOWNLOADS", "Downloads", "Home")</li>
-        <li class="hidden-md hidden-sm visible-xs">@Html.ActionLink("GALLERY", "Gallery", "Home")</li>
-        <li class="hidden-md hidden-sm visible-xs">@Html.ActionLink("NEWSLETTER", "Newsletter", "Home")</li>
        
     </ul>
 </div>

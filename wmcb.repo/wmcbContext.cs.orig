@@ -18,22 +18,32 @@ namespace wmcb.repo
         public DbSet<Point> Points { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
+<<<<<<< HEAD
+        //public DbSet<PlayerStats> PlayerStats { get; set; }
+       // public DbSet<Match> Match { get; set; }
+=======
         public DbSet<PlayerStats> PlayerStats { get; set; }
+        public DbSet<TeamStats> TeamStats { get; set; }
         public DbSet<Match> Match { get; set; }
+>>>>>>> 8b19c182ce485de16438168e7e2bea4adbbe01ca
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<NewsFeed>().ToTable("NewsFeed");
             modelBuilder.Entity<WmcbUser>().ToTable("Users");
-            modelBuilder.Entity<Schedule>().ToTable("Schedule").HasRequired(s => s.Match);
+            modelBuilder.Entity<Schedule>().ToTable("TempSchedule");//.HasRequired(s => s.Match);
             modelBuilder.Entity<Role>().ToTable("Roles");
-            modelBuilder.Entity<UserRoles>().ToTable("UserRoles");
 <<<<<<< HEAD
+            modelBuilder.Entity<UserRoles>().ToTable("UserRoles");
             modelBuilder.Entity<Point>().ToTable("Points");
+           // modelBuilder.Entity<PlayerStats>().ToTable("PlayerStats");
+           // modelBuilder.Entity<Match>().ToTable("Matches");
 =======
+            modelBuilder.Entity<UserRoles>().ToTable("UserRoles").HasRequired(ur => ur.Role);
             modelBuilder.Entity<PlayerStats>().ToTable("PlayerStats");
+            modelBuilder.Entity<TeamStats>().ToTable("TeamStats");
             modelBuilder.Entity<Match>().ToTable("Matches");
->>>>>>> c82a23a33e16f9638214a4293234ce1fcf4cb3c0
+>>>>>>> 8b19c182ce485de16438168e7e2bea4adbbe01ca
         }
     }
 }

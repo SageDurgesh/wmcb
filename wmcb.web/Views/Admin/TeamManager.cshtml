@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "TeamManager";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model wmcb.model.View.TeamView
+<div>
+    <h2>Manage My Team</h2>
+    <ul class="nav nav-pills pull-right">
+        <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                Action <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Add a New Player</a></li>
+                <li><a href="#">View/Update Team Member</a></li>
+            </ul>
+        </li>
+    </ul>
+    <h3>Team Name: <span>@Model.Name</span></h3>
+   
+</div>
+
+
+
