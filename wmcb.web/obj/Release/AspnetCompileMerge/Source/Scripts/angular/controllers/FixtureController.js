@@ -1,4 +1,4 @@
-﻿WMCBApp.controller('FixtureCtrl', ["$scope","$filter", "wmcbService", "filteredListService", function ($scope,$filter, wmcbService,filteredListService) {
+﻿WMCBApp.controller('FixtureCtrl', ["$scope","$filter", "wmcbService", "filteredListService", function ($scope, $filter, wmcbService,filteredListService) {
     $scope.schedules = "";
     $scope.pageSize = 20;
     $scope.reverse = false;
@@ -6,17 +6,22 @@
         sortingOrder: 'TestId',
         reverse: true
     };
+    $scope.minDate = new Date('1900/01/01');
     $scope.gap = 5;
     $scope.filteredItems = [];
     $scope.groupedItems = [];
     $scope.itemsPerPage = 10;
     $scope.pagedItems = [];
     $scope.currentPage = 1;
+    
+    $scope.CurrentDate = new Date();
+    $scope.IsMatchComplete = function (matchDate) {
+        return new Date() > new Date(matchDate);
+    };
     wmcbService.getSchedule().then(function (data) {
         $scope.schedules = data;
     });
     $scope.$watch('schedules', function () {
-        debugger;
         var searchMatch = function (haystack, needle) {
             if (!needle) {
                 return true;
@@ -27,8 +32,15 @@
         $scope.search = function () {
             $scope.filteredItems = $filter('filter')($scope.schedules, function (item) {
                 for (var attr in item) {
-                    if ( attr !="ID" && searchMatch(item[attr], $scope.searchText))
-                        return true;
+                    if (attr != "ID" && item[attr] != undefined) {
+                        var st = item[attr];
+                        if (attr == "DateTime") {
+                            st = $filter('date')(st, 'MM/dd/yy hh:mm a EEEE');
+                        }
+                        if(searchMatch(st, $scope.searchText))
+                            return true;
+                    }
+                       
                 }
                 return false;
             });

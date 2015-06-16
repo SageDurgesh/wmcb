@@ -63,6 +63,11 @@ namespace wmcb.adminportal.Controllers
         }
 
         [AllowAnonymous]
+        public ActionResult Register()
+        {
+            return View();
+        }        
+        [AllowAnonymous]
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();

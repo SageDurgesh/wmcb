@@ -38,8 +38,8 @@ namespace wmcb.web.Controllers
         }
         public ActionResult ViewMatchScore()
         {
-            //ViewBag.TeamId = ((WmcbPrincipal)HttpContext.User).TeamId;
-            //ViewBag.IsLeagueOfficial = HttpContext.User.IsInRole("League Official");
+            ViewBag.TeamId = ((WmcbPrincipal)HttpContext.User).TeamId;
+            ViewBag.IsLeagueOfficial = HttpContext.User.IsInRole("League Official");
             return View();
         }
         
@@ -60,6 +60,14 @@ namespace wmcb.web.Controllers
         {
             ViewBag.Message = "Washington Metropolitan Cricket Board";
 
+            return View();
+        }
+        public ActionResult Points()
+        {
+            return View();
+        }
+        public ActionResult News()
+        {
             return View();
         }
     }

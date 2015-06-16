@@ -1,285 +1,122 @@
-﻿@model wmcb.model.Security.WmcbPrincipal
+﻿@using Newtonsoft.Json;
+@model wmcb.model.View.MatchScoreView
 @{
     ViewBag.Title = "Match Score";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var IsLeagueOfficial = ViewContext.HttpContext.User.IsInRole("League Official") ? "true" : "false";
 }
 
-<h2>Enter Match Score</h2>
+
 <script src="~/Scripts/angular/controllers/MatchScoreController.js"></script>
-<div ng-controller="MatchScoreCtrl" ng-init="init('@ViewBag.TeamId', '@IsLeagueOfficial')">
-    
-@if (!ViewContext.HttpContext.User.IsInRole("Player") || !ViewContext.HttpContext.User.Identity.IsAuthenticated)
-{
-    <div ng-show="IsLeagueOfficial == 'true' || YourTeamId == Match.HomeTeamId">
-        <label>Enter match score for {{Match.HomeTeam.Name}}</label>
-        <select data-ng-model="PlayerToAdd"
-                data-ng-options="p.FullName for p in HomeTeamPlayers" ng-change="EnableScore()">
-            <option value="">-- Add Player --</option>
-        </select>
+<div ng-controller="MatchScoreCtrl" ng-init="init(@JsonConvert.SerializeObject(Model.hasPermission),@Model.TeamID)">
+    <h4>Enter Match Score</h4>
+    <div ng-show="done">
+        <h4>  {{displaymessage}}</h4>
     </div>
-    <div ng-show="IsLeagueOfficial == 'true' || YourTeamId == Match.AwayTeamId">
-        <label>Enter match score for {{Match.AwayTeam.Name}}</label>
-        <select data-ng-model="PlayerToAdd"
-                data-ng-options="p.FullName for p in AwayTeamPlayers" ng-change="EnableScore()">
-            <option value="">-- Add Player --</option>
-        </select>
-    </div>
-    <form name="MatchScoreForm" ng-show="PlayerSelected" style="width:100%; height: 100%; background-color:transparent; position: absolute; z-index:3000; display:block;border-radius:0.5em;">
-        <div ng-show="PlayerSelected" style="width:auto; height: auto; background-color:lightgray; position: absolute; z-index:3000; display:block;border-radius:0.5em; padding:10px">
-            <span>Enter scores for <label> {{PlayerToAdd.FullName}}</label></span>
-            <input data-ng-model="PlayerId" type="hidden" value="PlayerToAdd.PlayerId" />
-            <div style="font-weight:bold">Batting</div>
-            <table >
-                <tr>
-                    <th style="padding:5px">Balls</th>
-                    <th style="padding:5px">Runs</th>
-                    <th style="padding:5px">Out</th>
-                    <th style="padding:5px">Bowler</th>
-                    <th style="padding:5px">Fielder</th>
-                </tr>
-                <tr>
-                    <td style="padding:5px" align="center"><input style="height:20px;width:50px;" type="text" data-ng-model="BallsFaced" /></td>
-                    <td style="padding:5px" align="center"><input style="height:20px;width:50px;" type="text" data-ng-model="BattingRuns" /></td>
-                    <td style="padding:5px" align="center">
-                        <select ng-model="HowOut" data-ng-options="o.Type for o in OutList" style="height:20px">
-                            <option value="">-- Out --</option>
-                        </select>
-                    </td>
-                    <td style="padding:5px" align="center">
-                        <select data-ng-model="Bowler" data-ng-options="p.FullName for p in OtherTeamPlayers" style="height:20px">
-                            <option value="">-- Select Bowler --</option>
-                        </select>
-                    </td>
-                    <td style="padding:5px;" align="center" ng-disabled="HowOut.Id==1">
-                        @*<span ng-if="HowOut.Id == 2">Caught By</span>
-                            <span ng-if="HowOut.Id == 3">Stumped By</span>
-                            <span ng-if="HowOut.Id == 4">Run Out By</span>*@
-                        <select data-ng-model="Fielder" data-ng-options="p.FullName for p in OtherTeamPlayers" style="height:20px">
-                            <option value="">-- Select Fielder --</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-
-            <div style="font-weight:bold">Bowling</div>
-            <table>
-                <tr>
-                    <th style="padding:10px">Bowler Number</th>
-                    <th style="padding:10px">Overs</th>
-                    <th style="padding:10px">Maiden</th>
-                    <th style="padding:10px">Runs</th>
-                    <th style="padding:10px">Wickets</th>
-                    <th style="padding:10px">W</th>
-                    <th style="padding:10px">NB</th>
-                </tr>
-                <tr>
-                    <td style="padding:5px" align="center">
-                        <select data-ng-model="BowlerNumber" name="BowlerNumber" style="height:20px" ng-change="ValidateBowler()">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                        </select>
-                        @*<validation-tooltip target="MatchScoreForm.BowlerNumber">
-                                <ul class="list-unstyled">
-                                    <li validation-message ng-if="$field.$error.required">Required field.</li>
-                                    <li validation-message ng-if="$field.$error.number">incorrect value for number. correct value 1-11</li>
-                                </ul>
-                            </validation-tooltip>*@
-
-                        <div style="background-color:red; position: absolute; z-index:3000; display:inline-block;opacity:.5;color:white;border-radius:0.5em;" ng-show="MatchScoreForm.BowlerNumber.$error.Duplicate">
-                            Duplicate Bowler Number!
-                        </div>
-                        <div style="background-color:red; position: absolute; z-index:3000; display:inline-block;opacity:.5;color:white;border-radius:0.5em; vertical-align:bottom;" ng-show="MatchScoreForm.BowlerNumber.$error.Missing">
-                            Required Field!
-                        </div>
-                    </td>
-                    <td style="padding:5px" align="center"><input style="height:20px;width:50px;" type="text" data-ng-model="Overs" ng-change="ValidateBowler()" /></td>
-                    <td style="padding:5px" align="center"><input style="height:20px;width:50px;" type="text" data-ng-model="Maiden" /></td>
-                    <td style="padding:5px" align="center"><input style="height:20px;width:50px;" type="text" data-ng-model="BowlingRuns" /></td>
-                    <td style="padding:5px" align="center"><input style="height:20px;width:50px;" type="text" data-ng-model="Wickets" /></td>
-                    <td style="padding:5px" align="center"><input style="height:20px;width:50px;" type="text" data-ng-model="Wides" /></td>
-                    <td style="padding:5px" align="center"><input style="height:20px;width:50px;" type="text" data-ng-model="NoBalls" /></td>
-
-                </tr>
-            </table>
-            <button style="margin-top:20px" ng-disabled="MatchScoreForm.BowlerNumber.$invalid" ng-click="AddPlayerScore()">Add</button>
-            <button ng-click="Cancel()">Cancel</button>
-        </div>
-    </form>
-
-    <div name="HomeTeam" ng-show="IsLeagueOfficial == 'true' || YourTeamId == Match.HomeTeamId">
-        <label>{{Match.HomeTeam.Name}}</label>
-        <p ng-show="HomeTeamMatchPlayers.length == 0">Team has not updated match scores</p>
-        <div class="row">
-        <table ng-show="HomeTeamMatchPlayers.length > 0" class="col-md-6 col-xs-12">
-            <tr>
-                <th style="padding:5px;" align="left"></th>
-                <th style="padding:5px;" align="left"></th>
-                <th style="padding:5px;" align="left">Balls</th>
-                <th style="padding:5px;" align="left">Runs</th>
-            </tr>
-            <tr ng-repeat="player in HomeTeamMatchPlayers">
-                <td style="padding:5px;font-weight:bold" align="left">{{player.Player.FullName}}</td>
-                <td style="padding:5px;" align="left" ng-switch on="player.HowOut">
-                    <div ng-switch-when="1">b {{player.BowlerName}}</div>
-                    <div ng-switch-when="2">c {{player.FielderName}} b {{player.BowlerName}}</div>
-                    <div ng-switch-when="4">run out {{player.FielderName}}</div>
-                    <div ng-switch-when="3">st {{player.FielderName}}</div>
-                    <div ng-switch-when="5">Not Out</div>
-                    <div ng-switch-default>DNB</div>
-                </td>
-                <td style="padding:5px;" align="center">{{player.BallsFaced}}</td>
-                <td style="padding:5px;" align="center">{{player.BattingRuns}}</td>
-            </tr>
-        </table>
-            <table class="col-md-6 col-xs-12" style="background-color:lightgray; border-radius:.5em; width:auto;"
-                   ng-show="HomeTeamMatchPlayers.length > 0">
-                <tr>
-                    <th>Selected Players</th>
-                </tr>
-                <tr ng-repeat="player in HomeTeamMatchPlayers">
-                    <td style="padding:7px">
-                        {{player.FullName}}
-                        <span><a style="cursor:pointer" ng-click="EditPlayer(player)">Edit</a></span>
-                        <span><a style="cursor:pointer" ng-click="DeletePlayer(player)">Delete</a></span>
-                    </td>
-                </tr>
-            </table>
-        </div>
+    <div ng-show="!done">
         <div>
+            Select a Match :
+            <div class="btn-group" dropdown>
+                <button type="button" class="btn btn-warning">{{SelectedMatchText}}</button>
+                <button type="button" class="btn btn-warning dropdown-toggle" dropdown-toggle>
+                    <span class="caret"></span>
+                    <span class="sr-only">Split button!</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li ng-repeat="m in AgainstTeams"><a href="#" ng-click="SelectMatch(m)">Vs {{m.AgainstTeamName}} - {{m.DateTime| date:'EEE , MM/dd'}}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div ng-hide="SelectedMatch==''">
+            <h5>Batting Score</h5>
+            <table class="table table-hover data-table col-lg-10 col-md-8">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="col-lg-2 col-md-2">Batsman</th>
+                        <th style="width:10px;">How Out</th>
+                        <th class="col-lg-2 col-md-2">Bowler</th>
+                        <th>Run</th>
+                        <th>Balls</th>
+                        <th>Wicket#</th>
+                        <th>FOW Runs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="i in [] | range:11">
+                        <td>{{i+1}}</td>
+                        <td>
+                            <div class='container-fluid'>
+                                <input type="text" ng-model="BattingScore[i].Batsman" typeahead="player as player.FullName for player in HomePlayers  | filter:$viewValue|limitTo:10">
+                            </div>
+                        </td>
+                        <td style="width:10px;"><input type="text" ng-model="BattingScore[i].HowOut" typeahead="out as out.Type for out in OutList  | filter:$viewValue" /></td>
+                        <td><input type="text" ng-model="BattingScore[i].Bowler" typeahead="player as player.FullName for player in AwayPlayers  | filter:$viewValue|limitTo:10" /></td>
+                        <td><input type="text" ng-model="BattingScore[i].Runs" /></td>
+                        <td><input type="number" ng-model="BattingScore[i].Balls" /></td>
+                        <td><input type="number" ng-model="BattingScore[i].WicketNumber" /></td>
+                        <td><input type="number" ng-model="BattingScore[i].FOWRuns" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5>Extras Received</h5>
             <table>
-                <tr>
-                    <th style="padding:5px">Byes</th>
-                    <th style="padding:5px">Leg Byes</th>
-                    <th style="padding:5px">Wides</th>
-                    <th style="padding:5px">No Balls</th>
-                    <th style="padding:5px">Penalty Runs</th>
-                    <th style="padding:5px">Extras</th>
-                </tr>
-                <tr>
-                    <td style="padding:5px"><input style="height:20px;width:50px;" type="text" data-ng-model="HTByes" ng-change="MarkDirty()" /></td>
-                    <td style="padding:5px"><input style="height:20px;width:50px;" type="text" data-ng-model="HTLegByes" ng-change="MarkDirty()" /></td>
-                    <td style="padding:5px"><input style="height:20px;width:50px;" type="text" data-ng-model="HTWides" ng-change="MarkDirty()" /></td>
-                    <td style="padding:5px"><input style="height:20px;width:50px;" type="text" data-ng-model="HTNoBalls" ng-change="MarkDirty()" /></td>
-                    <td style="padding:5px"><input style="height:20px;width:50px;" type="text" data-ng-model="HTPenaltyRuns" ng-change="MarkDirty()" /></td>
-                    <td style="padding:5px"><label style="height:20px;width:50px;" />{{HTExtras}}</td>
-                </tr>
-            </table>
-        </div>
-        <div>Total Score: {{HTBattingRuns*1 + HTExtras*1}}</div>
-        @*Bowling*@
-        <table ng-show="HomeTeamMatchPlayers.length > 0">
-            <tr>
-                <th style="padding:5px;" align="center"></th>
-                <th style="padding:5px;" align="center">Overs</th>
-                <th style="padding:5px;" align="center">Maiden</th>
-                <th style="padding:5px;" align="center">Runs</th>
-                <th style="padding:5px;" align="center">Wickets</th>
-            </tr>
-            <tr ng-repeat="player in HomeTeamMatchPlayers | filter: player.OverBowled > 0 | orderBy:'BowlerNumber'">
-                <td style="padding:5px;font-weight:bold" align="left">{{player.FullName}}</td>
-                <td style="padding:5px;" align="center">{{player.OversBowled}}</td>
-                <td style="padding:5px;" align="center">{{player.MaidenOvers}}</td>
-                <td style="padding:5px;" align="center">{{player.BowlingRuns}}</td>
-                <td style="padding:5px;" align="center">{{player.Wickets}}</td>
-            </tr>
-        </table>
-    </div>
-    <hr />
-    <div name="AwayTeam" ng-show="IsLeagueOfficial == 'true' || YourTeamId == Match.AwayTeamId">
-        <label>{{Match.AwayTeam.Name}}</label>
-        <p ng-show="AwayTeamMatchPlayers.length == 0">Team has not updated match scores</p>
-        <div class="row">
-            <table ng-show="AwayTeamMatchPlayers.length > 0" class="col-md-6 col-xs-12">
-                <tr>
-                    <th style="padding:5px;" align="center"></th>
-                    <th style="padding:5px;" align="center"></th>
-                    <th style="padding:5px;" align="center">Balls</th>
-                    <th style="padding:5px;" align="center">Runs</th>
-                </tr>
-                <tr ng-repeat="player in AwayTeamMatchPlayers">
-                    <td style="padding:5px;font-weight:bold" align="left">{{player.FullName}}</td>
-                    <td style="padding:5px;" align="left" ng-switch on="player.HowOut">
-                        <div ng-switch-when="1">b {{player.BowlerName}}</div>
-                        <div ng-switch-when="2">c {{player.FielderName}} b {{player.BowlerName}}</div>
-                        <div ng-switch-when="4">run out {{player.FielderName}}</div>
-                        <div ng-switch-when="3">st {{player.FielderName}}</div>
-                        <div ng-switch-when="5">Not Out</div>
-                        <div ng-switch-default>DNB</div>
-                    </td>
-                    <td style="padding:5px;" align="center">{{player.BallsFaced}}</td>
-                    <td style="padding:5px;" align="center">{{player.BattingRuns}}</td>
-                </tr>
-            </table>
-            <table class="col-md-6 col-xs-12" style="background-color:lightgray; border-radius:.5em; width:auto;"
-                   ng-show="AwayTeamMatchPlayers.length > 0">
-                <tr>
-                    <th>Selected Players</th>
-                </tr>
-                <tr ng-repeat="player in AwayTeamMatchPlayers">
-                    <td style="padding:7px">
-                        {{player.FullName}}
-                        <span><a style="cursor:pointer" ng-click="EditPlayer(player)">Edit</a></span>
-                        <span><a style="cursor:pointer" ng-click="DeletePlayer(player)">Delete</a></span>
-                    </td>
-                </tr>
-            </table>
-            </div>
-            <div>
-                <table>
+                <thead>
                     <tr>
-                        <th style="padding:5px">Byes</th>
-                        <th style="padding:5px">Leg Byes</th>
-                        <th style="padding:5px">Wides</th>
-                        <th style="padding:5px">No Balls</th>
-                        <th style="padding:5px">Penalty Runs</th>
-                        <th style="padding:5px">Extras</th>
+                        <th>Wides</th>
+                        <th>No Balls</th>
+                        <th>Byes</th>
+                        <th>Leg Byes</th>
+                        <th>Penalty</th>
+                        <th>Total Extras</th>
                     </tr>
+                </thead>
+                <tbody>
                     <tr>
-                        <td style="padding:5px"><input style="height:20px;width:50px;" type="text" data-ng-model="ATByes" ng-change="MarkDirty()" /></td>
-                        <td style="padding:5px"><input style="height:20px;width:50px;" type="text" data-ng-model="ATLegByes" ng-change="MarkDirty()" /></td>
-                        <td style="padding:5px"><input style="height:20px;width:50px;" type="text" data-ng-model="ATWides" ng-change="MarkDirty()" /></td>
-                        <td style="padding:5px"><input style="height:20px;width:50px;" type="text" data-ng-model="ATNoBalls" ng-change="MarkDirty()" /></td>
-                        <td style="padding:5px"><input style="height:20px;width:50px;" type="text" data-ng-model="ATPenaltyRuns" ng-change="MarkDirty()" /></td>
-                        <td style="padding:5px"><label style="height:20px;width:50px;" />{{ATExtras}}</td>
+                        <td><input type="number" ng-model="HTWides"></td>
+                        <td><input type="number" ng-model="HTNoBalls"></td>
+                        <td><input type="number" ng-model="HTByes"></td>
+                        <td><input type="number" ng-model="HTLegByes"></td>
+                        <td><input type="number" ng-model="HTPenaltyRuns"></td>
+                        <td class="pull-right">{{HTWides + HTNoBalls + HTByes + HTLegByes + HTPenaltyRuns}}</td>
                     </tr>
-                </table>
-            </div>
-            <div>Total Score: {{ATBattingRuns*1 + ATExtras*1}}</div>
-            @*Bowling*@
-            <table ng-show="AwayTeamMatchPlayers.length > 0">
-                <tr>
-                    <th style="padding:5px;" align="center"></th>
-                    <th style="padding:5px;" align="center">Overs</th>
-                    <th style="padding:5px;" align="center">Maiden</th>
-                    <th style="padding:5px;" align="center">Runs</th>
-                    <th style="padding:5px;" align="center">Wickets</th>
-                </tr>
-                <tr ng-repeat="player in AwayTeamMatchPlayers | filter: bowlersFilter | orderBy:'BowlerNumber'">
-                    <td style="padding:5px;font-weight:bold" align="left">{{player.FullName}}</td>
-                    <td style="padding:5px;" align="center">{{player.OversBowled}}</td>
-                    <td style="padding:5px;" align="center">{{player.MaidenOvers}}</td>
-                    <td style="padding:5px;" align="center">{{player.BowlingRuns}}</td>
-                    <td style="padding:5px;" align="center">{{player.Wickets}}</td>
-                </tr>
+                </tbody>
             </table>
-        </div>
+            <h5>Bowling Score</h5>
+            <table class="table table-hover data-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Bowler</th>
+                        <th>Over</th>
+                        <th>Maiden</th>
+                        <th>Runs</th>
+                        <th>Wickets</th>
+                        <th>WD</th>
+                        <th>NB</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="i in [] | range:10">
+                        <td>{{i+1}}</td>
+                        <td>
+                            <div class='container-fluid'>
+                                <input type="text" ng-model="BowlingScore[i].Bowler" typeahead="player as player.FullName for player in HomePlayers  | filter:$viewValue|limitTo:10">
+                            </div>
+                        </td>
+                        <td><input type="number" ng-model="BowlingScore[i].Overs" /></td>
+                        <td><input type="number" ng-model="BowlingScore[i].Maiden" /></td>
+                        <td><input type="number" ng-model="BowlingScore[i].RunsGiven" /></td>
+                        <td><input type="number" ng-model="BowlingScore[i].Wickets" /></td>
+                        <td><input type="number" ng-model="BowlingScore[i].Wide" /></td>
+                        <td><input type="number" ng-model="BowlingScore[i].NoBalls" /></td>
+                    </tr>
+                </tbody>
+            </table>
 
-    <div ng-show="IsLeagueOfficial == 'true'">
-        <input type="checkbox" ng-model="IsReviewed" ng-change="CompleteMatchScore()" name="IsReviewed" />
-        <label for="IsReviewed">Accept Scores</label>
+            <hr />
+            <button type="button" class="btn btn-primary" ng-click="SubmitMatchScore()">Submit Match Score</button>
+        </div>
     </div>
-    <button ng-show="IsDirty" ng-click="SavePlayerStats()">Save</button>
-}
 </div>
 
 

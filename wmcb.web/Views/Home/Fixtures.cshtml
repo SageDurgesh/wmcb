@@ -49,22 +49,23 @@
                 <td class="hidden">{{sch.ID}}</td>
                 <td class="col-md-2 col-lg-2">{{sch.Match.Tournament.Name}}</td>
                 <td>{{sch.Week}}</td>
-                <td>{{sch.Day}}</td>
-                <td>{{sch.Date}}</td>
+                <td><span ng-show="sch.DateTime>=maxDate">-</span>
+                    <span ng-hide="sch.DateTime>=maxDate">{{sch.DateTime|date:'EEEE'}}</span></td>
+                <td><span ng-show="sch.DateTime>=maxDate">-</span><span ng-hide="sch.DateTime>=maxDate">{{sch.DateTime|date:'MM/dd'}}</span></td>
                 <td>{{sch.Match.Division.Name}}</td>
                 <td>{{sch.Match.HomeTeam.Name}}</td>
                 <td>Vs</td>
                 <td>{{sch.Match.AwayTeam.Name}}</td>
                 <td>{{sch.Field}}</td>
-                <td>{{sch.Time}}</td>
-                <td>
+                <td><span ng-show="sch.DateTime<=minDate">TBD</span><span ng-hide="sch.DateTime>=minDate">{{sch.DateTime|date:'hh:mm a'}}</span></td>
+                @*<td>
                     @if (ViewContext.HttpContext.User.Identity.IsAuthenticated && !ViewContext.HttpContext.User.IsInRole("Player"))
                     {
                         <div><a data-ng-href="@Url.Action("MatchScore", "Admin")#/?MatchId={{sch.ID}}" ng-if="IsMatchComplete(sch.MatchDate) ">Add Score</a></div>
                     }
                     <div><a data-ng-href="@Url.Action("ViewMatchScore", "Home")#/?MatchId={{sch.ID}}" ng-if="sch.Match.IsReviewed">View Score</a></div>
-                    @*<span ng-if="sch.Match.HomeTeamScore != null && sch.Match.AwayTeamScore != null && !sch.Match.IsReviewed">Under Review</span>*@
-                </td>
+                    <span ng-if="sch.Match.HomeTeamScore != null && sch.Match.AwayTeamScore != null && !sch.Match.IsReviewed">Under Review</span>
+                </td>*@
                 
             </tr>
         </tbody>

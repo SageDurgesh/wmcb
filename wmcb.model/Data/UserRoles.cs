@@ -14,7 +14,6 @@ namespace wmcb.model.Data
         public int UserID { get; set; }
         [Column(Order = 1), Key, ForeignKey("Role")]
         public int RoleID { get; set; }
-
         public virtual WmcbUser User { get; set; }
         public virtual Role Role { get; set; }
     }

@@ -20,12 +20,13 @@ namespace wmcb.model.Data
         public virtual Match Match { get; set; }
         [ForeignKey("Match")]
         public int MatchId { get; set; }
-
         public int Byes { get; set; }
         public int LegByes { get; set; }
         public int Wides { get; set; }
         public int NoBalls { get; set; }
         public int PenaltyRuns { get; set; }
-        public int TeamScores { get; set; }
+        public int TeamScore { get; set; }
+        [NotMapped]
+        public int SubmittedByUserID { get; set; }
     }
 }

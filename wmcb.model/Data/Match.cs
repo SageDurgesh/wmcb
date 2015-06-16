@@ -11,21 +11,14 @@ namespace wmcb.model.Data
     public class Match
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
         public string Description { get; set; }
-        
-        public virtual Team HomeTeam { get; set; }
-        [ForeignKey("HomeTeam")]
-        public int? HomeTeamId { get; set; }
-
-        public virtual Team AwayTeam { get; set; }
-        [ForeignKey("AwayTeam")]
-        public int? AwayTeamId { get; set; }
-
-        public bool IsReviewed { get; set; }
+        public int? TeamWon { get; set; }       
         public int? HomeTeamScore { get; set; }
         public int? AwayTeamScore { get; set; }
-
+		public bool IsReviewed { get; set; }
+		
         public virtual Tournament Tournament { get; set; }
         [ForeignKey("Tournament")]
         public int? TournamentId { get; set; }
@@ -33,5 +26,9 @@ namespace wmcb.model.Data
         public virtual Division Division { get; set; }
         [ForeignKey("Division")]
         public int? DivisionId { get; set; }
+		
+		public int? SubmittedBy { get; set; }
+        public int? ReviewerID { get; set; }
+        public string ReviewerNotes { get; set; }
     }
 }

@@ -40,18 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Division.cs" />
-    <Compile Include="Data\DivisionTeams.cs" />
+    <Compile Include="Data\DivisionDto.cs" />
     <Compile Include="Data\Ground.cs" />
+    <Compile Include="Data\ResultPoints.cs" />
     <Compile Include="Data\MatchDto.cs" />
     <Compile Include="Data\Match.cs" />
     <Compile Include="Data\PlayerStatsDto.cs" />
     <Compile Include="Data\PlayerStats.cs" />
     <Compile Include="Data\Schedule.cs" />
+    <Compile Include="Data\Point.cs" />
     <Compile Include="Data\TeamStats.cs" />
-    <Compile Include="Data\Tournament.cs" />
     <Compile Include="Data\UserRoles.cs" />
     <Compile Include="Data\Player.cs" />
+    <Compile Include="Data\UserTeam.cs" />
     <Compile Include="Data\WmcbUser.cs" />
     <Compile Include="NewsFeed.cs" />
     <Compile Include="NewsView.cs" />
@@ -60,6 +61,12 @@
     <Compile Include="Security\CustomPrincipalSerializeModel.cs" />
     <Compile Include="Team.cs" />
     <Compile Include="Data\Role.cs" />
+    <Compile Include="View\MatchScoreView.cs" />
+    <Compile Include="View\NewUser.cs" />
+    <Compile Include="View\PointsView.cs" />
+    <Compile Include="View\ReviewMatchView.cs" />
+    <Compile Include="View\ScheduleView.cs" />
+    <Compile Include="View\TeamPoint.cs" />
     <Compile Include="View\TeamView.cs" />
     <Compile Include="User.cs" />
     <Compile Include="View\UserView.cs" />

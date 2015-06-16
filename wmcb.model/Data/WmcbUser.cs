@@ -14,7 +14,6 @@ namespace wmcb.model.Data
         {
             Roles = new List<UserRoles>();
         }
-
         [Key]
         public int ID { get; set; }
         [Required]
@@ -27,14 +26,14 @@ namespace wmcb.model.Data
         public String LastName { get; set; }
         public String Phone { get; set; }
         public Boolean AllowLogin { get; set; }
-        public DateTime? RegDate { get; set; }
-        public Team Team { get; set; }
+        public DateTime? RegDate { get; set; }       
         [ForeignKey("Team")]
         public int? TeamId { get; set; }
-
+        public virtual Team Team { get; set; }
+        public virtual ICollection<UserRoles> Roles { get; private set; }
+        
         [NotMapped]
         public string FullName { get { return string.Format("{0} {1}", FirstName, LastName); } }
-
-        public virtual ICollection<UserRoles> Roles { get; set; }
+       
     }
 }

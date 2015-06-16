@@ -1,11 +1,25 @@
-﻿WMCBApp.controller('MatchScoreCtrl', ["$scope", "$filter", "$location", "MatchEntryService",
-    function ($scope, $filter, $location, MatchEntryService) {
+﻿
+WMCBApp.controller('MatchScoreCtrl', ["$scope", "$filter", "$location", "MatchEntryService",
+    function ($scope, $filter, $location, MatchEntryService) {       
         $scope.OutList = [
-           { Id: 1, Type: "Bowled" },
-           { Id: 2, Type: "Caught" },
-           { Id: 3, Type: "Stumped" },
-           { Id: 4, Type: "Run Out" },
-           { Id: 5, Type: "Not Out" }];
+          { Id: 1, Type: "Bowled" },
+          { Id: 2, Type: "Caught" },
+          { Id: 3, Type: "Stumped" },
+          { Id: 4, Type: "Run Out" },
+          { Id: 5, Type: "Not Out" },
+          {Id:6, Type:"Did not Play(DnP)"}];
+        $scope.hasPermission = '';
+        $scope.HomePlayers = '';
+        $scope.AwayPlayers = '';
+        $scope.TeamID = '';
+        $scope.BattingScore = [battingscore];
+        $scope.BowlingScore = [bowlingscore];
+        $scope.SelectedMatchText = 'Select a Match';
+        $scope.SelectedMatch = '';
+        $scope.AgainstTeams = [];
+        $scope.done = false;
+                
+       
         //init();
         $scope.PlayerSelected = false;
         $scope.PlayerToAdd = null;
@@ -23,11 +37,11 @@
         $scope.Wickets = null;
         $scope.IsReviewed = false;
         $scope.HTStatId = null;
-        $scope.HTByes = null;
-        $scope.HTLegByes = null;
-        $scope.HTWides = null;
-        $scope.HTNoBalls = null;
-        $scope.HTPenaltyRuns = null;
+        $scope.HTByes = 0;
+        $scope.HTLegByes = 0;
+        $scope.HTWides = 0;
+        $scope.HTNoBalls = 0;
+        $scope.HTPenaltyRuns = 0;
         $scope.ATStatId = null;
         $scope.ATByes = null;
         $scope.ATLegByes = null;
@@ -53,119 +67,127 @@
         $scope.ATExtras = 0;
         $scope.TeamStats = new Array();
 
-        $scope.init = function (teamId, isLeagueOfficial) {
-            
-            $scope.YourTeamId = teamId;
-            $scope.IsLeagueOfficial = isLeagueOfficial;
-
-            MatchEntryService.getMatch($location.search()['MatchId']).then(function (data) {
-                $scope.Match = data;
-                
-                MatchEntryService.getMatchTeamStats($location.search()['MatchId']).then(function (data) {
-                    angular.forEach(data, function (value, key) {
-                        
-                        if (value.TeamId == $scope.Match.HomeTeam.ID) {
-                            $scope.HTWides = value.Wides;
-                            $scope.HTByes = value.Byes;
-                            $scope.HTLegByes = value.LegByes;
-                            $scope.HTNoBalls = value.NoBalls;
-                            $scope.HTPenaltyRuns = value.PenaltyRuns;
-                            $scope.HTExtras = value.Wides*1 + value.Byes*1 + value.LegByes*1 + value.NoBalls*1 + value.PenaltyRuns*1;
-
-                            $scope.TeamStats.push({
-                                //"ID": value.ID,
-                                "MatchId": $scope.Match.ID,
-                                "TeamId": $scope.Match.HomeTeam.ID,
-                                "Wides": $scope.HTWides,
-                                "Byes": $scope.HTByes,
-                                "LegByes": $scope.HTLegByes,
-                                "NoBalls": $scope.HTNoBalls,
-                                "PenaltyRuns": $scope.HTPenaltyRuns,
-                            });
-                        }
-                        else if (value.TeamId == $scope.Match.AwayTeam.ID) {
-                            //$scope.ATStatId = value.ID;
-                            $scope.ATWides = value.Wides;
-                            $scope.ATByes = value.Byes;
-                            $scope.ATLegByes = value.LegByes;
-                            $scope.ATNoBalls = value.NoBalls;
-                            $scope.ATPenaltyRuns = value.PenaltyRuns;
-                            $scope.ATExtras = value.Wides * 1 + value.Byes * 1 + value.LegByes * 1 + value.NoBalls * 1 + value.PenaltyRuns * 1;
-
-                            $scope.TeamStats.push({
-                                "MatchId": $scope.Match.ID,
-                                "TeamId": $scope.Match.AwayTeam.ID,
-                                "Wides": $scope.ATWides,
-                                "Byes": $scope.ATByes,
-                                "LegByes": $scope.ATLegByes,
-                                "NoBalls": $scope.ATNoBalls,
-                                "PenaltyRuns": $scope.ATPenaltyRuns,
-                            });
-                        }
-                    })
-                })
-                MatchEntryService.getTeamPlayers($scope.Match.HomeTeam.ID).then(function (data) {
-                        $scope.HomeTeamPlayers = data;
-                });
-                MatchEntryService.getTeamPlayers($scope.Match.AwayTeam.ID).then(function (data) {
-                        $scope.AwayTeamPlayers = data;
-
-                        MatchEntryService.getMatchPlayerStats($scope.Match.ID).then(function (data) {
-                        angular.forEach(data, function (value, key) {
-                            var bowler = null;
-                            var fielder = null;
-
-                            if (value.TeamId == $scope.Match.HomeTeam.ID) {
-                                angular.forEach($scope.AwayTeamPlayers, function (player, playerKey) {
-                                    if (player.ID == value.Bowler)
-                                        bowler = player;
-                                    if (player.ID == value.Fielder)
-                                        fielder = player;
-                                });
-                            }
-                            else if (value.TeamId == $scope.Match.AwayTeam.ID){
-                                angular.forEach($scope.HomeTeamPlayers, function (player, playerKey) {
-                                    if (player.ID == value.Bowler)
-                                        bowler = player;
-                                    if (player.ID == value.Fielder)
-                                        fielder = player;
-                                });
-                            }
-
-                            var player = {
-                                "ID": value.ID,
-                                "TeamId": value.TeamId,
-                                "MatchId": value.MatchId,
-                                "PlayerId": value.PlayerId,
-                                "FullName": value.Player.FullName,
-                                "BattingRuns": value.BattingRuns,
-                                "BallsFaced": value.BallsFaced,
-                                "HowOut": value.HowOut,
-                                "OversBowled": value.OversBowled,
-                                "MaidenOvers": value.MaidenOvers,
-                                "Wickets": value.Wickets,
-                                "BowlingRuns": value.BowlingRuns,
-                                "Bowler": value.Bowler,
-                                "BowlerName": bowler == null? '' : bowler.FullName,
-                                "Fielder": value.Fielder,
-                                "FielderName": fielder == null ? '' : fielder.FullName,
-                                "BowlerNumber": value.BowlerNumber
-                            };
-
-                            if (value.TeamId == $scope.Match.HomeTeam.ID) {
-                                $scope.HomeTeamMatchPlayers.push(player);
-                                $scope.HTBattingRuns += player.BattingRuns;
-                            }
-                            else if (value.TeamId == $scope.Match.AwayTeam.ID) {
-                                $scope.AwayTeamMatchPlayers.push(player);
-                                $scope.ATBattingRuns += player.BattingRuns;
-                            }
-                        });
-                    });
+        $scope.init = function (hasPermission, TeamID) {            
+            $scope.TeamId = TeamID;
+            $scope.hasPermission = hasPermission;
+            MatchEntryService.getMyMatches(TeamID).then(function(data){
+                $scope.Matches = data;
+               
+                angular.forEach(data, function (item) {
+                    if(item.HomeId == TeamID){
+                         var sch = {
+                             ID: item.ID,
+                             AgainstTeamId: item.AwayId,
+                             AgainstTeamName: item.Away,
+                             Week: item.Week,
+                             DateTime: item.DateTime
+                         };
+                         $scope.AgainstTeams.push(sch);
+                    }
+                    else if (item.AwayId == TeamID) {
+                        var sch = {
+                            ID: item.ID,
+                            AgainstTeamId: item.HomeId,
+                            AgainstTeamName: item.Home,
+                            Week: item.Week,
+                            DateTime: item.DateTime
+                        };
+                        $scope.AgainstTeams.push(sch);
+                    }
                 });
             });
+            MatchEntryService.getTeamPlayers(TeamID).then(function (data) {
+                $scope.HomePlayers = data;
+            });
         };
+        $scope.SelectMatch = function (match) {
+            $scope.SelectedMatch = match;
+            $scope.SelectedMatchText = "Vs " + match.AgainstTeamName + " - " + $filter('date')(match.DateTime, 'EEE, MM/dd');
+            MatchEntryService.getTeamPlayers(match.AgainstTeamId).then(function (data) {
+                $scope.AwayPlayers = data;
+            });
+        };
+        $scope.SubmitMatchScore = function () {
+            //var homeTeamStats = $filter('filter')($scope.TeamStats, { TeamId: $scope.Match.HomeTeam.ID });          
+            var playerstats = [];
+            angular.forEach($scope.BattingScore, function (item) {
+                var s = {
+                    TeamId: $scope.TeamId,
+                    MatchId: $scope.SelectedMatch.ID,
+                    PlayerId: item.Batsman.ID,
+                    BattingRuns: item.Runs,
+                    BallsFaced: item.Balls,
+                    HowOut: item.HowOut.Id,
+                    Bowler: item.Bowler.ID,
+                    BowlerNumber: 0,
+                    OversBowled: 0,
+                    Wickets: 0,
+                    MaidenOvers: 0,
+                    Bowlingruns: 0,
+                    Wide: 0,
+                    noBalls: 0
+                };
+                $scope.HTBattingRuns = parseInt($scope.HTBattingRuns * 1) + parseInt(s.BattingRuns);
+                playerstats.push(s);
+            });
+            angular.forEach($scope.BowlingScore, function (item) {
+                angular.forEach(playerstats, function (player) {
+                    if (item.Bowler.ID == player.PlayerId) {
+                        player.OversBowled = item.Overs;
+                        player.Wickets = item.Wickets;
+                        player.MaidenOvers = item.Maiden;
+                        player.BowlingRuns = item.Runs;
+                        player.Wide = item.Wide;
+                        player.NoBalls = item.NoBalls;
+                    }
+                });
+            });
+            MatchEntryService.SavePlayerStats(playerstats);
+            $scope.HTExtras = $scope.HTWides * 1 + $scope.HTByes * 1 + $scope.HTLegByes * 1 + $scope.HTNoBalls * 1 + $scope.HTPenaltyRuns * 1;
+            var homeTeamStats = {
+                "MatchId": $scope.SelectedMatch.ID,
+                "TeamId": $scope.TeamId,
+                "Wides": $scope.HTWides,
+                "Byes": $scope.HTByes,
+                "LegByes": $scope.HTLegByes,
+                "NoBalls": $scope.HTNoBalls,
+                "PenaltyRuns": $scope.HTPenaltyRuns,
+                "TeamScore": (parseInt($scope.HTBattingRuns) * 1) + (parseInt($scope.HTExtras) * 1)
+            };
+            MatchEntryService.setTeamStats(homeTeamStats).then(function () {
+                var msg = "Scorecard for your team has been sucessfully submitted for review.";
+                $scope.displaymessage = msg;
+                $scope.done = true;
+            });
 
+
+            // $scope.ATExtras = $scope.ATWides * 1 + $scope.ATByes * 1 + $scope.ATLegByes * 1 + $scope.ATNoBalls * 1 + $scope.ATPenaltyRuns * 1; 
+            //var awayTeamStats = $filter('filter')($scope.TeamStats, { TeamId: $scope.Match.AwayTeam.ID });
+            //awayTeamStats = {
+            //    //"ID": $scope.ATStatId,
+            //    "MatchId": $scope.Match.ID,
+            //    "TeamId": $scope.Match.AwayTeam.ID,
+            //    "Wides": $scope.ATWides,
+            //    "Byes": $scope.ATByes,
+            //    "LegByes": $scope.ATLegByes,
+            //    "NoBalls": $scope.ATNoBalls,
+            //    "PenaltyRuns": $scope.ATPenaltyRuns,
+            //    "TeamScores": $scope.ATBattingRuns*1 + $scope.ATExtras*1
+            //};
+
+            //$scope.TeamStats.splice(0, $scope.TeamStats.length);
+            //$scope.TeamStats.push(homeTeamStats);
+            //$scope.TeamStats.push(awayTeamStats);
+
+            //MatchEntryService.setPlayerStats($scope.NewPlayersToAdd);
+            //MatchEntryService.setTeamStats($scope.TeamStats);
+
+            //$scope.NewPlayersToAdd = new Array();
+            //$scope.IsDirty = false;
+        }
+        $scope.ResetScoreCard = function () {
+            
+        };
         $scope.EnableScore = function () {
             if ($scope.PlayerToAdd == null)
                 $scope.PlayerSelected = false;
@@ -304,46 +326,7 @@
             $scope.PlayerToAdd = null;
         };
 
-        $scope.SavePlayerStats = function () {
-            var homeTeamStats = $filter('filter')($scope.TeamStats, { TeamId: $scope.Match.HomeTeam.ID });
-            $scope.ATExtras = $scope.ATWides * 1 + $scope.ATByes * 1 + $scope.ATLegByes * 1 + $scope.ATNoBalls * 1 + $scope.ATPenaltyRuns * 1;
-            $scope.HTExtras = $scope.HTWides * 1 + $scope.HTByes * 1 + $scope.HTLegByes * 1 + $scope.HTNoBalls * 1 + $scope.HTPenaltyRuns * 1;
-            
-            homeTeamStats = {
-                //"ID": $scope.HTStatId,
-                "MatchId": $scope.Match.ID,
-                "TeamId": $scope.Match.HomeTeam.ID,
-                "Wides": $scope.HTWides,
-                "Byes": $scope.HTByes,
-                "LegByes": $scope.HTLegByes,
-                "NoBalls": $scope.HTNoBalls,
-                "PenaltyRuns": $scope.HTPenaltyRuns,
-                "TeamScores": $scope.HTBattingRuns*1 + $scope.HTExtras*1
-            };
-
-            var awayTeamStats = $filter('filter')($scope.TeamStats, { TeamId: $scope.Match.AwayTeam.ID });
-            awayTeamStats = {
-                //"ID": $scope.ATStatId,
-                "MatchId": $scope.Match.ID,
-                "TeamId": $scope.Match.AwayTeam.ID,
-                "Wides": $scope.ATWides,
-                "Byes": $scope.ATByes,
-                "LegByes": $scope.ATLegByes,
-                "NoBalls": $scope.ATNoBalls,
-                "PenaltyRuns": $scope.ATPenaltyRuns,
-                "TeamScores": $scope.ATBattingRuns*1 + $scope.ATExtras*1
-            };
-
-            $scope.TeamStats.splice(0, $scope.TeamStats.length);
-            $scope.TeamStats.push(homeTeamStats);
-            $scope.TeamStats.push(awayTeamStats);
-
-            MatchEntryService.setPlayerStats($scope.NewPlayersToAdd);
-            MatchEntryService.setTeamStats($scope.TeamStats);
-
-            $scope.NewPlayersToAdd = new Array();
-            $scope.IsDirty = false;
-        }
+        
 
         $scope.CompleteMatchScore = function()
         {
@@ -370,3 +353,23 @@
             $scope.IsDirty = true;
         }
     }]);
+
+var battingscore = {
+    Batsman: '',
+    HowOut: '',
+    Bowler: '',
+    Runs: 0,
+    Balls: 0,
+    WicketNumber: 0,
+    FOWRuns:0
+};
+
+var bowlingscore = {
+    Bowler: '',
+    Overs: '',
+    Maiden: '',
+    RunsGiven: 0,
+    Wickets: 0,
+    Wide:0,
+    NoBalls:0
+};

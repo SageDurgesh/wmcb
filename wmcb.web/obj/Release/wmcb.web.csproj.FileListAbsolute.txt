@@ -6,7 +6,10 @@ D:\Other\wmcb\wmcb\wmcb.web\bin\EntityFramework.dll
 D:\Other\wmcb\wmcb\wmcb.web\bin\EntityFramework.SqlServer.dll
 D:\Other\wmcb\wmcb\wmcb.web\bin\Microsoft.Web.Infrastructure.dll
 D:\Other\wmcb\wmcb\wmcb.web\bin\Newtonsoft.Json.dll
+D:\Other\wmcb\wmcb\wmcb.web\bin\System.Net.Http.Formatting.dll
 D:\Other\wmcb\wmcb\wmcb.web\bin\System.Web.Helpers.dll
+D:\Other\wmcb\wmcb\wmcb.web\bin\System.Web.Http.dll
+D:\Other\wmcb\wmcb\wmcb.web\bin\System.Web.Http.WebHost.dll
 D:\Other\wmcb\wmcb\wmcb.web\bin\System.Web.Mvc.dll
 D:\Other\wmcb\wmcb\wmcb.web\bin\System.Web.Optimization.dll
 D:\Other\wmcb\wmcb\wmcb.web\bin\System.Web.Razor.dll
@@ -20,6 +23,9 @@ D:\Other\wmcb\wmcb\wmcb.web\bin\wmcb.model.pdb
 D:\Other\wmcb\wmcb\wmcb.web\bin\wmcb.repo.pdb
 D:\Other\wmcb\wmcb\wmcb.web\bin\EntityFramework.xml
 D:\Other\wmcb\wmcb\wmcb.web\bin\EntityFramework.SqlServer.xml
+D:\Other\wmcb\wmcb\wmcb.web\bin\System.Net.Http.Formatting.xml
+D:\Other\wmcb\wmcb\wmcb.web\bin\System.Web.Http.xml
+D:\Other\wmcb\wmcb\wmcb.web\bin\System.Web.Http.WebHost.xml
 D:\Other\wmcb\wmcb\wmcb.web\bin\System.Web.Helpers.xml
 D:\Other\wmcb\wmcb\wmcb.web\bin\System.Web.Mvc.xml
 D:\Other\wmcb\wmcb\wmcb.web\bin\System.Web.Optimization.xml
@@ -32,9 +38,3 @@ D:\Other\wmcb\wmcb\wmcb.web\bin\Newtonsoft.Json.xml
 D:\Other\wmcb\wmcb\wmcb.web\obj\Release\wmcb.web.csprojResolveAssemblyReference.cache
 D:\Other\wmcb\wmcb\wmcb.web\obj\Release\wmcb.web.dll
 D:\Other\wmcb\wmcb\wmcb.web\obj\Release\wmcb.web.pdb
-D:\Other\wmcb\wmcb\wmcb.web\bin\System.Net.Http.Formatting.dll
-D:\Other\wmcb\wmcb\wmcb.web\bin\System.Web.Http.dll
-D:\Other\wmcb\wmcb\wmcb.web\bin\System.Web.Http.WebHost.dll
-D:\Other\wmcb\wmcb\wmcb.web\bin\System.Net.Http.Formatting.xml
-D:\Other\wmcb\wmcb\wmcb.web\bin\System.Web.Http.xml
-D:\Other\wmcb\wmcb\wmcb.web\bin\System.Web.Http.WebHost.xml

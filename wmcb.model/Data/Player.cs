@@ -14,7 +14,7 @@ namespace wmcb.model.Data
         public string Email { get; set; }
         public String FirstName { get; set; }
         public String LastName { get; set; }
-        public Team Team { get; set; }
+        public virtual Team Team { get; set; }
         [ForeignKey("Team")]
         public int? TeamId { get; set; }
 

@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "ReviewScore";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/angular/controllers/ReviewScoreController.js"></script>
+<h2>Review Score</h2>
+<div ng-controller="ReviewCtrl">
+    <table class="table table-hover data-table col-lg-10 col-md-8">
+        <tr>
+            <th>Match</th>
+            <th>Home Team(Runs)</th>
+            <th>Away Team(Runs)</th>
+            <th>Actions
+            <th>
+        </tr>
+        <tr ng-repeat-start ="m in Matches">
+            <td>{{m.Schedule.Week}}, {{m.Schedule.DateTime| date:'EEE, M/dd'}}</td>
+            <td>{{m.Schedule.Home}} ({{m.Match.HomeTeamScore}})</td>
+            <td>{{m.Schedule.Away}} ({{m.Match.AwayTeamScore}})</td>
+            <td><button class="btn btn-sm btn-primary" ng-click="ViewScore(m)">View</button> &nbsp; <button ng-click="Approve(m)" class="btn btn-sm btn-primary">Approve</button></td>
+        </tr>
+        <tr ng-repeat-end>
+            <td colspan="4">
+                <pre>
+                {{Scores[$index]|json}}</pre>
+               </td>
+         </tr>
+    </table>
+</div>

@@ -1,0 +1,239 @@
+﻿
+@{
+    ViewBag.Title = "Points";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#DivContent").show();
+        $("#ConfContent").hide();
+        $("#Super8Content").hide();
+        $("#InterContent").hide();
+        // Initialize tooltip
+        $('[data-toggle="tooltip"]').tooltip({
+            placement: 'top'
+        });
+        $("#btnDiv").click(function () {
+            $("#DivContent").show();
+            $("#ConfContent").hide();
+            $("#Super8Content").hide();
+            $("#InterContent").hide();
+        });
+        $("#btnConf").click(function () {
+            $("#DivContent").hide();
+            $("#ConfContent").show();
+            $("#Super8Content").hide();
+            $("#InterContent").hide();
+        });
+        $("#btnSuper8").click(function () {
+            $("#DivContent").hide();
+            $("#ConfContent").hide();
+            $("#Super8Content").show();
+            $("#InterContent").hide();
+        });
+        $("#btnInter").click(function () {
+            $("#DivContent").hide();
+            $("#ConfContent").hide();
+            $("#Super8Content").hide();
+            $("#InterContent").show();
+        });
+    });
+</script>
+<script src="~/Scripts/angular/controllers/PointsController.js"></script>
+<div ng-controller="PointsCtrl">
+    <h3>WMCB Championship As Of May 31, 2015</h3>
+    <div class="btn-group" role="group">
+        <button type="button" class="btn btn-warning" id="btnDiv">Division</button>
+        <button type="button" class="btn btn-warning" id="btnConf">Conference</button>
+        <button type="button" class="btn btn-warning" id="btnSuper8">Super 8</button>
+        <button type="button" class="btn btn-warning" id="btnInter">Inter-Division</button>
+    </div>
+    <div >
+        <div id="DivContent" class="col-lg-12 col-md-12">
+            <h3>Division Championship </h3>
+            <h4>Northern Division</h4>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Played">P</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Won">W</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Lost">L</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Abandoned">D/A</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Tied">T</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Winning Percentage">Win%</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Points">Points</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Net Run Rate">NRR</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in northernDivPoints">
+                        <td class="col-lg-2 col-md-2">{{p.Team}}</td>
+                        <td>{{p.GamePlayed}}</td>
+                        <td>{{p.Win}}</td>
+                        <td>{{p.Loss}}</td>
+                        <td>{{p.Abandon}}</td>
+                        <td>{{p.Tie}}</td>
+                        <td>{{p.WinPercentage *100|number:2}}</td>
+                        <td>{{p.Points}}</td>
+                        <td>{{p.NRR | number:4}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Southern Division</h4>
+            <table class="table table-hover col-md-5 col-lg-5">
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Played">P</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Won">W</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Lost">L</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Abandoned">D/A</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Tied">T</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Winning Percentage">Win%</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Points">Points</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Net Run Rate">NRR</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in southernDivPoints">
+                        <td class="col-lg-2 col-md-2">{{p.Team}}</td>
+                        <td>{{p.GamePlayed}}</td>
+                        <td>{{p.Win}}</td>
+                        <td>{{p.Loss}}</td>
+                        <td>{{p.Abandon}}</td>
+                        <td>{{p.Tie}}</td>
+                        <td>{{p.WinPercentage*100|number:2}}</td>
+                        <td>{{p.Points}}</td>
+                        <td>{{p.NRR |number:4}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="ConfContent">
+            <h3>Conference Championship </h3>
+            <h4>Northern Conference</h4>
+            <table class="table table-hover col-md-5 col-lg-5">
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Played">P</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Won">W</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Lost">L</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Abandoned">D/A</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Tied">T</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Winning Percentage">Win%</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Points">Points</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Net Run Rate">NRR</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in northernConfPoints">
+                        <td class="col-lg-2 col-md-2">{{p.Team}}</td>
+                        <td>{{p.GamePlayed}}</td>
+                        <td>{{p.Win}}</td>
+                        <td>{{p.Loss}}</td>
+                        <td>{{p.Abandon}}</td>
+                        <td>{{p.Tie}}</td>
+                        <td>{{p.WinPercentage *100|number:2}}</td>
+                        <td>{{p.Points}}</td>
+                        <td>{{p.NRR | number:4}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4>Southern Conference</h4>
+            <table class="table table-hover col-md-5 col-lg-5">
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Played">P</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Won">W</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Lost">L</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Abandoned">D/A</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Tied">T</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Winning Percentage">Win%</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Points">Points</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Net Run Rate">NRR</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in southernConfPoints">
+                        <td class="col-lg-2 col-md-2">{{p.Team}}</td>
+                        <td>{{p.GamePlayed}}</td>
+                        <td>{{p.Win}}</td>
+                        <td>{{p.Loss}}</td>
+                        <td>{{p.Abandon}}</td>
+                        <td>{{p.Tie}}</td>
+                        <td>{{p.WinPercentage*100|number:2}}</td>
+                        <td>{{p.Points}}</td>
+                        <td>{{p.NRR |number:4}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="Super8Content">
+            <h3>Super 8 Championship</h3>
+            <table class="table table-hover col-md-5 col-lg-5">
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Played">P</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Won">W</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Lost">L</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Abandoned">D/A</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Tied">T</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Winning Percentage">Win%</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Points">Points</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Net Run Rate">NRR</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in super8Points">
+                        <td class="col-lg-2 col-md-2">{{p.Team}}</td>
+                        <td>{{p.GamePlayed}}</td>
+                        <td>{{p.Win}}</td>
+                        <td>{{p.Loss}}</td>
+                        <td>{{p.Abandon}}</td>
+                        <td>{{p.Tie}}</td>
+                        <td>{{p.WinPercentage *100|number:2}}</td>
+                        <td>{{p.Points}}</td>
+                        <td>{{p.NRR | number:4}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="InterContent">
+            <h3>Inter-Division Championship</h3>
+            <table class="table table-hover col-md-5 col-lg-5">
+                <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Played">P</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Won">W</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Lost">L</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Abandoned">D/A</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Game Tied">T</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Winning Percentage">Win%</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Points">Points</a></th>
+                        <th><a href="#" data-toggle="tooltip" data-original-title="Net Run Rate">NRR</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in interPoints">
+                        <td class="col-lg-2 col-md-2">{{p.Team}}</td>
+                        <td>{{p.GamePlayed}}</td>
+                        <td>{{p.Win}}</td>
+                        <td>{{p.Loss}}</td>
+                        <td>{{p.Abandon}}</td>
+                        <td>{{p.Tie}}</td>
+                        <td>{{p.WinPercentage *100|number:2}}</td>
+                        <td>{{p.Points}}</td>
+                        <td>{{p.NRR | number:4}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br/><br/><br />
+</div>
