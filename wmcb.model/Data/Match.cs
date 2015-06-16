@@ -25,5 +25,13 @@ namespace wmcb.model.Data
         public bool IsReviewed { get; set; }
         public int? HomeTeamScore { get; set; }
         public int? AwayTeamScore { get; set; }
+
+        public virtual Tournament Tournament { get; set; }
+        [ForeignKey("Tournament")]
+        public int? TournamentId { get; set; }
+
+        public virtual Division Division { get; set; }
+        [ForeignKey("Division")]
+        public int? DivisionId { get; set; }
     }
 }

@@ -29,7 +29,7 @@
         $http({
             url: '/wmcb/schedule',
             method: "GET"
-        }).success(deferred.resolve).error(deferred.reject);
+        }).success(deferred.resolve).error(function (data, status) { alert(JSON.stringify(data)); });
         return deferred.promise;
     };
 }]);

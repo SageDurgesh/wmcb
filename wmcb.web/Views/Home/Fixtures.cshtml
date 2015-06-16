@@ -47,14 +47,14 @@
         <tbody>
             <tr ng-repeat="sch in pagedItems[currentPage] ">
                 <td class="hidden">{{sch.ID}}</td>
-                <td class="col-md-2 col-lg-2">{{sch.Tournament}}</td>
+                <td class="col-md-2 col-lg-2">{{sch.Match.Tournament.Name}}</td>
                 <td>{{sch.Week}}</td>
                 <td>{{sch.Day}}</td>
                 <td>{{sch.Date}}</td>
-                <td>{{sch.Division}}</td>
-                <td>{{sch.Home}}</td>
+                <td>{{sch.Match.Division.Name}}</td>
+                <td>{{sch.Match.HomeTeam.Name}}</td>
                 <td>Vs</td>
-                <td>{{sch.Away}}</td>
+                <td>{{sch.Match.AwayTeam.Name}}</td>
                 <td>{{sch.Field}}</td>
                 <td>{{sch.Time}}</td>
                 <td>

@@ -20,6 +20,8 @@ namespace wmcb.repo
         public DbSet<PlayerStats> PlayerStats { get; set; }
         public DbSet<TeamStats> TeamStats { get; set; }
         public DbSet<Match> Match { get; set; }
+        public DbSet<Division> Division { get; set; }
+        public DbSet<Tournament> Tournament { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -31,6 +33,8 @@ namespace wmcb.repo
             modelBuilder.Entity<PlayerStats>().ToTable("PlayerStats");
             modelBuilder.Entity<TeamStats>().ToTable("TeamStats");
             modelBuilder.Entity<Match>().ToTable("Matches");
+            modelBuilder.Entity<Division>().ToTable("Division");
+            modelBuilder.Entity<Tournament>().ToTable("Tournament");
         }
     }
 }

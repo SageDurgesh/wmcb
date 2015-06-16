@@ -13,7 +13,12 @@ namespace wmcb.repo
         {
             using (var context = new wmcbContext())
             {
-                return context.Match.Include("HomeTeam").Include("AwayTeam").FirstOrDefault(m => m.ID == matchId);
+                return context.Match
+                            .Include("HomeTeam")
+                            .Include("AwayTeam")
+                            .Include("Tournament")
+                            .Include("Division")
+                            .FirstOrDefault(m => m.ID == matchId);
             }
         }
 
