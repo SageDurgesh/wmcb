@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Division.cs" />
     <Compile Include="Data\DivisionDto.cs" />
     <Compile Include="Data\Ground.cs" />
     <Compile Include="Data\ResultPoints.cs" />
@@ -50,6 +51,8 @@
     <Compile Include="Data\Schedule.cs" />
     <Compile Include="Data\Point.cs" />
     <Compile Include="Data\TeamStats.cs" />
+    <Compile Include="Data\Tournament.cs" />
+    <Compile Include="Data\TournamentDto.cs" />
     <Compile Include="Data\UserRoles.cs" />
     <Compile Include="Data\Player.cs" />
     <Compile Include="Data\UserTeam.cs" />

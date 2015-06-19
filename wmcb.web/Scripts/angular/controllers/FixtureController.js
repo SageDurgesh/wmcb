@@ -20,7 +20,6 @@
     };
     wmcbService.getSchedule().then(function (data) {
         $scope.schedules = data;
-        alert(JSON.stringify($scope.schedules));
     });
     $scope.$watch('schedules', function () {
         var searchMatch = function (haystack, needle) {

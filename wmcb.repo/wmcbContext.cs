@@ -23,6 +23,8 @@ namespace wmcb.repo
         public DbSet<PlayerStats> PlayerStats { get; set; }
         public DbSet<TeamStats> TeamStats { get; set; }
         public DbSet<Match> Matches { get; set; }
+        public DbSet<Tournament> Tournament { get; set; }
+        public DbSet<Division> Division { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -32,13 +34,15 @@ namespace wmcb.repo
             modelBuilder.Entity<UserTeam>().ToTable("UserTeams").HasRequired(u=>u.Team);
            // modelBuilder.Entity<Schedule>().ToTable("TempSchedule");//.HasRequired(s => s.Match);
             modelBuilder.Entity<Schedule>().ToTable("Schedule");//.HasRequired(s => s.Match);
+            modelBuilder.Entity<Team>().ToTable("Teams");
             modelBuilder.Entity<Role>().ToTable("Roles");
             modelBuilder.Entity<UserRoles>().ToTable("UserRoles").HasRequired(ur => ur.Role);
             modelBuilder.Entity<Point>().ToTable("Points");
-            modelBuilder.Entity<TournamentDto>().ToTable("Tournament");
             modelBuilder.Entity<TeamStats>().ToTable("TeamStats");
             modelBuilder.Entity<Match>().ToTable("Matches").HasKey(m => m.ID) ;
             modelBuilder.Entity<Tournament>().ToTable("Tournament");
+            modelBuilder.Entity<Division>().ToTable("Division");
+            modelBuilder.Entity<Ground>().ToTable("Grounds");
         }
     }
 }

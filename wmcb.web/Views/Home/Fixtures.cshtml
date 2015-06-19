@@ -47,15 +47,15 @@
         <tbody>
             <tr ng-repeat="sch in pagedItems[currentPage] ">
                 <td class="hidden">{{sch.ID}}</td>
-                <td class="col-md-2 col-lg-2">{{sch.Match.Tournament.Name}}</td>
+                <td class="col-md-2 col-lg-2">{{sch.Tournament}}</td>
                 <td>{{sch.Week}}</td>
                 <td><span ng-show="sch.DateTime>=maxDate">-</span>
                     <span ng-hide="sch.DateTime>=maxDate">{{sch.DateTime|date:'EEEE'}}</span></td>
                 <td><span ng-show="sch.DateTime>=maxDate">-</span><span ng-hide="sch.DateTime>=maxDate">{{sch.DateTime|date:'MM/dd'}}</span></td>
-                <td>{{sch.Match.Division.Name}}</td>
-                <td>{{sch.Match.HomeTeam.Name}}</td>
+                <td>{{sch.Division}}</td>
+                <td>{{sch.Home}}</td>
                 <td>Vs</td>
-                <td>{{sch.Match.AwayTeam.Name}}</td>
+                <td>{{sch.Away}}</td>
                 <td>{{sch.Field}}</td>
                 <td><span ng-show="sch.DateTime<=minDate">TBD</span><span ng-hide="sch.DateTime>=minDate">{{sch.DateTime|date:'hh:mm a'}}</span></td>
                 @*<td>

@@ -17,18 +17,18 @@ namespace wmcb.repo
             using (var context = new wmcbContext())
             {
                 var players = context.PlayerStats
-                   // .Include("Team")
+                    // .Include("Team")
                     //.Include("Match")
                     //.Include("Match.AwayTeam")
-                   // .Include("Match.HomeTeam")
-                    .Join(context.Users, p1 => p1.PlayerId, u => u.ID, (p1, u) => new {p1,u})
-                    .Where(p =>p.p1.MatchId == matchId)                    
+                    // .Include("Match.HomeTeam")
+                    .Join(context.Users, p1 => p1.PlayerId, u => u.ID, (p1, u) => new { p1, u })
+                    .Where(p => p.p1.MatchId == matchId)
                     .Select(p => new PlayerStatsDto
                     {
                         ID = p.p1.ID,
                         TeamId = p.p1.TeamId,
                         MatchId = p.p1.MatchId,
-                      //  Team = p.p1.Team,
+                        //  Team = p.p1.Team,
                         BattingRuns = p.p1.BattingRuns,
                         BallsFaced = p.p1.BallsFaced,
                         HowOut = p.p1.HowOut,
