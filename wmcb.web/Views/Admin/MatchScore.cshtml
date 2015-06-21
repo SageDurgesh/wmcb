@@ -27,6 +27,8 @@
             </div>
         </div>
         <div ng-hide="SelectedMatch==''">
+            <div>Did {{SelectedMatch.Home}} win the toss?</div>
+    <div>Did {{SelectedMatch.Home}} bat first?</div>
             <h5>Batting Score</h5>
             <table class="table table-hover data-table col-lg-10 col-md-8">
                 <thead>
@@ -35,8 +37,10 @@
                         <th class="col-lg-2 col-md-2">Batsman</th>
                         <th style="width:10px;">How Out</th>
                         <th class="col-lg-2 col-md-2">Bowler</th>
-                        <th>Run</th>
+                        <th>Runs</th>
                         <th>Balls</th>
+                        <th>4s</th>
+                        <th>6s</th>
                         <th>Wicket#</th>
                         <th>FOW Runs</th>
                     </tr>
@@ -45,43 +49,50 @@
                     <tr ng-repeat="i in [] | range:11">
                         <td>{{i+1}}</td>
                         <td>
-                            <div class='container-fluid'>
-                                <input type="text" ng-model="BattingScore[i].Batsman" typeahead="player as player.FullName for player in HomePlayers  | filter:$viewValue|limitTo:10">
+                            <div class='container-fluid has-error'>
+                                <input class="has-error" type="text" ng-model="BattingScore[i].Batsman" empty-typeahead typeahead-editable="false" ng-blur="clearUnselected(i)" typeahead="player as player.FullName for player in HomePlayers  | filter:$viewValue:PlayerComparer">
                             </div>
                         </td>
-                        <td style="width:10px;"><input type="text" ng-model="BattingScore[i].HowOut" typeahead="out as out.Type for out in OutList  | filter:$viewValue" /></td>
-                        <td><input type="text" ng-model="BattingScore[i].Bowler" typeahead="player as player.FullName for player in AwayPlayers  | filter:$viewValue|limitTo:10" /></td>
-                        <td><input type="text" ng-model="BattingScore[i].Runs" /></td>
-                        <td><input type="number" ng-model="BattingScore[i].Balls" /></td>
-                        <td><input type="number" ng-model="BattingScore[i].WicketNumber" /></td>
-                        <td><input type="number" ng-model="BattingScore[i].FOWRuns" /></td>
+                        <td><input type="text" ng-model="BattingScore[i].HowOut" ng-blur="clearUnselected(i)" typeahead-editable="false" typeahead="out as out.Type for out in OutList  | filter:$viewValue" style="width:120px;" /></td>
+                        <td><input type="text" ng-model="BattingScore[i].Bowler" ng-blur="clearUnselected(i)" empty-typeahead typeahead-editable="false" typeahead="player as player.FullName for player in AwayPlayers  | filter:$viewValue:PlayerComparer" /></td>
+                        <td><input type="text" ng-model="BattingScore[i].Runs" numbers-only="numbers-only" class="number-box" /></td>
+                        <td><input type="number" ng-model="BattingScore[i].Balls" class="number-box" /></td>
+                        <td><input type="number" ng-model="" class="number-box" /></td>
+                        <td><input type="number" ng-model="" class="number-box" /></td>
+                        <td><input type="number" ng-model="BattingScore[i].WicketNumber" class="number-box" /></td>
+                        <td><input type="number" ng-model="BattingScore[i].FOWRuns" class="number-box" /></td>
                     </tr>
                 </tbody>
             </table>
-            <h5>Extras Received</h5>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Wides</th>
-                        <th>No Balls</th>
-                        <th>Byes</th>
-                        <th>Leg Byes</th>
-                        <th>Penalty</th>
-                        <th>Total Extras</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="number" ng-model="HTWides"></td>
-                        <td><input type="number" ng-model="HTNoBalls"></td>
-                        <td><input type="number" ng-model="HTByes"></td>
-                        <td><input type="number" ng-model="HTLegByes"></td>
-                        <td><input type="number" ng-model="HTPenaltyRuns"></td>
-                        <td class="pull-right">{{HTWides + HTNoBalls + HTByes + HTLegByes + HTPenaltyRuns}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h5>Bowling Score</h5>
+            <div>
+                <h5>Extras Received</h5>
+
+                <table class="table table-hover data-table col-lg-5 col-md-8">
+                    <thead>
+                        <tr>
+                            <th>Wides</th>
+                            <th>No Balls</th>
+                            <th>Byes</th>
+                            <th>Leg Byes</th>
+                            <th>Penalty</th>
+                            <th>Total Extras</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="number" ng-model="HTWides" class="number-box"></td>
+                            <td><input type="number" ng-model="HTNoBalls" class="number-box"></td>
+                            <td><input type="number" ng-model="HTByes" class="number-box"></td>
+                            <td><input type="number" ng-model="HTLegByes" class="number-box"></td>
+                            <td><input type="number" ng-model="HTPenaltyRuns" class="number-box"></td>
+                            <td class="text-left">{{HTWides + HTNoBalls + HTByes + HTLegByes + HTPenaltyRuns}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h5>Bowling Score</h5>
+            </div>
             <table class="table table-hover data-table">
                 <thead>
                     <tr>
@@ -103,18 +114,20 @@
                                 <input type="text" ng-model="BowlingScore[i].Bowler" typeahead="player as player.FullName for player in HomePlayers  | filter:$viewValue|limitTo:10">
                             </div>
                         </td>
-                        <td><input type="number" ng-model="BowlingScore[i].Overs" /></td>
-                        <td><input type="number" ng-model="BowlingScore[i].Maiden" /></td>
-                        <td><input type="number" ng-model="BowlingScore[i].RunsGiven" /></td>
-                        <td><input type="number" ng-model="BowlingScore[i].Wickets" /></td>
-                        <td><input type="number" ng-model="BowlingScore[i].Wide" /></td>
-                        <td><input type="number" ng-model="BowlingScore[i].NoBalls" /></td>
+                        <td><input type="number" ng-model="BowlingScore[i].Overs" class="number-box" /></td>
+                        <td><input type="number" ng-model="BowlingScore[i].Maiden" class="number-box" /></td>
+                        <td><input type="number" ng-model="BowlingScore[i].RunsGiven" class="number-box" /></td>
+                        <td><input type="number" ng-model="BowlingScore[i].Wickets" class="number-box" /></td>
+                        <td><input type="number" ng-model="BowlingScore[i].Wide" class="number-box" /></td>
+                        <td><input type="number" ng-model="BowlingScore[i].NoBalls" class="number-box" /></td>
                     </tr>
                 </tbody>
             </table>
 
             <hr />
-            <button type="button" class="btn btn-primary" ng-click="SubmitMatchScore()">Submit Match Score</button>
+            <div >
+                <button type="button" class="btn btn-primary" ng-click="SubmitMatchScore()">Submit Match Score</button>
+            </div>
         </div>
     </div>
 </div>

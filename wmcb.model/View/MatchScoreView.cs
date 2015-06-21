@@ -12,6 +12,7 @@ namespace wmcb.model.View
     {
         public bool hasPermission { get; set; }
         public int TeamID { get; set; }
+        public string TeamName { get; set; }
         [Display(Name="Select the Match : ")]
         public int SelectedMatch { get; set; }
         public List<Player> HomePlayers { get; set; }

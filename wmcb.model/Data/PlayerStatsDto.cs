@@ -22,9 +22,13 @@ namespace wmcb.model.Data
         //public int PlayerId { get; set; }
         public int? BattingRuns { get; set; }
         public int? BallsFaced { get; set; }
+        public int WicketNumber { get; set; }
+        public int FOW { get; set; }
         public int? HowOut { get; set; }
+        public string HowOutDesc { get; set; }
         public int? BowlerNumber { get; set; }
-        public int? Bowler { get; set; }
+        public Player Bowler { get; set; }
+        public int? BowlerId { get; set; }
         public int? Fielder { get; set; }
         public decimal? OversBowled { get; set; }
         public int? Wickets { get; set; }

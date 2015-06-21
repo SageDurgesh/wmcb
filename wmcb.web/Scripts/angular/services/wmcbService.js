@@ -147,7 +147,7 @@ WMCBApp.service("MatchEntryService", ["$http", "$q", function ($http, $q) {
     this.getMatchPlayerStats = function (id) {
         var deferred = $q.defer();
         $http({
-            url: '/wmcb/matchPlayerStats?matchId=' + id,
+            url: '/wmcb/matchPlayerStats/' + id,
             method: "GET"
         }).success(deferred.resolve).error(function (data, status) { alert(JSON.stringify(data)); });
         return deferred.promise;

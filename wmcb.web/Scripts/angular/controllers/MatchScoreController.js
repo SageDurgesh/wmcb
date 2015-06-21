@@ -1,13 +1,13 @@
 ﻿
-WMCBApp.controller('MatchScoreCtrl', ["$scope", "$filter", "$location", "MatchEntryService",
-    function ($scope, $filter, $location, MatchEntryService) {       
+WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$location", "MatchEntryService",
+    function ($scope, $timeout, $filter, $location, MatchEntryService) {
         $scope.OutList = [
           { Id: 1, Type: "Bowled" },
           { Id: 2, Type: "Caught" },
           { Id: 3, Type: "Stumped" },
           { Id: 4, Type: "Run Out" },
           { Id: 5, Type: "Not Out" },
-          {Id:6, Type:"Did not Play(DnP)"}];
+          {Id:6, Type:"Did not bat(dnb)"}];
         $scope.hasPermission = '';
         $scope.HomePlayers = '';
         $scope.AwayPlayers = '';
@@ -101,12 +101,32 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$filter", "$location", "MatchEn
             });
         };
         $scope.SelectMatch = function (match) {
-            $scope.SelectedMatch = match;
-            $scope.SelectedMatchText = "Vs " + match.AgainstTeamName + " - " + $filter('date')(match.DateTime, 'EEE, MM/dd');
-            MatchEntryService.getTeamPlayers(match.AgainstTeamId).then(function (data) {
-                $scope.AwayPlayers = data;
-            });
+            if (match) {
+                $scope.SelectedMatch = match;
+                var dt = $filter('date')(match.DateTime, 'EEE, MM/dd');
+                $scope.SelectedMatchText = "Vs " + match.AgainstTeamName + " - " + dt;
+                MatchEntryService.getTeamPlayers(match.AgainstTeamId).then(function (data) {
+                    $scope.AwayPlayers = data;
+                });
+            }
         };
+        $scope.PlayerComparer = function (player, viewValue) {
+            return viewValue === secretEmptyKey || ('' + player).toLowerCase().indexOf(('' + viewValue).toLowerCase()) > -1;
+        };
+        //inside your controller
+        $scope.clearUnselected = function (index) {
+            $timeout(function () {
+                if ($scope.BattingScore[index].Batsman == undefined) {   //the model was not set by the typeahead
+                    $scope.BattingScore[index].Batsman = '';
+                }
+                if ($scope.BattingScore[index].Bowler == undefined) {   //the model was not set by the typeahead
+                    $scope.BattingScore[index].Bowler = '';
+                }
+                if ($scope.BattingScore[index].HowOut == undefined) {   //the model was not set by the typeahead
+                    $scope.BattingScore[index].HowOut = '';
+                }
+            }, 100);    //a 250 ms delay should be safe enough
+        }
         $scope.SubmitMatchScore = function () {
             //var homeTeamStats = $filter('filter')($scope.TeamStats, { TeamId: $scope.Match.HomeTeam.ID });          
             var playerstats = [];
@@ -117,8 +137,7 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$filter", "$location", "MatchEn
                     PlayerId: item.Batsman.ID,
                     BattingRuns: item.Runs,
                     BallsFaced: item.Balls,
-                    HowOut: item.HowOut.Id,
-                    Bowler: item.Bowler.ID,
+                    HowOut: item.HowOut.Id,                   
                     BowlerNumber: 0,
                     OversBowled: 0,
                     Wickets: 0,
@@ -127,6 +146,9 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$filter", "$location", "MatchEn
                     Wide: 0,
                     noBalls: 0
                 };
+                if (item.Bowler != undefined) {
+                    s.Bowler = item.Bowler.ID;
+                }
                 $scope.HTBattingRuns = parseInt($scope.HTBattingRuns * 1) + parseInt(s.BattingRuns);
                 playerstats.push(s);
             });
@@ -324,9 +346,7 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$filter", "$location", "MatchEn
             $scope.BowlingRuns = null;
             $scope.Wickets = null;
             $scope.PlayerToAdd = null;
-        };
-
-        
+        };       
 
         $scope.CompleteMatchScore = function()
         {
@@ -360,12 +380,15 @@ var battingscore = {
     Bowler: '',
     Runs: 0,
     Balls: 0,
+    Fours: 0,
+    Sixes: 0,
     WicketNumber: 0,
     FOWRuns:0
 };
 
 var bowlingscore = {
     Bowler: '',
+    Fielder:'',
     Overs: '',
     Maiden: '',
     RunsGiven: 0,
