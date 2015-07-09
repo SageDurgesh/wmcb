@@ -97,15 +97,15 @@ namespace wmcb.web.Controllers
             return result;
         }
 
-        //[WMCBAdminAuthorize("Admin", "League Official", "Team Official")]
-        //[HttpGet]
-        //[Route("wmcb/matchTeamStats")]
-        //public List<TeamStats> GetMatchTeamsStats(int matchId)
-        //{
-        //    var result = new StatsRepo().GetMatchTeamStats(matchId);
+        [WMCBAdminAuthorize("Admin", "League Official", "Team Official")]
+        [HttpGet]
+        [Route("wmcb/matchTeamStats/{matchId}")]
+        public List<TeamStats> GetMatchTeamsStats(int matchId)
+        {
+            var result = new StatsRepo().GetMatchTeamStats(matchId);
 
-        //    return result;
-        //}
+            return result;
+        }
         
 
         [HttpGet]
@@ -159,12 +159,18 @@ namespace wmcb.web.Controllers
 
         [WMCBAdminAuthorize("Admin", "League Official")]
         [HttpPost]
-        [Route("wmcb/completeMatchScore")]
-        public void CompleteMatchScore(Match match)
+        [Route("wmcb/ApproveMatchScore")]
+        public void ApproveMatchScore(Match match)
         {
-           // new MatchRepo().SetMatchComplete(match);
+           new MatchRepo().ApproveMatchScore(match.ID);
         }
-
+        [WMCBAdminAuthorize("Admin", "League Official")]
+        [HttpPost]
+        [Route("wmcb/RejectMatchScore")]
+        public void RejectMatchScore(Match match)
+        {
+            new MatchRepo().RejectMatchScore(match.ID);
+        }
         
     }
 }

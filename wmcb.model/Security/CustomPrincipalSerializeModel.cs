@@ -10,6 +10,7 @@ namespace wmcb.model.Security
     {
         public int ID { get; set; }
         public int? TeamId { get; set; }
+        public string TeamName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string[] roles { get; set; }

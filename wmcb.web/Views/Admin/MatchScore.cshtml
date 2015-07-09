@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <script src="~/Scripts/angular/controllers/MatchScoreController.js"></script>
 <div ng-controller="MatchScoreCtrl" ng-init="init(@JsonConvert.SerializeObject(Model.hasPermission),@Model.TeamID)">
     <h4>Enter Match Score</h4>
@@ -27,8 +26,44 @@
             </div>
         </div>
         <div ng-hide="SelectedMatch==''">
-            <div>Did {{SelectedMatch.Home}} win the toss?</div>
-    <div>Did {{SelectedMatch.Home}} bat first?</div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4"><div>Did @Model.TeamName win the toss?</div>
+                    <div class="form-group row">
+                       
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="toss" value="1" ng-model="toss">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="toss" value="0" ng-model="toss">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div><div>Did @Model.TeamName bat first?</div>
+                    <div class="form-group">
+                        
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="batfirst" value="1" ng-model="batfirst">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="batfirst" value="0" ng-model="batfirst">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <h5>Batting Score</h5>
             <table class="table table-hover data-table col-lg-10 col-md-8">
                 <thead>
@@ -125,11 +160,10 @@
             </table>
 
             <hr />
-            <div >
+            <div>
                 <button type="button" class="btn btn-primary" ng-click="SubmitMatchScore()">Submit Match Score</button>
             </div>
         </div>
     </div>
 </div>
-
 

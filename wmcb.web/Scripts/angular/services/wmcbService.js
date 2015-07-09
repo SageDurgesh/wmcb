@@ -37,7 +37,7 @@
         $http({
             url: '/wmcb/schedule',
             method: "GET"
-        }).success(deferred.resolve).error(deferred.reject);
+        }).success(deferred.resolve).error(function (data, status) { alert(JSON.stringify(data)); });
         return deferred.promise;
     };
     this.getUpcomingGames = function () {
@@ -156,20 +156,26 @@ WMCBApp.service("MatchEntryService", ["$http", "$q", function ($http, $q) {
     this.getMatchTeamStats = function (id) {
         var deferred = $q.defer();
         $http({
-            url: '/wmcb/matchTeamStats?matchId=' + id,
+            url: '/wmcb/matchTeamStats/' + id,
             method: "GET"
         }).success(deferred.resolve).error(function (data, status) { alert(JSON.stringify(data)); });
         return deferred.promise;
     };
 
-    this.CompleteMatchScore = function (match) {
+    this.approveMatchScore = function (match) {
         return $http({
-            url: '/wmcb/completeMatchScore',
+            url: '/wmcb/ApproveMatchScore',
             method: "POST",
             data: JSON.stringify(match)
         });
     };
-
+    this.rejectMatchScore = function (match) {
+        return $http({
+            url: '/wmcb/RejectMatchScore',
+            method: "POST",
+            data: JSON.stringify(match)
+        });
+    };
     this.setPlayerStats = function (playerStats) {
         return $http({
             url: '/wmcb/setPlayerStats',

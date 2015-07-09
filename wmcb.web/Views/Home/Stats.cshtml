@@ -5,9 +5,10 @@
 }
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#divPlayers").hide();
+        $("#divPlayers").show();
         $("#divResults").hide();
         $("#divStats").hide();
+        $("#divStatsT20").hide();
         // Initialize tooltip
         $('[data-toggle="tooltip"]').tooltip({
             placement: 'top'
@@ -16,16 +17,25 @@
             $("#divPlayers").show();
             $("#divResults").hide();
             $("#divStats").hide();
+            $("#divStatsT20").hide();
         });
         $("#btnResults").click(function () {
             $("#divPlayers").hide();
             $("#divResults").show();
             $("#divStats").hide();
+            $("#divStatsT20").show();
         });
         $("#btnStats").click(function () {
             $("#divPlayers").hide();
             $("#divResults").hide();
             $("#divStats").show();
+            $("#divStatsT20").hide();
+        });
+        $("#btnStatsT20").click(function () {
+            $("#divPlayers").hide();
+            $("#divResults").hide();
+            $("#divStats").hide();
+            $("#divStatsT20").show();
         });
     });
 </script>
@@ -37,6 +47,7 @@
         <button type="button" class="btn btn-warning" id="btnPlayers">Players and Officials</button>
         <button type="button" class="btn btn-warning" id="btnResults">Match Results</button>
         <button type="button" class="btn btn-warning" id="btnStats">Statistics</button>
+        <button type="button" class="btn btn-warning" id="btnStatsT20">T-20</button>
     </div>
 </div>
 <div id="divPlayers">
@@ -48,4 +59,11 @@
 <div id="divStats">
     <iframe width="900" style="border:none;" height="600" src="http://www.sportstatz.com/ss/runreport2.aspx?club=1005&mode=104&grade=0&pool=&season=2015"></iframe>
 </div>
+<div id="divStatsT20">
+    <div>
+        <object type="text/html" data="http://www.sportstatz.com/ss/runreport2.aspx?mode=12&club=1005&playerid=&grade=347&pool=&season=2015" width="800" height="600" ></object>
+    </div>
+    @*<iframe width="900" style="border:none;" height="600" src="http://www.sportstatz.com/ss/runreport2.aspx?mode=12&club=1005&playerid=&grade=347&pool=&season=2015"></iframe>*@
+</div>
+
 

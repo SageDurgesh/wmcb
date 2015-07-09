@@ -10,93 +10,186 @@
             <th>Match</th>
             <th>Home Team(Runs)</th>
             <th>Away Team(Runs)</th>
-            <th>Actions
-            <th>
+            <th>Status</th>
+            <th>Actions<th>
         </tr>
         <tr ng-repeat-start ="m in Matches">
             <td>{{m.Schedule.Week}}, {{m.Schedule.DateTime| date:'EEE, M/dd'}}</td>
             <td>{{m.Schedule.Home}} ({{m.Match.HomeTeamScore}})</td>
             <td>{{m.Schedule.Away}} ({{m.Match.AwayTeamScore}})</td>
-            <td><button class="btn btn-sm btn-primary" ng-click="ViewScore(m,$index)">View</button> &nbsp; <button ng-click="Approve(m)" class="btn btn-sm btn-primary">Approve</button></td>
+            <td><span ng-show="m.Match.IsReviewed==1">Approved</span><span ng-show="m.Match.IsReviewed==0">Rejected</span><span ng-show="m.Match.IsReviewed==null">Pending</span></td>
+            <td><button class="btn btn-sm btn-primary" ng-click="ViewScore(m,$index)">View</button> &nbsp; 
+            <button ng-click="Approve(m)" class="btn btn-sm btn-primary">Approve</button>
+            <button ng-click="Reject(m)" class="btn btn-sm btn-primary">Reject</button></td>
         </tr>
         <tr ng-repeat-end ng-show="selectedRow == $index">
-            <td colspan="4">
-                <h5>Batting Score</h5>
-                <table class="table table-hover data-table col-lg-10 col-md-8">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Batsman</th>
-                            <th>How Out</th>
-                            <th>R</th>
-                            <th>B</th>
-                            <th>Wicket#</th>
-                            <th>FOW</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in Scores">
-                            <td>{{i+1}}</td>
-                            <td>
-                               <span>{{item.Player.FullName}}</span>
-                            </td>
-                            <td style="width:10px;">
-                                <span>{{item.HowOutDesc}}</span>
-                            </td>
-                            <td><span>{{item.BattingRuns}} </span></td>
-                            <td><span>{{item.BallsFaced}} </span></td>
-                            <td><span>{{item.BallsFaced}} </span></td>
-                            <td><span>{{item.BallsFaced}} </span></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h5>Extras Received</h5>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Wides</th>
-                            <th>No Balls</th>
-                            <th>Byes</th>
-                            <th>Leg Byes</th>
-                            <th>Penalty</th>
-                            <th>Total Extras</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                       <tr>
-                            <td class="pull-right">{{HTWides + HTNoBalls + HTByes + HTLegByes + HTPenaltyRuns}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h5>Bowling Score</h5>
-                <table class="table table-hover data-table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Bowler</th>
-                            <th>Over</th>
-                            <th>Maiden</th>
-                            <th>Runs</th>
-                            <th>Wickets</th>
-                            <th>WD</th>
-                            <th>NB</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in Scores">
-                            <td>{{i+1}}</td>
-                            <td>
-                                <span>{{item.Player.FullName}}</span>
-                            </td>
-                            <td><span>{{item.Over}} </span></td>
-                            <td><span>{{item.Maiden}} </span></td>
-                            <td><span>{{item.Runs}} </span></td>
-                            <td><span>{{item.Wickets}} </span></td>
-                            <td><span>{{item.Wide}} </span></td>
-                            <td><span>{{item.NoBall}} </span></td>
-                        </tr>
-                    </tbody>
-                </table>    
+            <td colspan="5">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div ng-show="HomeScores.length<=0"><br/><br/><br/>
+                            <span>{{m.Schedule.Home}} have not entered their score yet.</span></div>
+                        <div ng-hide="HomeScores.length<=0">
+                            <h5>{{m.Schedule.Home}}'s Batting Score</h5>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Batsman</th>
+                                        <th>How Out</th>
+                                        <th>R</th>
+                                        <th>B</th>
+                                        <th>Wicket#</th>
+                                        <th>FOW</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in HomeScores">
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            <span>{{item.Player.FullName}}</span>
+                                        </td>
+                                        <td style="width:10px;">
+                                            <span>{{item.HowOutDesc}}</span>
+                                        </td>
+                                        <td><span>{{item.BattingRuns}} </span></td>
+                                        <td><span>{{item.BallsFaced}} </span></td>
+                                        <td><span>{{item.BallsFaced}} </span></td>
+                                        <td><span>{{item.BallsFaced}} </span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h5>Extras Received</h5>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Wides</th>
+                                        <th>No Balls</th>
+                                        <th>Byes</th>
+                                        <th>Leg Byes</th>
+                                        <th>Penalty</th>
+                                        <th>Total Extras</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="pull-right">{{HTWides + HTNoBalls + HTByes + HTLegByes + HTPenaltyRuns}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h5>Bowling Score</h5>
+                            <table class="table table-hover data-table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Bowler</th>
+                                        <th>Over</th>
+                                        <th>Maiden</th>
+                                        <th>Runs</th>
+                                        <th>Wickets</th>
+                                        <th>WD</th>
+                                        <th>NB</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in HomeScores">
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            <span>{{item.Player.FullName}}</span>
+                                        </td>
+                                        <td><span>{{item.OversBowled}} </span></td>
+                                        <td><span>{{item.MaidenOvers}} </span></td>
+                                        <td><span>{{item.BowlingRuns}} </span></td>
+                                        <td><span>{{item.Wickets}} </span></td>
+                                        <td><span>{{item.Wide}} </span></td>
+                                        <td><span>{{item.NoBalls}} </span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-offset-6">
+                        <div ng-show="AwayScores.length<=0"><br/><br/><br/><span>{{m.Schedule.Away}} have not entered their match score yet.</span></div>
+                        <div ng-hide="AwayScores.length<=0">
+                            <h5>{{m.Schedule.Away}}'s Batting Score</h5>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Batsman</th>
+                                        <th>How Out</th>
+                                        <th>R</th>
+                                        <th>B</th>
+                                        <th>Wicket#</th>
+                                        <th>FOW</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in AwayScores">
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            <span>{{item.Player.FullName}}</span>
+                                        </td>
+                                        <td style="width:10px;">
+                                            <span>{{item.HowOutDesc}}</span>
+                                        </td>
+                                        <td><span>{{item.BattingRuns}} </span></td>
+                                        <td><span>{{item.BallsFaced}} </span></td>
+                                        <td><span>{{item.BallsFaced}} </span></td>
+                                        <td><span>{{item.BallsFaced}} </span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h5>Extras Received</h5>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Wides</th>
+                                        <th>No Balls</th>
+                                        <th>Byes</th>
+                                        <th>Leg Byes</th>
+                                        <th>Penalty</th>
+                                        <th>Total Extras</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="pull-right">{{HTWides + HTNoBalls + HTByes + HTLegByes + HTPenaltyRuns}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h5>Bowling Score</h5>
+                            <table class="table table-hover data-table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Bowler</th>
+                                        <th>Over</th>
+                                        <th>Maiden</th>
+                                        <th>Runs</th>
+                                        <th>Wickets</th>
+                                        <th>WD</th>
+                                        <th>NB</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in AwayScores">
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            <span>{{item.Player.FullName}}</span>
+                                        </td>
+                                        <td><span>{{item.OversBowled}} </span></td>
+                                        <td><span>{{item.MaidenOvers}} </span></td>
+                                        <td><span>{{item.BowlingRuns}} </span></td>
+                                        <td><span>{{item.Wickets}} </span></td>
+                                        <td><span>{{item.Wide}} </span></td>
+                                        <td><span>{{item.NoBalls}} </span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                  
             </td>
          </tr>
     </table>

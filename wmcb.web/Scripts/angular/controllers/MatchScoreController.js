@@ -69,10 +69,10 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$locati
 
         $scope.init = function (hasPermission, TeamID) {            
             $scope.TeamId = TeamID;
+            
             $scope.hasPermission = hasPermission;
             MatchEntryService.getMyMatches(TeamID).then(function(data){
-                $scope.Matches = data;
-               
+                $scope.Matches = data;               
                 angular.forEach(data, function (item) {
                     if(item.HomeId == TeamID){
                          var sch = {

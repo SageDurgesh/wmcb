@@ -13,12 +13,12 @@ namespace wmcb.model.Data
         [Key]
         public int ID { get; set; }
 
-        public virtual Team Team { get; set; }
-        [ForeignKey("Team")]
+        //public virtual Team Team { get; set; }
+        //[ForeignKey("Team")]
         public int TeamId { get; set; }
 
-        public virtual Match Match { get; set; }
-        [ForeignKey("Match")]
+        //public virtual Match Match { get; set; }
+        //[ForeignKey("Match")]
         public int MatchId { get; set; }
         public int Byes { get; set; }
         public int LegByes { get; set; }

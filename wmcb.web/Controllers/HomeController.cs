@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using wmcb.repo;
 using wmcb.model.Security;
+using Facebook;
 
 namespace wmcb.web.Controllers
 {
@@ -45,6 +46,8 @@ namespace wmcb.web.Controllers
         
         public ActionResult Gallery()
         {
+            //var client = new FacebookClient();
+            //dynamic me = client.Get
             return View();
         }
         public ActionResult Downloads()

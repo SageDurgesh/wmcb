@@ -26,8 +26,12 @@ namespace wmcb.adminportal.Controllers
                     serializeModel.ID = user.ID;
                     serializeModel.FirstName = user.FirstName;
                     serializeModel.LastName = user.LastName;
-                    serializeModel.roles = roles.Select(r => r.Name).ToArray();
-                    serializeModel.TeamId = user.TeamId;
+                    serializeModel.roles = roles.Select(r => r.Name).ToArray();                    
+                    if (user.Team != null)
+                    {
+                        serializeModel.TeamId = user.TeamId;
+                        serializeModel.TeamName = user.Team.Name;
+                    }
 
                     string userData = JsonConvert.SerializeObject(serializeModel);
                     FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(

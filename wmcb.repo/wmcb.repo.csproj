@@ -54,7 +54,6 @@
     <Compile Include="PointsRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScheduleRepo.cs" />
-    <Compile Include="TeamPoints.cs" />
     <Compile Include="StatsRepo.cs" />
     <Compile Include="TeamRepo.cs" />
     <Compile Include="UsersRepo.cs" />

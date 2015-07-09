@@ -16,74 +16,39 @@ namespace wmcb.repo
         {
             using (var context = new wmcbContext())
             {
-                var players = (from p in context.PlayerStats
-                              join u1 in context.Users on p.PlayerId equals u1.ID
-                              join u2 in context.Users on p.Bowler equals u2.ID
-                              where p.MatchId == matchId
-                              select new PlayerStatsDto{
-                              ID = p.ID,
-                        TeamId = p.TeamId,
-                        MatchId = p.MatchId,
-                        //  Team = p.p1.Team,
-                        BattingRuns = p.BattingRuns,
-                        BallsFaced = p.BallsFaced,
-                        HowOut = p.HowOut,
-                        HowOutDesc = GetHowOutDesc(p.HowOut),
-                        WicketNumber = p.Wickets.HasValue?p.Wickets.Value:0,
-                        BowlerNumber = p.BowlerNumber,
-                        BowlerId = p.Bowler,
-                        Fielder = p.Fielder,
-                        OversBowled = p.OversBowled,
-                        BowlingRuns = p.BowlingRuns,
-                        MaidenOvers = p.MaidenOvers,
-                        Wickets = p.Wickets,
-                        Player = new Player
-                        {
-                            ID = p.PlayerId,
-                            FirstName = u1.FirstName,
-                            LastName = u1.LastName,
-                            //Team = u1.Team,
-                            TeamId = u1.TeamId,
-                            Email = u1.Email
-                        },
-                        Bowler = new Player{
-                            ID = u2.ID,
-                            FirstName = u2.FirstName,
-                            LastName = u2.LastName,
-                            Email = u2.Email
-                        }                          
+                var players = context.PlayerStats
                     // .Include("Team")
                     //.Include("Match")
                     //.Include("Match.AwayTeam")
                     // .Include("Match.HomeTeam")
-                    
-                    //.Where(p => p.p2.p1.MatchId == matchId)
-                    //.Select(p => new PlayerStatsDto
-                    //{
-                    //    ID = p.p2.p1.ID,
-                    //    TeamId = p.p2.p1.TeamId,
-                    //    MatchId = p.p2.p1.MatchId,
-                    //    //  Team = p.p1.Team,
-                    //    BattingRuns = p.p2.p1.BattingRuns,
-                    //    BallsFaced = p.p2.p1.BallsFaced,
-                    //    HowOut = p.p2.p1.HowOut,
-                    //    BowlerNumber = p.p2.p1.BowlerNumber,
-                    //    BowlerId = p.p2.p1.Bowler,
-
-                    //    Fielder = p.p2.p1.Fielder,
-                    //    OversBowled = p.p2.p1.OversBowled,
-                    //    BowlingRuns = p.p2.p1.BowlingRuns,
-                    //    MaidenOvers = p.p2.p1.MaidenOvers,
-                    //    Wickets = p.p2.p1.Wickets,
-                    //    Player = new Player
-                    //    {
-                    //        ID = p.p2.p1.PlayerId,
-                    //        FirstName = p.p2.u.FirstName,
-                    //        LastName = p..LastName,
-                    //        //Team = p.u.Team,
-                    //        TeamId = p.u.TeamId,
-                    //        Email = p.u.Email
-                    //    }
+                    .Join(context.Users, p1 => p1.PlayerId, u => u.ID, (p1, u) => new { p1, u })
+                    .Where(p => p.p1.MatchId == matchId)
+                    .Select(p => new PlayerStatsDto
+                    {
+                        ID = p.p1.ID,
+                        TeamId = p.p1.TeamId,
+                        MatchId = p.p1.MatchId,
+                        //  Team = p.p1.Team,
+                        BattingRuns = p.p1.BattingRuns,
+                        BallsFaced = p.p1.BallsFaced,
+                        HowOut = p.p1.HowOut,
+                        //HowOutDesc = GetHowOutDesc(p.p1.HowOut.Value),
+                        BowlerNumber = p.p1.BowlerNumber,
+                       // Bowler = p.p1.Bowler,
+                        Fielder = p.p1.Fielder,
+                        OversBowled = p.p1.OversBowled,
+                        BowlingRuns = p.p1.BowlingRuns,
+                        MaidenOvers = p.p1.MaidenOvers,
+                        Wickets = p.p1.Wickets,
+                        Player = new Player
+                        {
+                            ID = p.p1.PlayerId,
+                            FirstName = p.u.FirstName,
+                            LastName = p.u.LastName,
+                            //Team = p.u.Team,
+                            TeamId = p.u.TeamId,
+                            Email = p.u.Email
+                        }
                     }).OrderBy(p => p.Player.LastName).ThenBy(p => p.Player.FirstName);
                 return players.ToList();
             }
@@ -102,19 +67,20 @@ namespace wmcb.repo
             }
         }
 
-        //public List<TeamStats> GetMatchTeamStats(int matchId)
-        //{
-        //    using (var context = new wmcbContext())
-        //    {
-        //        var teamStats = context.TeamStats
-        //            .Include("Team")
-        //            .Include("Match")
-        //            .Where(p => p.MatchId == matchId)
-        //            .Select(p => p);
-
-        //        return teamStats.AsEnumerable().ToList();
-        //    }
-        //}
+        public List<TeamStats> GetMatchTeamStats(int matchId)
+        {
+            using (var context = new wmcbContext())
+            {
+                //var teamStats = context.TeamStats
+                //    .Include("Team")
+                //    .Include("Match")
+                //    .Where(p => p.MatchId == matchId)
+                //    .Select(p => p);
+                //return teamStats.AsEnumerable().ToList();
+                var teamstats = context.TeamStats.Where(p => p.MatchId == matchId).Select(p => p);
+                return teamstats.ToList();                 
+            }
+        }
 
         public void SetPlayerStats(List<PlayerStats> players)
         {

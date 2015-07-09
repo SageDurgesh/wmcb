@@ -41,6 +41,7 @@ namespace wmcb.web.Controllers
             {
                 scoremodel.hasPermission = true;
                 scoremodel.TeamID = user.TeamId.HasValue ? user.TeamId.Value : 0;
+                scoremodel.TeamName = user.TeamName;
             }            
             return View(scoremodel);
         }

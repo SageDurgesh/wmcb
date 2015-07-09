@@ -10,18 +10,34 @@ namespace wmcb.model.Data
 {
     public class Schedule
     {
-        [Key]
         public int ID { get; set; }
         public int Week { get; set; }
         public DateTime DateTime { get; set; }
-        public int? HomeTeamID { get; set; }
-        public int? AwayTeamID { get; set; }
-        public int? GroundID { get; set; }
-        public int TrophyID { get; set; }
-        public int TournamentID { get; set; }
-        public int MatchType { get; set; }
         public string HomeTeamNote { get; set; }
         public string AwayTeamNote { get; set; }
-       // public virtual Match Match { get; set; }
+
+        //public virtual Team HomeTeam{ get; set; }
+        //[ForeignKey("HomeTeam")]
+        public int? HomeTeamID { get; set; }
+
+        //public virtual Team AwayTeam { get; set; }
+        //[ForeignKey("AwayTeam")]
+        public int? AwayTeamID { get; set; }
+
+        public virtual Ground Ground { get; set; }
+        [ForeignKey("Ground")]
+        public int? GroundID { get; set; }
+
+        //public virtual Tournament Tournament { get; set; }
+        //[ForeignKey("Tournament")]
+        public int TrophyID { get; set; }
+
+        //public virtual Tournament Tournament { get; set; }
+        //[ForeignKey("Tournament")]
+        public int TournamentID { get; set; }
+
+        //public virtual Division Division { get; set; }
+        //[ForeignKey("Division")]
+        public int MatchType { get; set; }
     }
 }

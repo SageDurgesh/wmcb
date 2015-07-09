@@ -11,7 +11,7 @@ namespace wmcb.model.View
     {
         public Match Match { get; set; }
         public ScheduleView Schedule { get; set; }
-        public List<PlayerStatsDto> HomeTeam { get; set; }
-        public List<PlayerStatsDto> AwayTeam { get; set; }
+        //public List<PlayerStatsDto> HomeTeam { get; set; }
+        //public List<PlayerStatsDto> AwayTeam { get; set; }
     }
 }
