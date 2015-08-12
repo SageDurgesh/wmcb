@@ -5,9 +5,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using wmcb.model;
 using wmcb.model.Security;
 using wmcb.model.View;
 using wmcb.repo;
+using wmcb.web.Controllers;
 
 namespace wmcb.adminportal.Controllers
 {
@@ -26,7 +28,7 @@ namespace wmcb.adminportal.Controllers
                     serializeModel.ID = user.ID;
                     serializeModel.FirstName = user.FirstName;
                     serializeModel.LastName = user.LastName;
-                    serializeModel.roles = roles.Select(r => r.Name).ToArray();                    
+                    serializeModel.roles = roles.Select(r => r.Name).ToArray();
                     if (user.Team != null)
                     {
                         serializeModel.TeamId = user.TeamId;
@@ -65,18 +67,30 @@ namespace wmcb.adminportal.Controllers
 
             return View(model);
         }
-
-        [AllowAnonymous]
-        public ActionResult Register()
-        {
-            return View();
-        }        
         [AllowAnonymous]
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Account", null);
         }
+        [AllowAnonymous]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        public JsonResult ResetPassword(string email)
+        {
+          Result res =  new UsersRepo().ResetPassword(email);
+          return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
+        //[WMCBAdminAuthorize("Admin")]
+        //public ActionResult Register()
+        //{
+        //    return View();
+        //}        
+
     }
 
 }

@@ -37,7 +37,7 @@
         $http({
             url: '/wmcb/schedule',
             method: "GET"
-        }).success(deferred.resolve).error(deferred.reject);
+        }).success(deferred.resolve).error(function (data, status) { alert(JSON.stringify(data)); });
         return deferred.promise;
     };
     this.getUpcomingGames = function () {
@@ -66,7 +66,7 @@
     }
     this.addnewuser = function (user) {        
         return $http({
-            url: '/wmcb/user/add',
+            url: '/Admin/AddUser',
             data: user,
             method: "POST",
             headers: {
@@ -74,20 +74,16 @@
             }
         });
     };
-    //function handleError(response) {
-    //    // The API response from the server should be returned in a
-    //    // nomralized format. However, if the request was not handled by the
-    //    // server (or what not handles properly - ex. server error), then we
-    //    // may have to normalize it on our end, as best we can.
-    //    if (response==undefined || response.data == undefined || !response.data) {
-    //            return ($q.reject("An unknown error occurred."));
-    //    }
-    //}
-    //// I transform the successful response, unwrapping the application data
-    //// from the API response payload.
-    //function handleSuccess(response) {
-    //    return (response.data);
-    //}
+    this.resetpassword = function (email) {
+        return $http({
+            url: '/Account/ResetPassword',
+            method: "POST",
+            data: email,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    };
 }]);
 
 WMCBApp.service('filteredListService', function () {
@@ -115,8 +111,30 @@ WMCBApp.service('filteredListService', function () {
 
 
 WMCBApp.service("MatchEntryService", ["$http", "$q", function ($http, $q) {
-    
-
+    this.getMyMatches = function (teamID) {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/myMatches/' + teamID,
+            method: "GET"
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    }
+    this.getMatchesWithNoScore = function () {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/MatchesWithNoScore/',
+            method: "GET"
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    }
+    this.getMatches = function () {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/Matches/',
+            method: "GET"
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    }
     this.getMatch = function (matchId) {
         var deferred = $q.defer();
         $http({
@@ -138,7 +156,7 @@ WMCBApp.service("MatchEntryService", ["$http", "$q", function ($http, $q) {
     this.getTeamPlayers = function (id) {
         var deferred = $q.defer();
         $http({
-            url: '/wmcb/teamPlayers?teamId=' + id,
+            url: '/wmcb/teamPlayers/' + id,
             method: "GET"
         }).success(deferred.resolve).error(deferred.reject);
         return deferred.promise;
@@ -147,7 +165,7 @@ WMCBApp.service("MatchEntryService", ["$http", "$q", function ($http, $q) {
     this.getMatchPlayerStats = function (id) {
         var deferred = $q.defer();
         $http({
-            url: '/wmcb/matchPlayerStats?matchId=' + id,
+            url: '/wmcb/matchPlayerStats/' + id,
             method: "GET"
         }).success(deferred.resolve).error(function (data, status) { alert(JSON.stringify(data)); });
         return deferred.promise;
@@ -156,20 +174,26 @@ WMCBApp.service("MatchEntryService", ["$http", "$q", function ($http, $q) {
     this.getMatchTeamStats = function (id) {
         var deferred = $q.defer();
         $http({
-            url: '/wmcb/matchTeamStats?matchId=' + id,
+            url: '/wmcb/matchTeamStats/' + id,
             method: "GET"
         }).success(deferred.resolve).error(function (data, status) { alert(JSON.stringify(data)); });
         return deferred.promise;
     };
 
-    this.CompleteMatchScore = function (match) {
+    this.approveMatchScore = function (match) {
         return $http({
-            url: '/wmcb/completeMatchScore',
+            url: '/wmcb/ApproveMatchScore',
             method: "POST",
             data: JSON.stringify(match)
         });
     };
-
+    this.rejectMatchScore = function (match) {
+        return $http({
+            url: '/wmcb/RejectMatchScore',
+            method: "POST",
+            data: JSON.stringify(match)
+        });
+    };
     this.setPlayerStats = function (playerStats) {
         return $http({
             url: '/wmcb/setPlayerStats',
@@ -177,12 +201,19 @@ WMCBApp.service("MatchEntryService", ["$http", "$q", function ($http, $q) {
             data: JSON.stringify(playerStats)
         });
     };
-
+    
     this.setTeamStats = function (teamStats) {
         return $http({
-            url: '/wmcb/setTeamStats',
+            url: '/wmcb/SetTeamStats',
             method: "POST",
             data: JSON.stringify(teamStats)
         });
     };
+    this.SavePlayerStats = function (playerStats) {
+        return $http({
+            url: '/wmcb/SavePlayerStats',
+            method: "POST",
+            data: JSON.stringify(playerStats)
+        });
+    }; 
 }]);

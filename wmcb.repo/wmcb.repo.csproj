@@ -48,8 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GroundRepo.cs" />
+    <Compile Include="Helpers\Email.cs" />
+    <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Helpers\SHA1.cs" />
     <Compile Include="MatchRepo.cs" />
+    <Compile Include="MessageTemplateRepo.cs" />
     <Compile Include="NewsFeedRepo.cs" />
     <Compile Include="PointsRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

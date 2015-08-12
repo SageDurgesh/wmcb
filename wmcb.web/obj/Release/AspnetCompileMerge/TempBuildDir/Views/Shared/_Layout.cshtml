@@ -8,18 +8,11 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angularjs")
+    <script src="~/Scripts/angular-ui/ui-bootstrap.min.js"></script>
+    <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
 </head>
 <body ng-app="WMCBApp">
-    <div id="fb-root"></div>
-    <script>
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=622211794484959&version=v2.0";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-
+   
     <div class="navbar  navbar-fixed-top wmcbclearbackground">
        <div class="navbar-brand logo ">
             <a class="visible-lg" href="/Home/Index">
@@ -43,15 +36,13 @@
                 <li>@Html.ActionLink("HOME", "Index", "Home")</li>
                 <li>@Html.ActionLink("FIXTURES", "Fixtures", "Home")</li>
                 <li>@Html.ActionLink("POINTS", "Points", "Home")</li>
-                @*<li>@Html.ActionLink("TEAM PROFILES", "Teams", "Home")</li>*@
                 <li>@Html.ActionLink("STATISTICS", "Stats", "Home")</li>
                 <li>@Html.ActionLink("GROUNDS", "Grounds", "Home")</li>
                 <li>@Html.ActionLink("DOWNLOADS", "Downloads", "Home")</li>
                 <li class="hidden-md hidden-sm visible-xs">@Html.ActionLink("GALLERY", "Gallery", "Home")</li>
                 <li class="hidden-md hidden-sm visible-xs">@Html.ActionLink("NEWSLETTER", "Newsletter", "Home")</li>
-                @*<li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>*@
-               
-                <li class="dropdown">
+                <li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>
+                @*<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         ABOUT <b class="caret"></b>
                     </a>
@@ -62,11 +53,11 @@
                             <li>@Html.ActionLink("Sign Out", "Logout", "Account")</li>
                         }
                         else
-                        { 
+                        {
                             <li>@Html.ActionLink("Login", "Index", "Account")</li>
                         }
                     </ul>
-                </li>
+                </li>*@
             </ul>
         </div>
 

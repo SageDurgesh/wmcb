@@ -38,3 +38,5 @@ D:\Other\wmcb\wmcb\wmcb.web\bin\Newtonsoft.Json.xml
 D:\Other\wmcb\wmcb\wmcb.web\obj\Release\wmcb.web.csprojResolveAssemblyReference.cache
 D:\Other\wmcb\wmcb\wmcb.web\obj\Release\wmcb.web.dll
 D:\Other\wmcb\wmcb\wmcb.web\obj\Release\wmcb.web.pdb
+D:\Other\wmcb\wmcb\wmcb.web\bin\Facebook.dll
+D:\Other\wmcb\wmcb\wmcb.web\bin\Facebook.xml

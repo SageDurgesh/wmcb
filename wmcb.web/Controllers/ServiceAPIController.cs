@@ -70,6 +70,13 @@ namespace wmcb.web.Controllers
             var macthes = new ScheduleRepo().GetMyMatches(teamId);
             return macthes;
         }
+        [HttpGet]
+        [Route("wmcb/MatchesWithNoScore")]
+        public List<ScheduleView> GetMatchesWithNoScore()
+        {
+            var macthes = new ScheduleRepo().GetMatchesWithNoScore();
+            return macthes;
+        }
 
         [WMCBAdminAuthorize("Admin", "League Official", "Team Official")]
         [HttpGet]
@@ -122,7 +129,7 @@ namespace wmcb.web.Controllers
         }
         [HttpPost]
         [Route("wmcb/user/add")]
-        public bool AddUser(NewUser user)
+        public Result AddUser(NewUser user)
         {
            return new UsersRepo().AddUser(user);
         }

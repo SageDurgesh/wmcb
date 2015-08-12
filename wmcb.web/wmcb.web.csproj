@@ -200,6 +200,7 @@
     <Content Include="Scripts\angular\controllers\CaptchaController.js" />
     <Content Include="Scripts\angular\controllers\Controller.js" />
     <Content Include="Scripts\angular\controllers\FixtureController.js" />
+    <Content Include="Scripts\angular\controllers\ForgotPasswordController.js" />
     <Content Include="Scripts\angular\controllers\GroundController.js" />
     <Content Include="Scripts\angular\controllers\IndexController.js" />
     <Content Include="Scripts\angular\controllers\NewsController.js" />
@@ -1014,6 +1015,7 @@
     <Content Include="Scripts\visualcaptcha.angular.js" />
     <Content Include="Scripts\wmcb\gallery.js" />
     <Content Include="Scripts\wmcb\index.js" />
+    <Content Include="Scripts\wmcb\Register.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1055,6 +1057,8 @@
     <Content Include="Views\Admin\TeamManager.cshtml" />
     <Content Include="Views\Admin\ReviewScore.cshtml" />
     <Content Include="Scripts\LICENSE" />
+    <Content Include="Views\Admin\Register.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

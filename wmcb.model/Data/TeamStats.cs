@@ -19,6 +19,10 @@ namespace wmcb.model.Data
 
         //public virtual Match Match { get; set; }
         //[ForeignKey("Match")]
+        [NotMapped]
+        public int TeamWonToss { get; set; }
+        [NotMapped]
+        public int TeamBattedFirst { get; set; }
         public int MatchId { get; set; }
         public int Byes { get; set; }
         public int LegByes { get; set; }

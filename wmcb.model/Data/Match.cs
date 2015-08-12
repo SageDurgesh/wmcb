@@ -14,6 +14,8 @@ namespace wmcb.model.Data
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
         public string Description { get; set; }
+        public int? TeamWonToss { get; set; }
+        public int? TeamBattedFirst { get; set; }
         public int? TeamWon { get; set; }
         public int? HomeTeamScore { get; set; }
         public int? AwayTeamScore { get; set; }

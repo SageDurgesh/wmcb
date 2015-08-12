@@ -152,7 +152,37 @@ namespace wmcb.repo
                                from s2 in sch2.DefaultIfEmpty()
                                join m1 in context.Matches on s.ID equals m1.ID into m11
                                from match in m11.DefaultIfEmpty()
-                               where s.DateTime <= currentDate && (s.HomeTeamID == TeamID || s.AwayTeamID == TeamID) && (match == null || match.IsReviewed == false)
+                               where s.DateTime <= currentDate && (s.HomeTeamID == TeamID || s.AwayTeamID == TeamID) && (match == null || match.IsReviewed == false || match.IsReviewed == null)
+                               orderby s.DateTime descending
+                               select new ScheduleView
+                               {
+                                   ID = s.ID,
+                                   HomeId = s.HomeTeamID.HasValue ? s.HomeTeamID.Value : 0,
+                                   AwayId = s.AwayTeamID.HasValue ? s.AwayTeamID.Value : 0,
+                                   Week = "Week " + s.Week.ToString(),
+                                   Home = (s1 == null ? s.HomeTeamNote : s1.Name),
+                                   Away = (s2 == null ? s.AwayTeamNote : s2.Name),
+                                   DateTime = s.DateTime
+                               };
+                if (schedule != null)
+                    return schedule.ToList();
+                return null;
+            }
+        }
+
+        public List<ScheduleView> GetMatchesWithNoScore()
+        {
+            DateTime currentDate = DateTime.Now.Date;
+            using (var context = new wmcbContext())
+            {
+                var schedule = from s in context.Schedules
+                               join home in context.Teams on s.HomeTeamID equals home.ID into sch1
+                               from s1 in sch1.DefaultIfEmpty()
+                               join away in context.Teams on s.AwayTeamID equals away.ID into sch2
+                               from s2 in sch2.DefaultIfEmpty()
+                               join m1 in context.Matches on s.ID equals m1.ID into m11
+                               from match in m11.DefaultIfEmpty()
+                               where s.DateTime <= currentDate && (match == null || match.IsReviewed == false || match.IsReviewed == null)
                                orderby s.DateTime descending
                                select new ScheduleView
                                {

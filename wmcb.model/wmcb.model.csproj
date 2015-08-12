@@ -43,6 +43,7 @@
     <Compile Include="Data\Division.cs" />
     <Compile Include="Data\DivisionDto.cs" />
     <Compile Include="Data\Ground.cs" />
+    <Compile Include="Data\MessageTemplateDto.cs" />
     <Compile Include="Data\ResultPoints.cs" />
     <Compile Include="Data\MatchDto.cs" />
     <Compile Include="Data\Match.cs" />
@@ -57,9 +58,11 @@
     <Compile Include="Data\Player.cs" />
     <Compile Include="Data\UserTeam.cs" />
     <Compile Include="Data\WmcbUser.cs" />
+    <Compile Include="EmailMessage.cs" />
     <Compile Include="NewsFeed.cs" />
     <Compile Include="NewsView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Result.cs" />
     <Compile Include="Security\WmcbPrincipal.cs" />
     <Compile Include="Security\CustomPrincipalSerializeModel.cs" />
     <Compile Include="Team.cs" />

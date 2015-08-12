@@ -18,5 +18,6 @@ namespace wmcb.model.View
         [Required]
         public String LastName { get; set; }
         public String Phone { get; set; }
+        public int TeamID { get; set; }
     }
 }

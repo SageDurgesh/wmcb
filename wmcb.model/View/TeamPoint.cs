@@ -17,5 +17,6 @@ namespace wmcb.model.View
         public Decimal WinPercentage { get; set; }
         public int Points { get; set; }
         public Decimal NRR { get; set; }
+        public int Weight { get; set; }
     }
 }

@@ -6,7 +6,7 @@
         sortingOrder: 'TestId',
         reverse: true
     };
-    $scope.minDate = new Date('1900/01/01');
+    $scope.maxDate = new Date('9999/12/31');
     $scope.gap = 5;
     $scope.filteredItems = [];
     $scope.groupedItems = [];

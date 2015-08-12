@@ -4,6 +4,7 @@
 }
 <script src="~/Scripts/angular/controllers/ReviewScoreController.js"></script>
 <h2>Review Score</h2>
+@{var i = 1; var j = 1; var k = 1; var l = 1;}
 <div ng-controller="ReviewCtrl">
     <table class="table table-hover data-table col-lg-10 col-md-8">
         <tr>
@@ -19,7 +20,7 @@
             <td>{{m.Schedule.Away}} ({{m.Match.AwayTeamScore}})</td>
             <td><span ng-show="m.Match.IsReviewed==1">Approved</span><span ng-show="m.Match.IsReviewed==0">Rejected</span><span ng-show="m.Match.IsReviewed==null">Pending</span></td>
             <td><button class="btn btn-sm btn-primary" ng-click="ViewScore(m,$index)">View</button> &nbsp; 
-            <button ng-click="Approve(m)" class="btn btn-sm btn-primary">Approve</button>
+            <button ng-click="Approve(m)" class="btn btn-sm btn-primary" ng-disabled="HomeScores.length<=0 || AwayScores.length<=0" >Approve</button>
             <button ng-click="Reject(m)" class="btn btn-sm btn-primary">Reject</button></td>
         </tr>
         <tr ng-repeat-end ng-show="selectedRow == $index">
@@ -44,7 +45,7 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="item in HomeScores">
-                                        <td>{{i+1}}</td>
+                                        <td><lable>@i++</td>
                                         <td>
                                             <span>{{item.Player.FullName}}</span>
                                         </td>
@@ -92,7 +93,7 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="item in HomeScores">
-                                        <td>{{i+1}}</td>
+                                        <td>@j++</td>
                                         <td>
                                             <span>{{item.Player.FullName}}</span>
                                         </td>
@@ -125,7 +126,7 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="item in AwayScores">
-                                        <td>{{i+1}}</td>
+                                        <td>@k++</td>
                                         <td>
                                             <span>{{item.Player.FullName}}</span>
                                         </td>
@@ -173,7 +174,7 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="item in AwayScores">
-                                        <td>{{i+1}}</td>
+                                        <td>{{counter(@l)}}</td>
                                         <td>
                                             <span>{{item.Player.FullName}}</span>
                                         </td>

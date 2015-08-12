@@ -4,69 +4,24 @@
 }
 
 @Styles.Render("~/Content/css/gallery")
-<script src="~/Scripts/galleria/galleria-1.4.2.min.js"></script>
-<script src="~/Scripts/galleria/plugins/facebook/galleria.facebook.js"></script>
-<script src="~/Scripts/galleria/themes/classic/galleria.classic.min.js"></script>
-<link rel="stylesheet" href="~/Scripts/galleria/themes/classic/galleria.classic.css">
 <h2>Gallery</h2>
-@*<div class="container">
+<div class="container">
     <div id="fb-root"></div>
-    <script>(function (d, s, id) {
-var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s);
+    <script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s);
     js.id = id; js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3"; fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script><div class="fb-post" 
-  data-href="https://www.facebook.com/media/set/?set=a.1020413551309745.1073741829.459774877373618&amp;type=3"
-  data-width="600"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/media/set/?set=a.1020413551309745.1073741829.459774877373618&amp;type=3">
-    Posted by <a href="https://www.facebook.com/wmcbleague">Washington Metropolitan Cricket Board</a> on&nbsp;
-    <a href="https://www.facebook.com/media/set/?set=a.1020413551309745.1073741829.459774877373618&amp;type=3">Thursday, June 18, 2015</a></blockquote></div></div>
-</div>*@
-<iframe scrolling="no" marginheight="0" frameborder="0" width="541" style="height:501.97604790419px;" src="https://fbgalleria.com/gallery.php?id=1020413551309745&display=album&rows=4&margin=10&cols=3&width=170&font_size=11&title_color=000000&hide_next_back=0&share_buttons=1&shape=rectangle&frame=1"></iframe>
-<embed type="application/x-shockwave-flash" src="https://photos.gstatic.com/media/slideshow.swf" 
-       width="500" height="300" flashvars="host=picasaweb.google.com&captions=1&hl=en_US&feat=flashalbum&RGB=0x000000&feed=https%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F111011158694114601063%3Falt%3Drss%26kind%3Dphoto%26access%3Dpublic%26psc%3DF%26q%26uname%3D111011158694114601063" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>
-
-@*<script>
-   // Galleria.loadTheme('js/themes/classic/galleria.classic.min.js');
-    Galleria.run('#galleria', {
-        facebook: 'album:703308719686898',
-        width: 745,
-        height: 550,
-        lightbox: true,
-        facebookOptions: {
-            max: 30 // optional override for limit of 40 photos on an album
-        }
-    });
-</script>
-<div id="galleria"></div>*@
-
-@*<div id="fb-root"></div>
-<script>
-    var userid = '459774877373618';
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '528289017318200',
-            xfbml: true,
-            version: 'v2.3'
-        });
-        var albums;
-        FB.api('/' + userid + '/albums/', 'get', function (response) {
-            if (!response || response.error) {
-                albums = response.error;
-            } else {
-                albums = response;
-            }
-        });
-    };
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) { return; }
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>*@
-
-
-
+}(document, 'script', 'facebook-jssdk'));</script><div class="fb-post"
+                                                       data-href="https://www.facebook.com/media/set/?set=a.1020413551309745.1073741829.459774877373618&amp;type=3"
+                                                       data-width="600">
+        <div class="fb-xfbml-parse-ignore">
+            <blockquote cite="https://www.facebook.com/media/set/?set=a.1020413551309745.1073741829.459774877373618&amp;type=3">
+                Posted by <a href="https://www.facebook.com/wmcbleague">Washington Metropolitan Cricket Board</a> on&nbsp;
+                <a href="https://www.facebook.com/media/set/?set=a.1020413551309745.1073741829.459774877373618&amp;type=3">Thursday, June 18, 2015</a>
+            </blockquote>
+        </div>
+    </div>
+</div>
 @*<div class="row">
         <div class="col-md-offset-1">
             <div class="row">
@@ -84,51 +39,51 @@ var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js
                 </a>
             </div>
         </div>
-    </div>
-    <script src="~/Scripts/ekko-lightbox.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function ($) {
-            // delegate calls to data-toggle="lightbox"
-            $(document).delegate('*[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', 'click', function (event) {
-                event.preventDefault();
-                return $(this).ekkoLightbox({
-                    onShown: function () {
-                        if (window.console) {
-                            return console.log('Checking our the events huh?');
-                        }
-                    },
-                    onNavigate: function (direction, itemIndex) {
-                        if (window.console) {
-                            return console.log('Navigating ' + direction + '. Current item: ' + itemIndex);
-                        }
+    </div>*@
+<script src="~/Scripts/ekko-lightbox.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        // delegate calls to data-toggle="lightbox"
+        $(document).delegate('*[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', 'click', function (event) {
+            event.preventDefault();
+            return $(this).ekkoLightbox({
+                onShown: function () {
+                    if (window.console) {
+                        return console.log('Checking our the events huh?');
                     }
-                });
-            });
-            //Programatically call
-            $('#open-image').click(function (e) {
-                e.preventDefault();
-                $(this).ekkoLightbox();
-            });
-            $('#open-youtube').click(function (e) {
-                e.preventDefault();
-                $(this).ekkoLightbox();
-            });
-            // navigateTo
-            $(document).delegate('*[data-gallery="navigateTo"]', 'click', function (event) {
-                event.preventDefault();
-                return $(this).ekkoLightbox({
-                    onShown: function () {
-                        var a = this.modal_content.find('.modal-footer a');
-                        if (a.length > 0) {
-                            a.click(function (e) {
-                                e.preventDefault();
-                                this.navigateTo(2);
-                            }.bind(this));
-                        }
+                },
+                onNavigate: function (direction, itemIndex) {
+                    if (window.console) {
+                        return console.log('Navigating ' + direction + '. Current item: ' + itemIndex);
                     }
-                });
+                }
             });
         });
-    </script>
-*@
+        //Programatically call
+        $('#open-image').click(function (e) {
+            e.preventDefault();
+            $(this).ekkoLightbox();
+        });
+        $('#open-youtube').click(function (e) {
+            e.preventDefault();
+            $(this).ekkoLightbox();
+        });
+        // navigateTo
+        $(document).delegate('*[data-gallery="navigateTo"]', 'click', function (event) {
+            event.preventDefault();
+            return $(this).ekkoLightbox({
+                onShown: function () {
+                    var a = this.modal_content.find('.modal-footer a');
+                    if (a.length > 0) {
+                        a.click(function (e) {
+                            e.preventDefault();
+                            this.navigateTo(2);
+                        }.bind(this));
+                    }
+                }
+            });
+        });
+    });
+</script>
+
 @*@Scripts.Render("~/bundles/gallery")*@

@@ -66,9 +66,19 @@
     }
     this.addnewuser = function (user) {        
         return $http({
-            url: '/wmcb/user/add',
+            url: '/Admin/AddUser',
             data: user,
             method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    };
+    this.resetpassword = function (email) {
+        return $http({
+            url: '/Account/ResetPassword',
+            method: "POST",
+            data: email,
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -105,6 +115,14 @@ WMCBApp.service("MatchEntryService", ["$http", "$q", function ($http, $q) {
         var deferred = $q.defer();
         $http({
             url: '/wmcb/myMatches/' + teamID,
+            method: "GET"
+        }).success(deferred.resolve).error(deferred.reject);
+        return deferred.promise;
+    }
+    this.getMatchesWithNoScore = function () {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/MatchesWithNoScore/',
             method: "GET"
         }).success(deferred.resolve).error(deferred.reject);
         return deferred.promise;

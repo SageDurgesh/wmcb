@@ -190,36 +190,49 @@ namespace wmcb.repo
                 {
                     context.TeamStats.RemoveRange(stat);
                 }
+                context.SaveChanges();
                 context.TeamStats.Add(teamstat);
                 var sch = context.Schedules.Where(s => s.ID == teamstat.MatchId).Select(s => s).FirstOrDefault();
                 var match = context.Matches.Where(m => m.ID == teamstat.MatchId).Select(s => s).FirstOrDefault();
                 if (sch.HomeTeamID == teamstat.TeamId)
                 {
                     if (match != null)
+                    {
                         match.HomeTeamScore = teamstat.TeamScore;
+                        match.TeamWonToss = teamstat.TeamWonToss;
+                        match.TeamBattedFirst = teamstat.TeamBattedFirst;
+                    }
                     else
                     {
                         match = new Match();
                         match.ID = teamstat.MatchId;
                         match.HomeTeamScore = teamstat.TeamScore;
+                        match.TeamBattedFirst = teamstat.TeamBattedFirst;
+                        match.TeamWonToss = teamstat.TeamWonToss;
                         //SubmittedBy = user.ID;
                         match.DateSubmitted = DateTime.Now;
-                        match.IsReviewed = false;
+                        match.IsReviewed = null;
                         context.Matches.Add(match);
                     }
                 }
                 else if (sch.AwayTeamID == teamstat.TeamId)
                 {
                     if (match != null)
+                    {
                         match.AwayTeamScore = teamstat.TeamScore;
+                        match.TeamWonToss = teamstat.TeamWonToss;
+                        match.TeamBattedFirst = teamstat.TeamBattedFirst;
+                    }
                     else
                     {
                         match = new Match();
                         match.ID = teamstat.MatchId;
                         match.AwayTeamScore = teamstat.TeamScore;
+                        match.TeamBattedFirst = teamstat.TeamBattedFirst;
+                        match.TeamWonToss = teamstat.TeamWonToss;
                         //SubmittedBy = user.ID;
                         match.DateSubmitted = DateTime.Now;
-                        match.IsReviewed = false;
+                        match.IsReviewed = null;
                         context.Matches.Add(match);
                     }
                 }

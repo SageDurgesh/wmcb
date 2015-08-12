@@ -25,6 +25,7 @@ namespace wmcb.repo
         public DbSet<Match> Matches { get; set; }
         public DbSet<Tournament> Tournament { get; set; }
         public DbSet<Division> Division { get; set; }
+        public DbSet<MessageTemplateDto> MessageTemplate { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -43,6 +44,7 @@ namespace wmcb.repo
             modelBuilder.Entity<Tournament>().ToTable("Tournament");
             modelBuilder.Entity<Division>().ToTable("Division");
             modelBuilder.Entity<Ground>().ToTable("Grounds");
+            modelBuilder.Entity<MessageTemplateDto>().ToTable("MessageTemplate");
         }
     }
 }

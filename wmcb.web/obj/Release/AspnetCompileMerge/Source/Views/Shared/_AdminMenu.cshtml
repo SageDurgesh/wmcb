@@ -1,5 +1,5 @@
 ﻿
-<div class="navbar-collapse collapse navbar-inverse admin-navbar" >
+<div class="navbar-collapse collapse navbar-inverse admin-navbar">
     <ul class="nav side-nav">
         <li>
             @if (Request.IsAuthenticated)
@@ -8,13 +8,22 @@
                 @Html.ActionLink("Sign Out", "Logout", "Account")
             }
         </li>
-
-        <li>@Html.ActionLink("News Feed", "NewsFeed", "Admin")</li>
-        <li>@Html.ActionLink("FIXTURES", "Fixtures", "Home")</li>
-        <li>@Html.ActionLink("Team Manager", "TeamManager", "Admin")</li>
-        <li>@Html.ActionLink("Match Score", "MatchScore", "Admin")</li>
-        <li>@Html.ActionLink("GROUNDS", "Grounds", "Home")</li>
-        <li>@Html.ActionLink("DOWNLOADS", "Downloads", "Home")</li>
-       
+        @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+        {
+            <li>@Html.ActionLink("Register User", "Register", "Admin")</li>
+        }
+        @*<li>@Html.ActionLink("FIXTURES", "Fixtures", "Home")</li>*@
+        @if (ViewContext.HttpContext.User.IsInRole("Team Official"))
+        {
+            <li>@Html.ActionLink("Team Manager", "TeamManager", "Admin")</li>
+        }
+        @if (ViewContext.HttpContext.User.IsInRole("Admin") || ViewContext.HttpContext.User.IsInRole("Team Official"))
+        {
+        <li>@Html.ActionLink("Record Score", "MatchScore", "Admin")</li>
+        }
+        @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+        {
+            <li>@Html.ActionLink("Review Score", "ReviewScore", "Admin")</li>
+        }
     </ul>
 </div>

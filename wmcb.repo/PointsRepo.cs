@@ -43,7 +43,7 @@ namespace wmcb.repo
                               Points = p.points,
                               NRR = ((decimal)p.runscored/(decimal)(p.nrroversfor))-((decimal)p.runsagainst/(decimal)p.nrroversagainst)
                           };
-                return res.OrderByDescending(p =>  p.WinPercentage).ThenByDescending(p=>p.Points).ThenByDescending(p=>p.NRR).ToList();
+                return res.OrderByDescending(p =>  p.WinPercentage).ThenByDescending(p=>p.Points).ThenByDescending(p=>p.NRR).ThenByDescending(p=>p.Weight).ToList();
             }
         }
         public List<TeamPoint> GetConferencePoints(int conf)
@@ -82,7 +82,7 @@ namespace wmcb.repo
                               Points = p.points,
                               NRR = ((decimal)p.runscored / (decimal)(p.nrroversfor)) - ((decimal)p.runsagainst / (decimal)p.nrroversagainst)
                           };
-                return res.OrderByDescending(p => p.WinPercentage).ThenByDescending(p => p.Points).ThenByDescending(p => p.NRR).ToList();
+                return res.OrderByDescending(p => p.WinPercentage).ThenByDescending(p => p.Points).ThenByDescending(p => p.NRR).ThenByDescending(p=>p.Weight).ToList();
             }
         }
 

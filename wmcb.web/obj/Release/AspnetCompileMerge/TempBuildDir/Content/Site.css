@@ -130,6 +130,11 @@
         padding-left:0px;
     }
 }
+.number-box{
+    width:50px;
+    text-align:right;
+    padding:0px;
+}
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width : 480px) {

@@ -8,6 +8,7 @@ using wmcb.repo;
 using wmcb.model.Security;
 using wmcb.model.View;
 using wmcb.model.Data;
+using wmcb.repo.Helpers;
 
 namespace wmcb.web.Controllers
 {
@@ -61,6 +62,17 @@ namespace wmcb.web.Controllers
             }
             return View();
         }
-
+        [WMCBAdminAuthorize("Admin")]
+        public ActionResult Register()
+        {
+            return View();
+        }
+        [WMCBAdminAuthorize("Admin")]
+        public JsonResult AddUser(NewUser user)
+        {
+            user.Password = Helper.RandomPasswordGenerator();
+            Result result = new UsersRepo().AddUser(user);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        } 
     }
 }
