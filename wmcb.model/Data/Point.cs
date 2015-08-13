@@ -32,5 +32,6 @@ namespace wmcb.model.Data
         public int ResultAban { get; set; }
         public int ResultTie { get; set; }
         public int GamePoints { get; set; }
+        public int Weight { get; set; }
     }
 }

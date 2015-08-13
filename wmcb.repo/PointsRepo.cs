@@ -28,7 +28,8 @@ namespace wmcb.repo
                             runscored = points.Sum(p=>p.RunScored),
                             runsagainst = points.Sum(p=>p.RunsAgainst),
                             nrroversfor = points.Sum(p=>p.NRROversFor),
-                            nrroversagainst = points.Sum(p=>p.NRROversAgainst)
+                            nrroversagainst = points.Sum(p=>p.NRROversAgainst),
+                            weight = points.Sum(p => p.Weight)
                           }).ToList();
                 var res = from p in pnt
                           join t in context.Teams on p.team equals t.ID                                                   
@@ -41,9 +42,10 @@ namespace wmcb.repo
                               Tie = p.tie,
                               WinPercentage = (Decimal)p.win/(Decimal)(p.gameplayed-p.abandon),
                               Points = p.points,
-                              NRR = ((decimal)p.runscored/(decimal)(p.nrroversfor))-((decimal)p.runsagainst/(decimal)p.nrroversagainst)
+                              NRR = ((decimal)p.runscored/(decimal)(p.nrroversfor))-((decimal)p.runsagainst/(decimal)p.nrroversagainst),
+                              Weight = p.weight
                           };
-                return res.OrderByDescending(p =>  p.WinPercentage).ThenByDescending(p=>p.Points).ThenByDescending(p=>p.NRR).ThenByDescending(p=>p.Weight).ToList();
+                return res.OrderByDescending(p => p.WinPercentage).ThenByDescending(p => p.Points).ThenByDescending(p => p.Weight).ThenByDescending(p => p.NRR).ToList();
             }
         }
         public List<TeamPoint> GetConferencePoints(int conf)
@@ -66,7 +68,8 @@ namespace wmcb.repo
                                runscored = points.Sum(p => p.RunScored),
                                runsagainst = points.Sum(p => p.RunsAgainst),
                                nrroversfor = points.Sum(p => p.NRROversFor),
-                               nrroversagainst = points.Sum(p => p.NRROversAgainst)
+                               nrroversagainst = points.Sum(p => p.NRROversAgainst),
+                               weight = points.Sum(p=>p.Weight)
                            }).ToList();
                 var res = from p in pnt
                           join t in context.Teams on p.team equals t.ID
@@ -80,9 +83,10 @@ namespace wmcb.repo
                               Tie = p.tie,
                               WinPercentage = (Decimal)p.win / (Decimal)(p.gameplayed - p.abandon),
                               Points = p.points,
-                              NRR = ((decimal)p.runscored / (decimal)(p.nrroversfor)) - ((decimal)p.runsagainst / (decimal)p.nrroversagainst)
+                              NRR = ((decimal)p.runscored / (decimal)(p.nrroversfor)) - ((decimal)p.runsagainst / (decimal)p.nrroversagainst),
+                              Weight = p.weight
                           };
-                return res.OrderByDescending(p => p.WinPercentage).ThenByDescending(p => p.Points).ThenByDescending(p => p.NRR).ThenByDescending(p=>p.Weight).ToList();
+                return res.OrderByDescending(p => p.WinPercentage).ThenByDescending(p => p.Points).ThenByDescending(p => p.Weight).ThenByDescending(p => p.NRR).ToList();
             }
         }
 
