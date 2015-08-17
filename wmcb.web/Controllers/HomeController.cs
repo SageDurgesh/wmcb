@@ -29,9 +29,33 @@ namespace wmcb.web.Controllers
         {
             return View();
         }
-        public ActionResult Stats()
+        public ActionResult LeaderBoard()
         {
             return View();
+        }
+        public ActionResult MatchResult()
+        {
+            return View();
+        }
+        public ActionResult PlayersOfficials()
+        {
+            return View();
+        }
+        public ActionResult Playoff()
+        {
+            return View();
+        }
+        public ActionResult Stats(int i)
+        {
+            
+            
+            switch(i){
+                case 1: return PartialView("~/Views/Home/Partial/MatchResult.cshtml ");
+                case 2: return PartialView("~/Partial/LeaderBoard");
+                case 3: return PartialView("~/Partial/PlayerOfficials");
+                 default:
+                    return PartialView("~/Views/Home/Partial/MatchResult.cshtml"); 
+            }
         }
         public ActionResult Grounds()
         {

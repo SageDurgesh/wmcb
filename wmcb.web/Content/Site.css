@@ -1,14 +1,15 @@
-﻿/*body {
-    padding-top: 70px;
-    padding-bottom: 20px;
-    padding-left:20px;
-}*/
-
+﻿
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-top: 130px;
     padding-bottom: 20px;
     padding-left: 50px;
+    font-size:11px;
+}
+.caret {    
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #000000;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -23,6 +24,7 @@
     overflow: visible;
     padding-top: 0;
     padding-bottom: 0;
+    margin-left:0px;
 }
 
 .wmcbclearbackground {
@@ -31,6 +33,7 @@
 
 .wmcbnavbar {
     background-color: #82080B;
+    color:#999999;
 }
 
 /*.navbar-inverse .navbar-nav li a {
@@ -46,64 +49,26 @@
     font-weight:300;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     line-height: 33px;
-    margin-top:20px;
-    margin-bottom:10px;
+    /*margin-top:20px;*/
+   /* margin-bottom:10px;*/
     color: #000;
 }
 
 .navbar-collapse .navbar-nav.navbar-left:first-child {
     margin-left: 0px;
+    max-height:250px;
 }
-/* Side Navigation */
+/*.navbar-nav {
+        margin-top: -10px;
+    }*/
 
-@media(min-width:768px) {
-    .side-nav {
-       position:fixed;
-        top: 150px;
-        left: 0px;
-        width: 225px;
-        margin-left: 0px;
-        border: none;
-        border-radius: 0;
-        overflow-y: auto;
-        background-color: #222;
-        bottom: 0;
-        overflow-x: hidden;
-        padding-bottom: 40px;
-    }
-
-    .side-nav>li>a {
-        width: 225px;
-    }
-
-    .side-nav li a:hover,
-    .side-nav li a:focus {
-        outline: none;
-        background-color: #000 !important;
-    }
-}
-
-.side-nav>li>ul {
-    padding: 0;
-}
-
-.side-nav>li>ul>li>a {
-    display: block;
-    padding: 10px 15px 10px 38px;
-    text-decoration: none;
-    color: #999;
-}
-
-.side-nav>li>ul>li>a:hover {
-    color: #fff;
-}
 /*==========  Mobile First Method  ==========*/
 
 /* Custom, iPhone Retina */
 @media only screen and (min-width : 320px) {
     /*.navbar-collapse ul {margin-top: 0px; }*/
     .wmcbnavbar {
-        margin-top: 0px;
+        margin-top: 30px;
     }
 
     .navbar-nav {
@@ -113,6 +78,7 @@
 
     .logoname {
         font-size:11px;
+        margin-bottom:-150px;
     }
 
     .navbar-brand {
@@ -120,15 +86,15 @@
         overflow: visible;
         padding-top: 0;
         padding-bottom: 0;
-        padding-left: 0px;
+        margin-left: 15px;
     }
-    .admin-navbar{
+    /*.admin-navbar{
         max-height:50px;
         overflow:visible;
         padding-top:50px;
         padding-bottom:0;
         padding-left:0px;
-    }
+    }*/
 }
 .number-box{
     width:50px;
@@ -140,12 +106,13 @@
 @media only screen and (min-width : 480px) {
     /*.navbar-collapse ul {margin-top:0px; }*/
     .wmcbnavbar {
-        margin-top: 0px;
+        margin-top: 30px;
     }
 
     .logoname {
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-        font-size: 11px;
+        font-size:18px;
+        margin-bottom:-50px;
         line-height: 1.1;
     }
 
@@ -159,31 +126,26 @@
         overflow: visible;
         padding-top: 0;
         padding-bottom: 0;
-        padding-left: 0px;
+        margin-left: 15px;
     }
-    .admin-navbar{
+    /*.admin-navbar{
         max-height:50px;
         overflow:visible;
         padding-top:50px;
         padding-bottom:0;
         padding-left:0px;
-    }
+    }*/
 }
 
 /* Small Devices, Tablets */
-@media only screen and (min-width : 768px) {
-    .navbar-collapse ul {
+@media only screen and (min-width : 768px) {   
+    .logoname {
+       font-size:18px;
+        margin-bottom:-50px;
+    }
+     .wmcbnavbar {
         margin-top: 0px;
     }
-
-    .wmcbnavbar {
-        margin-top: 10px;
-    }
-
-    .logoname {
-        font-size: 25px;
-    }
-
     .navbar-nav {
         margin-left: 100px;
     }
@@ -195,72 +157,64 @@
         padding-bottom: 0;
         padding-left: 0px;
     }
-    .admin-navbar{
+    /*.admin-navbar{
         max-height:50px;
         overflow:visible;
         padding-top:50px;
         padding-bottom:0;
         padding-left:0px;
-    }
+    }*/
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
-    .navbar-collapse ul {
-        margin-top: -1px;
-    }
-
-    .wmcbnavbar {
-        margin-top: 10px;
-    }
-
     .navbar-nav {
         margin-left: 200px;
     }
 
     .logoname {
-        font-size: 29px;
+        font-size:15px;
+        margin-bottom:-150px;
     }
 
     .navbar-brand {
-        max-height: 60px;
+        /*max-height: 60px;*/
         overflow: visible;
         padding-top: 0;
         padding-bottom: 0;
         padding-left: 70px;
     }
-    .admin-navbar{
+    /*.admin-navbar{
         max-height:50px;
         overflow:visible;
         padding-top:50px;
         padding-bottom:0;
         padding-left:0px;
+    }*/
+     .wmcbnavbar {
+        margin-top: 0px;
     }
 }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px) {
-    .navbar-collapse ul {
-        margin-top: -1px;
-    }
-
-    .wmcbnavbar {
-        margin-top: 10px;
-    }
-
     .navbar-nav {
         margin-left: 230px;
     }
 
     .logoname {
-        font-size: 29px;
+       font-size:18px;
+        margin-bottom:-50px;
     }
 
     .navbar-brand {
-        max-height: 60px;
+        /*max-height: 60px;*/
         overflow: visible;
         padding-top: 0;
         padding-bottom: 0;
         padding-left: 70px;
+    }
+     .wmcbnavbar {
+        margin-top: 0px;
     }
 }
