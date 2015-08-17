@@ -156,9 +156,12 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ekko-lightbox.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\simple-sidebar.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="Content\visualcaptcha.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -220,6 +223,11 @@
     <Content Include="Documents\Downloads\WMCB 2015 Transfer Form.pdf" />
     <Content Include="Documents\Downloads\Blank Umpire%27s Report.docx" />
     <Content Include="Documents\Downloads\Blank Umpire%27s Report.pdf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\wmcb.pubxml" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
@@ -1059,13 +1067,17 @@
     <Content Include="Scripts\LICENSE" />
     <Content Include="Views\Admin\Register.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Home\Partial\Playoffs.cshtml" />
+    <Content Include="Views\Home\MatchResult.cshtml" />
+    <Content Include="Views\Home\PlayersOfficials.cshtml" />
+    <Content Include="Views\Home\LeaderBoard.cshtml" />
+    <Content Include="Views\Home\Playoff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\captcha\" />
     <Folder Include="js\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Service\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

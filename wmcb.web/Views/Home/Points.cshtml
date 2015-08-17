@@ -9,6 +9,7 @@
         $("#ConfContent").hide();
         $("#Super8Content").hide();
         $("#InterContent").hide();
+        $("#PlayoffContent").hide();
         // Initialize tooltip
         $('[data-toggle="tooltip"]').tooltip({
             placement: 'top'
@@ -18,24 +19,35 @@
             $("#ConfContent").hide();
             $("#Super8Content").hide();
             $("#InterContent").hide();
+            $("#PlayoffContent").hide();
         });
         $("#btnConf").click(function () {
             $("#DivContent").hide();
             $("#ConfContent").show();
             $("#Super8Content").hide();
             $("#InterContent").hide();
+            $("#PlayoffContent").hide();
         });
         $("#btnSuper8").click(function () {
             $("#DivContent").hide();
             $("#ConfContent").hide();
             $("#Super8Content").show();
             $("#InterContent").hide();
+            $("#PlayoffContent").hide();
         });
         $("#btnInter").click(function () {
             $("#DivContent").hide();
             $("#ConfContent").hide();
             $("#Super8Content").hide();
             $("#InterContent").show();
+            $("#PlayoffContent").hide();
+        });
+        $("#btnPlayoff").click(function () {
+            $("#DivContent").hide();
+            $("#ConfContent").hide();
+            $("#Super8Content").hide();
+            $("#InterContent").hide();
+            $("#PlayoffContent").show();
         });
     });
 </script>
@@ -47,6 +59,7 @@
         <button type="button" class="btn btn-warning" id="btnConf">Conference</button>
         <button type="button" class="btn btn-warning" id="btnSuper8">Super 8</button>
         <button type="button" class="btn btn-warning" id="btnInter">Inter-Division</button>
+        <button type="button" class="btn btn-warning" id="btnPlayoff" >Playoff</button>
     </div>
     <div >
         <div id="DivContent" class="col-lg-12 col-md-12">
@@ -233,6 +246,10 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div id="PlayoffContent">
+            <h3>Playoff</h3>
+            @{Html.RenderPartial("Partial/Playoffs");}
         </div>
     </div>
     <br/><br/><br />

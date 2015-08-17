@@ -32,7 +32,7 @@
         $scope.search = function () {
             $scope.filteredItems = $filter('filter')($scope.schedules, function (item) {
                 for (var attr in item) {
-                    if (attr != "ID" && item[attr] != undefined) {
+                    if (attr!="HomeId" && attr!="AwayId" && attr != "ID" && item[attr] != undefined) {
                         var st = item[attr];
                         if (attr == "DateTime") {
                             st = $filter('date')(st, 'MM/dd/yy hh:mm a EEEE');

@@ -21,8 +21,8 @@
                
             });
             MatchEntryService.getMatchTeamStats(m.Match.ID).then(function (data) {
-                $scope.HomeTeamStats = $filter('filter')(data, function (s) { return s.MatchId == m.Match.ID });
-                $scope.AwayTeamStats = $filter('filter')(data, function (s) { return s.MatchId == m.Match.ID });
+                $scope.HomeTeamStats = $filter('filter')(data, function (s) { return s.TeamId == m.Schedule.HomeId });
+                $scope.AwayTeamStats = $filter('filter')(data, function (s) { return s.TeamId == m.Schedule.AwayId });
             });
         };
         $scope.Approve = function (m, index) {
