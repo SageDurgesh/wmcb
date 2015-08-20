@@ -45,10 +45,10 @@ namespace wmcb.repo
                     }
                     context.SaveChanges();
                     res.Code = 4;
-                    res.Message = "User details have been updated.";                   
-                }
+                    res.Message = "User details have been updated.";
+                }                    
                 else
-                {
+                {                    
                     newuser = new WmcbUser();
                     newuser.FirstName = user.FirstName;
                     newuser.LastName = user.LastName;
@@ -69,7 +69,7 @@ namespace wmcb.repo
                             EmailMessage email = new EmailMessage();
                             email.EmailAddress = user.Email;
                             email.Subject = msg.Subject;
-                            email.Body = msg.Body.Replace("#name#", user.FirstName + " " + user.LastName).Replace("#Username#", user.Email).Replace("#Password#", user.Password);
+                            email.Body = msg.Body.Replace("#name#", user.FirstName + " " + user.LastName).Replace("#username#", user.Email).Replace("#password#", user.Password);
                             Email.SendEmail(email);
                         }
                         res.Code = 0;
@@ -110,13 +110,22 @@ namespace wmcb.repo
             }
             return res;
         }
-        public WmcbUser GetUserDetails(string email)
+        public UserView GetUserDetails(string email)
         {
             using (var context = new wmcbContext())
             {
-                var user = context.Users.Include("Team").Include("Roles").Include("Roles.Role")
-                    .Where(u => u.Email.Equals(email))
-                    .Select(s => s);
+                var user = from u in context.Users
+                           join t in context.Teams on u.TeamId equals t.ID into tm
+                           from tt in tm.DefaultIfEmpty()
+                           where u.Email.Equals(email, StringComparison.CurrentCultureIgnoreCase)
+                           select new UserView()
+                           {
+                               FirstName = u.FirstName,
+                               LastName = u.LastName,
+                               Email = u.Email,
+                               Phone = u.Phone,
+                               TeamName = tt.Name
+                           };
 
                 return user.FirstOrDefault();
             }
@@ -203,8 +212,8 @@ namespace wmcb.repo
                         {
                             EmailMessage emailmsg = new EmailMessage();
                             emailmsg.EmailAddress = user.Email;
-                            emailmsg.Subject = emailmsg.Subject;
-                            emailmsg.Body = emailmsg.Body.Replace("#name#", user.FirstName + " " + user.LastName).Replace("#username#", user.Email).Replace("#password#", user.Password);
+                            emailmsg.Subject = msg.Subject;
+                            emailmsg.Body = msg.Body.Replace("#name#", user.FirstName + " " + user.LastName).Replace("#username#", user.Email).Replace("#password#", user.Password);
                             Email.SendEmail(emailmsg);
                         }
                         result.Code = 0;
@@ -222,6 +231,65 @@ namespace wmcb.repo
                 result.Message = "Invalid Email address.";
             }
             return result;
+        }
+
+        public List<UserView> GetUsers()
+        {
+            using (var context = new wmcbContext())
+            {
+                var user = context.Users.Include("Team")
+                    .Select(s => new UserView()
+                    {
+                        ID = s.ID,
+                        FirstName = s.FirstName,
+                        LastName = s.LastName,
+                        Email = s.Email,
+                        Phone = s.Phone,
+                        TeamName = s.Team.Name
+                    });
+
+                return user.ToList();
+            }
+        }
+
+        public Result UpdateUserProfile(UpdateProfile user)
+        {
+            using (var context = new wmcbContext())
+            {
+                if (String.IsNullOrEmpty(user.NewPassword))
+                {
+                    var usr = context.Users
+                          .Where(u => u.Email.Equals(user.Email))
+                          .Select(u => u).FirstOrDefault();
+                    if (usr != null)
+                    {
+                        usr.FirstName = user.FirstName;
+                        usr.LastName = user.LastName;                       
+                        usr.Phone = user.Phone;
+                        context.SaveChanges();
+                        return new Result { Code = 0, Message = "Your profile has been updated successfully." };
+                    }
+                }
+                else
+                {
+                    var encodedPwd = Helpers.SHA1.Encode(user.CurrentPassword);
+                    var usr = context.Users
+                               .Where(u => u.Email.Equals(user.Email) && u.Password.Equals(encodedPwd))
+                               .Select(u => u).FirstOrDefault();
+                    if (usr != null)
+                    {
+                        usr.FirstName = user.FirstName;
+                        usr.LastName = user.LastName;
+                        usr.Password = Helpers.SHA1.Encode(user.NewPassword); 
+                        usr.Phone = user.Phone;
+                        context.SaveChanges();
+                        return new Result { Code = 0, Message = "Your profile has been updated successfully." };
+                    }
+                }
+                
+                return new Result { Code = -1, Message = "An error occured while updating your profile." };
+            }
+
         }
     }
 }

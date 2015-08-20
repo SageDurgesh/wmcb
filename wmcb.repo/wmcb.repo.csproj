@@ -61,6 +61,7 @@
     <Compile Include="TeamRepo.cs" />
     <Compile Include="UsersRepo.cs" />
     <Compile Include="wmcbContext.cs" />
+    <Compile Include="WmcbUserView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

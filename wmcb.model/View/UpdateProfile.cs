@@ -4,17 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace wmcb.model.Security
+namespace wmcb.model.View
 {
-    public class CustomPrincipalSerializeModel
+    public class UpdateProfile
     {
-        public int ID { get; set; }
-        public int? TeamId { get; set; }
-        public string TeamName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public string CurrentPassword { get; set; }
+        public string NewPassword { get; set; }
         public string Phone { get; set; }
-        public string[] roles { get; set; }
+
     }
 }

@@ -68,6 +68,11 @@ namespace wmcb.web.Controllers
             return View();
         }
         [WMCBAdminAuthorize("Admin")]
+        public ActionResult ModifyUser()
+        {
+            return View();
+        }
+        [WMCBAdminAuthorize("Admin")]
         public JsonResult AddUser(NewUser user)
         {
             user.Password = Helper.RandomPasswordGenerator();

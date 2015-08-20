@@ -84,6 +84,25 @@
             }
         });
     };
+    this.getusers = function () {
+        return $http({
+            url: '/Account/Users',
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+    this.updatemyprofile = function (user) {
+        return $http({
+            url: '/Account/UpdateMyProfile',
+            method: "POST",
+            data:user,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
 }]);
 
 WMCBApp.service('filteredListService', function () {

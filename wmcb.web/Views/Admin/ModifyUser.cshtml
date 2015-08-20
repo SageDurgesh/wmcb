@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "ModifyUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/angular/controllers/ModifyUserController.js"></script>
+
+<h2>Modify User</h2>
+<table ng-controller="ModifyUserCtrl" class="table table-bordered table-hover">
+    <thead>
+        <tr><td>ID</td><td>First Name</td><td>Last Name</td><td>Email</td><td>Phone</td><td>Team</td><td>Permission</td></tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="u in users">
+        <td>{{u.ID}}</td><td>{{u.FirstName}}</td><td>{{u.LastName}}</td><td>{{u.Email}}</td><td>{{u.Phone}}</td><td>{{u.TeamName}}</td><td></td></tr>
+    </tbody>
+</table>
