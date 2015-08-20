@@ -1,0 +1,323 @@
+﻿/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+ 
+/* Toggle Styles */
+/* This sidebar modified by seegatesite.com */
+ 
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+ 
+#wrapper.toggled {
+    padding-left: 250px;
+}
+ 
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0; /* disini agar ketika di kecilkan tidak hilang semua default 0*/
+    height: 100%;
+    margin-left: -250px;
+    margin-top:100px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+ 
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+ 
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+.fixed-brand{
+    width: auto;
+}
+/* Sidebar Styles */
+ 
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-top: 2px;
+}
+ 
+.sidebar-nav li {
+    text-indent: 15px;
+    line-height: 40px;
+}
+ 
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+ 
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+    border-left: red 2px solid;
+}
+ 
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+ 
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+ 
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+ 
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+.no-margin{
+    margin:0;
+}
+.top-margin{
+    margin-top:150px;
+}
+ 
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+    .fixed-brand{
+    width: 250px;
+}
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+ 
+    #sidebar-wrapper {
+        width: 250px;
+    }
+ 
+    #wrapper.toggled #sidebar-wrapper {
+        width: 250px;
+    }
+    #wrapper.toggled-2 #sidebar-wrapper {
+        width: 50px;
+    }
+    #wrapper.toggled-2 #sidebar-wrapper:hover {
+        width: 250px;
+    }
+ 
+    #page-content-wrapper {
+        max-width:1120px;
+        padding: 20px;
+        position: relative;
+         margin-top:50px;
+         -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    }
+ 
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+        padding-left: 250px;
+    }
+        #wrapper.toggled-2 #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+        margin-left: -200px;
+         -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+    }
+}
+
+.navbar-default{
+  background-color:white;
+  /*height:34px;*/
+  z-index:99999;
+}
+.btn-sidebar{
+  margin-top:3px;
+  /*margin-left: -10px;*/
+   background-color:#43adb9;
+ 
+}
+.image_brand{
+  padding-top: 5px;
+}
+.btn-sidebar:hover{
+  margin-top:3px;
+  /*margin-left: -10px;*/
+  opacity: 0.8;
+}
+.xs-menu-left{
+  right: 0; 
+  left: auto;
+}
+#main-header{
+  background-color: white;
+  /*border-bottom: 1px solid grey;*/
+ 
+}
+.header-top{
+  /*border-bottom: 0px solid grey;*/
+}
+.header-bottom{
+    background-color: white;
+    position:fixed;
+    width:100%;
+}
+.navbar-kanan{
+  float:right;
+}
+.navbar-kiri{
+ margin-bottom:-8px;
+}
+.navbar-date{
+  font-size: 20px;
+  vertical-align: middle;
+  line-height: 1px;
+}
+.nav > li:hover {
+   overflow: visible;
+   opacity:1;  
+}
+
+
+#bottom_menu li> a{
+  margin-right: 3px;
+  color:#fa7c00;
+}
+#bottom_menu li> a:hover{
+  background-color: #fa7c00!important;
+  color: white;
+  
+}
+.round_text{
+  border-radius: 100%;
+  border: 1px solid #FFF;
+  max-width: 50px;
+  padding: 5px;
+  margin-right: 3px;
+}
+.red_date{
+  background-color:  #b74635!important;
+}
+.blue_date{
+  background-color:  #6fb3e0!important;
+}
+.green_date{
+  background-color: #87b87f!important;
+}
+.grey > a{
+  background-color:#4b4b4b!important;;
+  color: white;
+  -webkit-border-radius: 0px!important;
+  -moz-border-radius: 0px!important;
+  border-radius: 0px!important;
+}
+.purple  > a{
+  background-color: #762c59!important;
+  color: white!important;
+  -webkit-border-radius: 0px!important;
+  -moz-border-radius: 0px!important;
+  border-radius: 0px!important;
+}
+.green > a{
+  background-color: #2c7659!important;
+  color: white!important;
+  -webkit-border-radius: 0px!important;
+  -moz-border-radius: 0px!important;
+  border-radius: 0px!important;
+ 
+}
+.red > a{
+  background-color:#763930; 
+  color: white;
+    -webkit-border-radius: 0px!important;
+  -moz-border-radius: 0px!important;
+  border-radius: 0px!important;
+ 
+}
+.light-blue > a {
+  background-color:#fa7c00!important;
+  color: white;
+    -webkit-border-radius: 0px!important;
+  -moz-border-radius: 0px!important;
+  border-radius: 0px!important;
+ 
+}
+.user-info{
+  max-width: 100px;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  vertical-align: top;
+  position: relative;
+}
+.nav-user-photo {
+  margin: -12px 0 -10px -10px;
+  border-radius: 100%;
+  border: 2px solid #FFF;
+  max-width: 50px;
+}
+ 
+@media (max-width: 767px) {
+.xs_color{
+  background-color: #38789c;
+  padding-top: 3px;
+}
+.navbar-kanan{
+  float: none!important;
+  margin-left: -10px;
+ 
+}
+.navbar-kiri{
+  margin-left: -5px;
+}
+.btn-sidebar{
+  margin-left:-10px;
+}
+ 
+}
+.mainmenu{
+    color:#cccccc;
+}
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+  background-color: #eeeeee;
+  border-color: #428bca;
+  color:#000;
+}
+.navbar-nav > li>a:hover, .navbar-nav > li>a:focus{
+    height: 42px;
+}
