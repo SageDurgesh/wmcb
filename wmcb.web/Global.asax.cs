@@ -41,6 +41,7 @@ namespace wmcb.web
                     newUser.roles = serializeModel.roles;
                     newUser.TeamId = serializeModel.TeamId;
                     newUser.TeamName = serializeModel.TeamName;
+                    newUser.Email = serializeModel.Email;
                 }
                 HttpContext.Current.User = newUser;
             }

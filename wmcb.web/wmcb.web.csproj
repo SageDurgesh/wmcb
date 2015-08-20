@@ -206,6 +206,8 @@
     <Content Include="Scripts\angular\controllers\ForgotPasswordController.js" />
     <Content Include="Scripts\angular\controllers\GroundController.js" />
     <Content Include="Scripts\angular\controllers\IndexController.js" />
+    <Content Include="Scripts\angular\controllers\ModifyUserController.js" />
+    <Content Include="Scripts\angular\controllers\MyAccountController.js" />
     <Content Include="Scripts\angular\controllers\NewsController.js" />
     <Content Include="Scripts\angular\controllers\PointsController.js" />
     <Content Include="Scripts\angular\controllers\RegistrationController.js" />
@@ -1072,6 +1074,8 @@
     <Content Include="Views\Home\PlayersOfficials.cshtml" />
     <Content Include="Views\Home\LeaderBoard.cshtml" />
     <Content Include="Views\Home\Playoff.cshtml" />
+    <Content Include="Views\Admin\ModifyUser.cshtml" />
+    <Content Include="Views\Account\MyAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

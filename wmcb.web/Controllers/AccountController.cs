@@ -85,12 +85,24 @@ namespace wmcb.adminportal.Controllers
           return Json(res, JsonRequestBehavior.AllowGet);
         }
 
-        //[WMCBAdminAuthorize("Admin")]
-        //public ActionResult Register()
-        //{
-        //    return View();
-        //}        
-
+        [WMCBAdminAuthorize("Admin")]
+        public JsonResult Users()
+        {
+            var users = new UsersRepo().GetUsers();
+            return Json(users, JsonRequestBehavior.AllowGet);
+        }     
+     
+        public ActionResult MyAccount()
+        {
+            var user = new UsersRepo().GetUserDetails(HttpContext.User.Identity.Name);           
+            return View(user);
+        }
+        public JsonResult UpdateMyProfile(UpdateProfile user)
+        {
+            user.Email = HttpContext.User.Identity.Name;
+            var rst = new UsersRepo().UpdateUserProfile(user);
+            return Json(rst,JsonRequestBehavior.AllowGet);
+        }
     }
 
 }

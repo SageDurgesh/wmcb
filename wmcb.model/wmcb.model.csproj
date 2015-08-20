@@ -75,6 +75,7 @@
     <Compile Include="View\TeamPoint.cs" />
     <Compile Include="View\TeamView.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="View\UpdateProfile.cs" />
     <Compile Include="View\UserView.cs" />
     <Compile Include="View\LoginViewModel.cs" />
   </ItemGroup>

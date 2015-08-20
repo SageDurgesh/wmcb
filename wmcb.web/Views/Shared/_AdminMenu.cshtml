@@ -1,8 +1,4 @@
-﻿
-
-
-
-@*<div class="navbar-collapse collapse navbar-inverse admin-navbar">
+﻿@*<div class="navbar-collapse collapse navbar-inverse admin-navbar">
         <ul class="nav side-nav">
             <li>
                 @if (Request.IsAuthenticated)
@@ -32,56 +28,63 @@
     </div>*@
 @if (Request.IsAuthenticated)
 {
-   
+
         <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
-                @if (ViewContext.HttpContext.User.IsInRole("Admin"))
-                {
-                    <li class="active">
-                        <a href="#"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-user"></i></span> &nbsp;Manage User</a>
-                        <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-                            <li><a href="~/Admin/Register">Register User</a></li>
-                            <li><a href="~/Admin/Modify">Modify User</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="~/Home"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-th-list"></i></span> &nbsp;Update News</a>
-                    </li>
-                }
-                @if (ViewContext.HttpContext.User.IsInRole("Team Official"))
-                {
-                    <li>
-                        <a href="~/Admin/TeamManager"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-th"></i></span> &nbsp;Team Manager</a>
-                    </li>
-                }
-                @if (ViewContext.HttpContext.User.IsInRole("Admin") || ViewContext.HttpContext.User.IsInRole("Team Official"))
-                {
-                    <li>
-                        <a href="~/Admin/MatchScore"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-edit"></i></span>&nbsp;Record Score</a>
-                    </li>
-                }
-                @if (ViewContext.HttpContext.User.IsInRole("Admin"))
-                {
-                    <li>
-                        <a href="~/Admin/ReviewScore"> <span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-check"></i></span>&nbsp;Review Score</a>
-                    </li>
-                }
-                @*<li>
-                        <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-youtube-play fa-stack-1x "></i></span>&nbsp;About</a>
-                    </li>
-                    <li>
-                        <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>Services</a>
-                    </li>
-                    <li>
-                        <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>Contact</a>
-                    </li>*@
-            </ul>
-        </div><!-- /#sidebar-wrapper -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+            @if (Request.IsAuthenticated)
+            {
+                <li>
+                    <a href="~/Account/MyAccount"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-cog"></i></span> &nbsp;My Account</a>
+                </li>
+            }
+            @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+            {
+                <li class="active">
+                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-user"></i></span> &nbsp;Manage User</a>
+                    <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                        <li><a href="~/Admin/Register">Register User</a></li>
+                        <li><a href="~/Admin/ModifyUser">Modify User</a></li>
+                        <li><a href="~/Account/ForgotPassword">Reset Password</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="~/Home"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-th-list"></i></span> &nbsp;Update News</a>
+                </li>
+            }
+            @if (ViewContext.HttpContext.User.IsInRole("Team Official"))
+            {
+                <li>
+                    <a href="~/Admin/TeamManager"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-th"></i></span> &nbsp;Team Manager</a>
+                </li>
+            }
+            @if (ViewContext.HttpContext.User.IsInRole("Admin") || ViewContext.HttpContext.User.IsInRole("Team Official"))
+            {
+                <li>
+                    <a href="~/Admin/MatchScore"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-edit"></i></span>&nbsp;Record Score</a>
+                </li>
+            }
+            @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+            {
+                <li>
+                    <a href="~/Admin/ReviewScore"> <span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-check"></i></span>&nbsp;Review Score</a>
+                </li>
+            }
+            @*<li>
+                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-youtube-play fa-stack-1x "></i></span>&nbsp;About</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>Services</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>Contact</a>
+                </li>*@
+        </ul>
+    </div><!-- /#sidebar-wrapper -->
         <!-- Page Content -->
-       
+
         <!-- /#page-content-wrapper -->
-  
+
     <!-- /#wrapper -->
     <!-- jQuery -->
 }

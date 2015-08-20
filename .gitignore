@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/wmcb.web/obj
+/wmcb.web/bin
+/wmcb.repo/obj
+/wmcb.repo/bin
+/wmcb.model/bin
+/wmcb.model/obj
+

@@ -1,0 +1,59 @@
+﻿@using Newtonsoft.Json;
+@model wmcb.model.View.UserView
+@{
+    ViewBag.Title = "MyAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/angular/controllers/MyAccountController.js"></script>
+<h2>My Account</h2>
+<div ng-controller="MyAccountCtrl" ng-init="init(@JsonConvert.SerializeObject(Model))">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="firstname" class="control-label col-xs-2">First Name</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="firstname" placeholder="First Name" ng-model="updateprofile.FirstName" value="updateprofile.FirstName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastname" class="control-label col-xs-2">Last Name</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="lastname" placeholder="Last Name" ng-model="updateprofile.LastName" value="updateprofile.LastName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="control-label col-xs-2">Email</label>
+            <div class="col-xs-10">
+                <input type="email" class="form-control" id="email" placeholder="Email" disabled ng-model="updateprofile.Email" value="updateprofile.Email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone" class="control-label col-xs-2">Phone</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="phone" placeholder="Phone number" ng-model="updateprofile.Phone" value="updateprofile.Phone">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="currpassword" class="control-label col-xs-2">Current Password</label>
+            <div class="col-xs-10">
+                <input type="password" class="form-control" id="currpassword" placeholder="Enter Current password" ng-model="updateprofile.CurrentPassword" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="newpassword1" class="control-label col-xs-2">New Password</label>
+            <div class="col-xs-10">
+                <input type="password" class="form-control" id="newpassword1" placeholder="Enter new password" ng-model="updateprofile.NewPassword" >
+            </div>
+        </div>
+        @*<div class="form-group">
+            <label for="newpassword2" class="control-label col-xs-2">Re-enter Password</label>
+            <div class="col-xs-10">
+                <input type="password" class="form-control" id="newpassword2" placeholder="Re-enter new password">
+            </div>
+        </div>*@
+        <hr />
+        <div class="col-lg-offset-2">
+            <button type="button" class="btn btn-default" ng-click="cancelupdate()">Cancel</button> &nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-primary" ng-click="updatemyprofile(updateprofile)">Save Changes</button>
+        </div>
+    </form>
+</div>
