@@ -46,9 +46,9 @@ namespace wmcb.repo
                     context.SaveChanges();
                     res.Code = 4;
                     res.Message = "User details have been updated.";
-                }                    
+                }
                 else
-                {                    
+                {
                     newuser = new WmcbUser();
                     newuser.FirstName = user.FirstName;
                     newuser.LastName = user.LastName;
@@ -117,7 +117,7 @@ namespace wmcb.repo
                 var user = from u in context.Users
                            join t in context.Teams on u.TeamId equals t.ID into tm
                            from tt in tm.DefaultIfEmpty()
-                           where u.Email.Equals(email, StringComparison.CurrentCultureIgnoreCase)
+                           where u.Email.Equals(email.Trim(), StringComparison.CurrentCultureIgnoreCase)
                            select new UserView()
                            {
                                FirstName = u.FirstName,
@@ -205,7 +205,8 @@ namespace wmcb.repo
                                   .Select(u => u).FirstOrDefault();
                     if (user != null)
                     {
-                        user.Password = Helper.RandomPasswordGenerator();
+                        var pwd = Helper.RandomPasswordGenerator();
+                        user.Password = Helpers.SHA1.Encode(pwd);
                         context.SaveChanges();
                         MessageTemplateDto msg = new MessageTemplateRepo().getMessageTemplate("PasswordReset");
                         if (msg != null)
@@ -213,7 +214,7 @@ namespace wmcb.repo
                             EmailMessage emailmsg = new EmailMessage();
                             emailmsg.EmailAddress = user.Email;
                             emailmsg.Subject = msg.Subject;
-                            emailmsg.Body = msg.Body.Replace("#name#", user.FirstName + " " + user.LastName).Replace("#username#", user.Email).Replace("#password#", user.Password);
+                            emailmsg.Body = msg.Body.Replace("#name#", user.FirstName + " " + user.LastName).Replace("#username#", user.Email).Replace("#password#", pwd);
                             Email.SendEmail(emailmsg);
                         }
                         result.Code = 0;
@@ -264,7 +265,7 @@ namespace wmcb.repo
                     if (usr != null)
                     {
                         usr.FirstName = user.FirstName;
-                        usr.LastName = user.LastName;                       
+                        usr.LastName = user.LastName;
                         usr.Phone = user.Phone;
                         context.SaveChanges();
                         return new Result { Code = 0, Message = "Your profile has been updated successfully." };
@@ -280,16 +281,100 @@ namespace wmcb.repo
                     {
                         usr.FirstName = user.FirstName;
                         usr.LastName = user.LastName;
-                        usr.Password = Helpers.SHA1.Encode(user.NewPassword); 
+                        usr.Password = Helpers.SHA1.Encode(user.NewPassword);
                         usr.Phone = user.Phone;
                         context.SaveChanges();
                         return new Result { Code = 0, Message = "Your profile has been updated successfully." };
                     }
                 }
-                
+
                 return new Result { Code = -1, Message = "An error occured while updating your profile." };
             }
 
+        }
+        public Result RegisterUser(NewUser user)
+        {
+            Result res = new Result();
+            res = ValidateUser(user);
+            if (res.Code != 0)
+                return res;
+            WmcbUser newuser = new WmcbUser();
+            using (var context = new wmcbContext())
+            {
+                newuser = context.Users
+                           .Where(u => u.Email.Equals(user.Email))
+                           .Select(u => u).FirstOrDefault();
+                if (newuser != null)
+                {
+                    newuser.TeamId = user.TeamID;
+                    newuser.FirstName = user.FirstName;
+                    newuser.LastName = user.LastName;
+                    newuser.Phone = user.Phone;
+                    context.SaveChanges();
+                    res.Code = 4;
+                    res.Message = "User details have been updated.";
+                }
+                else
+                {
+                    newuser = context.Users
+                           .Where(u => u.FirstName.Equals(user.FirstName, StringComparison.CurrentCultureIgnoreCase) &&
+                               u.LastName.Equals(user.LastName, StringComparison.CurrentCultureIgnoreCase) &&
+                               (u.TeamId.HasValue && u.TeamId.Value.Equals(user.TeamID)))
+                           .Select(u => u).FirstOrDefault();
+                    if (newuser != null)
+                    {
+                        newuser.TeamId = user.TeamID;
+                        newuser.FirstName = user.FirstName;
+                        newuser.LastName = user.LastName;
+                        newuser.Phone = user.Phone;
+                        newuser.Email = user.Email;
+                        newuser.Password = "";
+                        try
+                        {
+                            context.SaveChanges();
+                        }
+                        catch (System.Data.Entity.Validation.DbEntityValidationException e)
+                        {
+                            foreach (var eve in e.EntityValidationErrors)
+                            {
+                                Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                                foreach (var ve in eve.ValidationErrors)
+                                {
+                                    Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                        ve.PropertyName, ve.ErrorMessage);
+                                }
+                            }
+                        }
+                        res.Code = 4;
+                        res.Message = "User details have been updated.";
+                    }
+                    else
+                    {
+                        newuser = new WmcbUser();
+                        newuser.FirstName = user.FirstName;
+                        newuser.LastName = user.LastName;
+                        newuser.Email = user.Email;
+                        newuser.Phone = user.Phone;
+                        newuser.TeamId = user.TeamID;
+                        newuser.RegDate = DateTime.Now;
+                        try
+                        {
+                            context.Users.Add(newuser);
+                            context.SaveChanges();
+
+                            res.Code = 0;
+                            res.Message = "";
+                        }
+                        catch
+                        {
+                            res.Code = -1;
+                            res.Message = "An Error Occured while adding the new user.";
+                        }
+                    }
+                }
+            }
+            return res;
         }
     }
 }

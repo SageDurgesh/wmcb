@@ -4,6 +4,13 @@
     ViewBag.Title = "MyAccount";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script>
+    $(document).ready(function () {
+        $(".sidebar-nav li").removeClass("active");//this will remove the active class from
+        $('#myaccount').addClass('active');
+    });
+</script>
+
 <script src="~/Scripts/angular/controllers/MyAccountController.js"></script>
 <h2>My Account</h2>
 <div ng-controller="MyAccountCtrl" ng-init="init(@JsonConvert.SerializeObject(Model))">

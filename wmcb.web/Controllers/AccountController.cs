@@ -78,12 +78,12 @@ namespace wmcb.adminportal.Controllers
         {
             return View();
         }
-        [AllowAnonymous]
-        public JsonResult ResetPassword(string email)
-        {
-          Result res =  new UsersRepo().ResetPassword(email);
-          return Json(res, JsonRequestBehavior.AllowGet);
-        }
+        //[AllowAnonymous]
+        //public JsonResult ResetPassword(string email)
+        //{
+        //  Result res =  new UsersRepo().ResetPassword(email);
+        //  return Json(res, JsonRequestBehavior.AllowGet);
+        //}
 
         [WMCBAdminAuthorize("Admin")]
         public JsonResult Users()

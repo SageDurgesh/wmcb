@@ -1,46 +1,19 @@
-﻿@*<div class="navbar-collapse collapse navbar-inverse admin-navbar">
-        <ul class="nav side-nav">
-            <li>
-                @if (Request.IsAuthenticated)
-                {
-                    <strong>@Html.Encode(User.Identity.Name)</strong>
-                    @Html.ActionLink("Sign Out", "Logout", "Account")
-                }
-            </li>
-            @if (ViewContext.HttpContext.User.IsInRole("Admin"))
-            {
-                <li>@Html.ActionLink("Register User", "Register", "Admin")</li>
-            }
-
-            @if (ViewContext.HttpContext.User.IsInRole("Team Official"))
-            {
-                <li>@Html.ActionLink("Team Manager", "TeamManager", "Admin")</li>
-            }
-            @if (ViewContext.HttpContext.User.IsInRole("Admin") || ViewContext.HttpContext.User.IsInRole("Team Official"))
-            {
-                <li>@Html.ActionLink("Record Score", "MatchScore", "Admin")</li>
-            }
-            @if (ViewContext.HttpContext.User.IsInRole("Admin"))
-            {
-                <li>@Html.ActionLink("Review Score", "ReviewScore", "Admin")</li>
-            }
-        </ul>
-    </div>*@
-@if (Request.IsAuthenticated)
+﻿@if (Request.IsAuthenticated)
 {
-
+    <script src="~/Scripts/angular/services/AdminService.js"></script>
+    <script src="~/Scripts/angular/controllers/AdminController.js"></script>
         <!-- Sidebar -->
     <div id="sidebar-wrapper">
-        <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+        <ul class="sidebar-nav nav-pills nav-stacked" id="adminmenu">
             @if (Request.IsAuthenticated)
             {
-                <li>
+                <li id="myaccount">
                     <a href="~/Account/MyAccount"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-cog"></i></span> &nbsp;My Account</a>
                 </li>
             }
             @if (ViewContext.HttpContext.User.IsInRole("Admin"))
             {
-                <li class="active">
+                <li class="active" id="manageuser">
                     <a href="#"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-user"></i></span> &nbsp;Manage User</a>
                     <ul class="nav-pills nav-stacked" style="list-style-type:none;">
                         <li><a href="~/Admin/Register">Register User</a></li>
@@ -48,25 +21,25 @@
                         <li><a href="~/Account/ForgotPassword">Reset Password</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="~/Home"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-th-list"></i></span> &nbsp;Update News</a>
+                <li id="managenewsfeed">
+                    <a href="~/Admin/NewsFeed"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-th-list"></i></span> &nbsp;Update News</a>
                 </li>
             }
             @if (ViewContext.HttpContext.User.IsInRole("Team Official"))
             {
-                <li>
+                <li id="teammanager">
                     <a href="~/Admin/TeamManager"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-th"></i></span> &nbsp;Team Manager</a>
                 </li>
             }
             @if (ViewContext.HttpContext.User.IsInRole("Admin") || ViewContext.HttpContext.User.IsInRole("Team Official"))
             {
-                <li>
+                <li id="recordscore">
                     <a href="~/Admin/MatchScore"><span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-edit"></i></span>&nbsp;Record Score</a>
                 </li>
             }
             @if (ViewContext.HttpContext.User.IsInRole("Admin"))
             {
-                <li>
+                <li id="reviewscore">
                     <a href="~/Admin/ReviewScore"> <span class="fa-stack fa-lg pull-left"><i class="glyphicon glyphicon-check"></i></span>&nbsp;Review Score</a>
                 </li>
             }

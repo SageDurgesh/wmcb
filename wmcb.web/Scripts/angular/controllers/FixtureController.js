@@ -13,11 +13,25 @@
     $scope.itemsPerPage = 10;
     $scope.pagedItems = [];
     $scope.currentPage = 1;
-    
+    $scope.ShowAllGames = false;
     $scope.CurrentDate = new Date();
     $scope.IsMatchComplete = function (matchDate) {
         return new Date() > new Date(matchDate);
     };
+    $scope.ReLoadGames = function()
+    {
+        if ($scope.ShowAllGames) {
+            wmcbService.getAllGames().then(function (data) {
+                $scope.schedules = data;
+            });
+        }
+        else
+        {
+            wmcbService.getSchedule().then(function (data) {
+                $scope.schedules = data;
+            });
+        }
+    }
     wmcbService.getSchedule().then(function (data) {
         $scope.schedules = data;
     });

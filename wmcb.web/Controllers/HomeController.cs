@@ -66,8 +66,7 @@ namespace wmcb.web.Controllers
             ViewBag.TeamId = ((WmcbPrincipal)HttpContext.User).TeamId;
             ViewBag.IsLeagueOfficial = HttpContext.User.IsInRole("League Official");
             return View();
-        }
-        
+        }       
         public ActionResult Gallery()
         {
             //var client = new FacebookClient();
