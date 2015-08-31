@@ -12,44 +12,45 @@ namespace wmcb.repo
 {
     public class StatsRepo
     {
-        public List<PlayerStatsDto> GetMatchPlayerStats(int matchId)
+        public List<PlayerStatView> GetMatchPlayerStats(int matchId)
         {
             using (var context = new wmcbContext())
             {
-                var players = context.PlayerStats
-                    // .Include("Team")
-                    //.Include("Match")
-                    //.Include("Match.AwayTeam")
-                    // .Include("Match.HomeTeam")
-                    .Join(context.Users, p1 => p1.PlayerId, u => u.ID, (p1, u) => new { p1, u })
-                    .Where(p => p.p1.MatchId == matchId)
-                    .Select(p => new PlayerStatsDto
-                    {
-                        ID = p.p1.ID,
-                        TeamId = p.p1.TeamId,
-                        MatchId = p.p1.MatchId,
-                        //  Team = p.p1.Team,
-                        BattingRuns = p.p1.BattingRuns,
-                        BallsFaced = p.p1.BallsFaced,
-                        HowOut = p.p1.HowOut,
-                        //HowOutDesc = GetHowOutDesc(p.p1.HowOut.Value),
-                        BowlerNumber = p.p1.BowlerNumber,
-                       // Bowler = p.p1.Bowler,
-                        Fielder = p.p1.Fielder,
-                        OversBowled = p.p1.OversBowled,
-                        BowlingRuns = p.p1.BowlingRuns,
-                        MaidenOvers = p.p1.MaidenOvers,
-                        Wickets = p.p1.Wickets,
-                        Player = new Player
-                        {
-                            ID = p.p1.PlayerId,
-                            FirstName = p.u.FirstName,
-                            LastName = p.u.LastName,
-                            //Team = p.u.Team,
-                            TeamId = p.u.TeamId,
-                            Email = p.u.Email
-                        }
-                    }).OrderBy(p => p.Player.LastName).ThenBy(p => p.Player.FirstName);
+                var players = (from p in context.PlayerStats
+                               join u1 in context.Users on p.PlayerId equals u1.ID
+                               join u2 in context.Users on p.Bowler equals u2.ID into b
+                               from bowler in b.DefaultIfEmpty()
+                               join u3 in context.Users on p.Fielder equals u3.ID into f
+                               from fielder in f.DefaultIfEmpty()
+                               where p.MatchId == matchId
+                               select new PlayerStatView()
+                                 {
+                                     ID = p.ID,
+                                     PlayerId = p.PlayerId,
+                                     PlayerName = u1.LastName + " " + u1.FirstName.Substring(0, 1),
+                                     TeamId = p.TeamId,
+                                     MatchId = p.MatchId,
+                                     BattingRuns = p.BattingRuns.HasValue ? p.BattingRuns.Value : 0,
+                                     BallsFaced = p.BallsFaced.HasValue ? p.BallsFaced.Value : 0,
+                                     HowOut = p.HowOut.HasValue ? p.HowOut.Value : 0,
+                                     HowOutDesc = p.HowOut.HasValue ? p.HowOut.Value.ToString() : "0",
+                                     BowlerId = p.Bowler.HasValue?p.Bowler.Value:0,
+                                     BowlerName = bowler == null ? "" : bowler.LastName + " " + bowler.FirstName.Substring(0, 1),
+                                     FielderId = p.Fielder.HasValue ? p.Fielder.Value : 0,
+                                     FielderName = fielder == null ? "" : fielder.LastName + " " + bowler.FirstName.Substring(0, 1),
+                                     Fours = p.Fours.HasValue ? p.Fours.Value : 0,
+                                     Sixes = p.Sixes.HasValue ? p.Sixes.Value : 0,
+                                     FOWRuns = p.FOWRuns.HasValue ? p.FOWRuns.Value : 0,
+                                     WicketNumber = p.WicketNumber.HasValue ? p.WicketNumber.Value : 0,
+                                     BowlerNumber = p.BowlerNumber.HasValue ? p.BowlerNumber.Value : 0,
+                                     OversBowled = p.OversBowled.HasValue ? p.OversBowled.Value : 0,
+                                     BowlingRuns = p.BowlingRuns.HasValue ? p.BowlingRuns.Value : 0,
+                                     MaidenOvers = p.MaidenOvers.HasValue ? p.MaidenOvers.Value : 0,
+                                     Wickets = p.Wickets.HasValue ? p.Wickets.Value : 0,
+                                     NoBalls = p.NoBalls.HasValue ? p.NoBalls.Value : 0,
+                                     Wide = p.Wide.HasValue ? p.Wide.Value : 0
+
+                                 });
                 return players.ToList();
             }
         }
@@ -78,7 +79,7 @@ namespace wmcb.repo
                 //    .Select(p => p);
                 //return teamStats.AsEnumerable().ToList();
                 var teamstats = context.TeamStats.Where(p => p.MatchId == matchId).Select(p => p);
-                return teamstats.ToList();                 
+                return teamstats.ToList();
             }
         }
 
@@ -109,7 +110,8 @@ namespace wmcb.repo
                             player.MaidenOvers = p.MaidenOvers;
                             player.Wickets = p.Wickets;
                             player.BowlingRuns = p.BowlingRuns;
-
+                            player.Fours = p.Fours;
+                            player.Sixes = p.Sixes;
                             context.Entry(player).State = System.Data.Entity.EntityState.Modified;
                         }
                     }
@@ -174,7 +176,12 @@ namespace wmcb.repo
                     var stat = context.PlayerStats.Where(t => ((t.TeamId == st.TeamId) && (t.MatchId == st.MatchId))).Select(t => t);
                     if (stat != null)
                     {
-                        context.PlayerStats.RemoveRange(stat);
+                        foreach (var s in stat)
+                        {
+                            context.Entry(s).State = System.Data.Entity.EntityState.Deleted;
+
+                        }
+                        context.SaveChanges();
                     }
                     context.PlayerStats.AddRange(stats);
                     context.SaveChanges();
@@ -188,9 +195,13 @@ namespace wmcb.repo
                 var stat = context.TeamStats.Where(t => (t.TeamId == teamstat.TeamId && t.MatchId == teamstat.TeamId));
                 if (stat != null)
                 {
-                    context.TeamStats.RemoveRange(stat);
+                    foreach (var s in stat)
+                    {
+                        context.Entry(s).State = System.Data.Entity.EntityState.Deleted;
+
+                    }
+                    context.SaveChanges();
                 }
-                context.SaveChanges();
                 context.TeamStats.Add(teamstat);
                 var sch = context.Schedules.Where(s => s.ID == teamstat.MatchId).Select(s => s).FirstOrDefault();
                 var match = context.Matches.Where(m => m.ID == teamstat.MatchId).Select(s => s).FirstOrDefault();

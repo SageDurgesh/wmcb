@@ -45,6 +45,13 @@ namespace wmcb.web.Controllers
             return result;
         }
         [HttpGet]
+        [Route("wmcb/schedule/all")]
+        public List<ScheduleView> GetAllGames()
+        {
+            var result = new ScheduleRepo().GetAllSchedule();
+            return result;
+        }
+        [HttpGet]
         [Route("wmcb/upcominggames/{numofdays}")]
         public List<ScheduleView> GetUpcomingGames(int numofdays)
         {
@@ -98,7 +105,7 @@ namespace wmcb.web.Controllers
         [WMCBAdminAuthorize("Admin", "League Official", "Team Official")]
         [HttpGet]
         [Route("wmcb/matchPlayerStats/{matchId}")]
-        public List<PlayerStatsDto> GetMatchPlayerStats(int matchId)
+        public List<PlayerStatView> GetMatchPlayerStats(int matchId)
         {
             var result = new StatsRepo().GetMatchPlayerStats(matchId);
             return result;

@@ -36,5 +36,7 @@ namespace wmcb.model.Data
         public int? BowlingRuns { get; set; }
         public int? Wide { get; set; }
         public int? NoBalls { get; set; }
+        public int? Fours { get; set; }
+        public int? Sixes { get; set; }
     }
 }

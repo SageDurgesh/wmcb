@@ -40,6 +40,14 @@
         }).success(deferred.resolve).error(function (data, status) { alert(JSON.stringify(data)); });
         return deferred.promise;
     };
+    this.getAllGames = function () {
+        var deferred = $q.defer();
+        $http({
+            url: '/wmcb/schedule/all',
+            method: "GET"
+        }).success(deferred.resolve).error(function (data, status) { alert(JSON.stringify(data)); });
+        return deferred.promise;
+    };
     this.getUpcomingGames = function () {
         var deferred = $q.defer();
         $http({
@@ -74,14 +82,21 @@
             }
         });
     };
-    this.resetpassword = function (email) {
+    this.registeruser = function (user) {
         return $http({
-            url: '/Account/ResetPassword',
+            url: '/Admin/RegisterUser',
+            data: user,
             method: "POST",
-            data: email,
             headers: {
                 'Content-Type': 'application/json'
             }
+        });
+    };
+    this.resetpassword = function (email) {
+        return $http({
+            url: '/Admin/ResetPassword',
+            method: "POST",
+            data: JSON.stringify({email:email})
         });
     };
     this.getusers = function () {
@@ -126,9 +141,6 @@ WMCBApp.service('filteredListService', function () {
         return retVal;
     };
 });
-
-
-
 WMCBApp.service("MatchEntryService", ["$http", "$q", function ($http, $q) {
     this.getMyMatches = function (teamID) {
         var deferred = $q.defer();

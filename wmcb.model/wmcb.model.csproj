@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\BowlerStats.cs" />
     <Compile Include="Data\Division.cs" />
     <Compile Include="Data\DivisionDto.cs" />
     <Compile Include="Data\Ground.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Data\Role.cs" />
     <Compile Include="View\MatchScoreView.cs" />
     <Compile Include="View\NewUser.cs" />
+    <Compile Include="View\PlayerStatView.cs" />
     <Compile Include="View\PointsView.cs" />
     <Compile Include="View\ReviewMatchView.cs" />
     <Compile Include="View\ScheduleView.cs" />

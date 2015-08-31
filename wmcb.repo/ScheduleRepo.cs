@@ -64,6 +64,36 @@ namespace wmcb.repo
                 return schedule.ToList();
             }
         }
+        public List<ScheduleView> GetAllSchedule()
+        {
+            using (var context = new wmcbContext())
+            {
+                DateTime currentDate = DateTime.Now.Date;
+                var schedule = from s in context.Schedules
+                               join home in context.Teams on s.HomeTeamID equals home.ID into sch1
+                               from s1 in sch1.DefaultIfEmpty()
+                               join away in context.Teams on s.AwayTeamID equals away.ID into sch2
+                               from s2 in sch2.DefaultIfEmpty()
+                               join ground in context.Grounds on s.GroundID equals ground.ID into grnd
+                               from g1 in grnd.DefaultIfEmpty()
+                               join t1 in context.Tournament on s.TournamentID equals t1.ID into trn
+                               from trn1 in trn.DefaultIfEmpty()
+                               join d1 in context.Division on s.MatchType equals d1.ID
+                               orderby s.DateTime                              
+                               select new ScheduleView
+                               {
+                                   Week = "Week " + s.Week.ToString(),
+                                   Home = (s1 == null ? s.HomeTeamNote : s1.Name),
+                                   Away = (s2 == null ? s.AwayTeamNote : s2.Name),
+                                   DateTime = s.DateTime,
+                                   Field = (g1 == null ? "TBD" : g1.Name),
+                                   Division = d1.Name,
+                                   Tournament = trn1.Name
+                               };
+
+                return schedule.ToList();
+            }
+        }
         public List<ScheduleView> GetUpcomingGames(int numofdays)
         {
             DateTime currentDate = DateTime.Now.Date;

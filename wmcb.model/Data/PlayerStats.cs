@@ -24,6 +24,8 @@ namespace wmcb.model.Data
         public int? BattingRuns { get; set; }
         public int? BallsFaced { get; set; }
         public int? HowOut { get; set; }
+        public int? FOWRuns { get; set; }
+        public int? WicketNumber { get; set; }
         public int? BowlerNumber { get; set; }
         public int? Bowler { get; set; }
         public int? Fielder { get; set; }
@@ -33,6 +35,8 @@ namespace wmcb.model.Data
         public int? BowlingRuns { get; set; }
         public int? Wide { get; set; }
         public int? NoBalls { get; set; }
+        public int? Fours { get; set; }
+        public int? Sixes { get; set; }
         [NotMapped]
         public string BowlerName { get; set; }
         [NotMapped]

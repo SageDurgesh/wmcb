@@ -28,7 +28,7 @@
     };
     $scope.registerUser = function (isValid) {
         if (isValid) {
-            wmcbService.addnewuser($scope.registration).then(function (response) {
+            wmcbService.registeruser($scope.registration).then(function (response) {
                 if (response != undefined && response.data != undefined) {                    
                     $scope.myresult = response.data;
                     switch ($scope.myresult.Code) {

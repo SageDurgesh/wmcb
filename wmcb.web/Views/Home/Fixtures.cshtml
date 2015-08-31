@@ -6,51 +6,65 @@
 <h2>Fixtures</h2>
 <script src="~/Scripts/angular/controllers/FixtureController.js"></script>
 <div ng-controller="FixtureCtrl">
-    <div class="input-group pull-right col-lg-5 col-md-5">
-        <input class="form-control" ng-model="searchText" placeholder="Search" type="search" ng-change="search()" /> <span class="input-group-addon">
-            <span class="glyphicon glyphicon-search"></span>
-        </span>
+
+    <div class=" pull-right">
+        <div class="input-group pull-right col-lg-5 col-md-5">
+            <input class="form-control" ng-model="searchText" placeholder="Search" type="search" ng-change="search()" /> <span class="input-group-addon">
+                <span class="glyphicon glyphicon-search"></span>
+            </span>
+        </div>
     </div>
-    <div class="pull-left">
-                <ul class="pagination">
-                    <li ng-class="{disabled: currentPage == 0}">
-                        <a href ng-click="prevPage()">&laquo; Prev</a>
-                    </li>
-                    <li ng-repeat="n in range(pagedItems.length, currentPage, currentPage + gap) "
-                        ng-class="{active: n == currentPage}"
-                        ng-click="setPage()">
-                        <a href ng-bind="n + 1">1</a>
-                    </li>
-                    <li ng-class="{disabled: (currentPage) == pagedItems.length - 1}">
-                        <a href ng-click="nextPage()">Next &raquo;</a>
-                    </li>
-                </ul>
-            </div>
-       
+
+    <div class="pull-right">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="ShowAllGames" ng-change="ReLoadGames()"> Show All Games
+            </label>
+        </div>
+    </div>
+
+    <div class="row pull-left">
+        <ul class="pagination">
+            <li ng-class="{disabled: currentPage == 0}">
+                <a href ng-click="prevPage()">&laquo; Prev</a>
+            </li>
+            <li ng-repeat="n in range(pagedItems.length, currentPage, currentPage + gap) "
+                ng-class="{active: n == currentPage}"
+                ng-click="setPage()">
+                <a href ng-bind="n + 1">1</a>
+            </li>
+            <li ng-class="{disabled: (currentPage) == pagedItems.length - 1}">
+                <a href ng-click="nextPage()">Next &raquo;</a>
+            </li>
+        </ul>
+    </div>
+
     <table class="table table-hover data-table col-lg-12 col-md-12">
         <thead>
             <tr>
                 <th class="hidden">ID</th>
                 <th class="Tournament table-head-title">Tournament</th>
                 <th class="Week table-head-title">Week</th>
-                <th class="Day table-head-title" >Day</th>
-                <th class="Date table-head-title" >Date</th>
-                <th class="Division table-head-title" >Division</th>
-                <th class="Home table-head-title" >Home Team</th>
-                <th class="table-head-title" >Vs</th>
+                <th class="Day table-head-title">Day</th>
+                <th class="Date table-head-title">Date</th>
+                <th class="Division table-head-title">Division</th>
+                <th class="Home table-head-title">Home Team</th>
+                <th class="table-head-title">Vs</th>
                 <th class="Away table-head-title">Away Team</th>
-                <th class="Field table-head-title" >Ground</th>
-                <th class="Time table-head-title" >Time</th>
+                <th class="Field table-head-title">Ground</th>
+                <th class="Time table-head-title">Time</th>
             </tr>
         </thead>
-       
+
         <tbody>
             <tr ng-repeat="sch in pagedItems[currentPage] ">
                 <td class="hidden">{{sch.ID}}</td>
                 <td class="col-md-2 col-lg-2">{{sch.Tournament}}</td>
                 <td>{{sch.Week}}</td>
-                <td><span ng-show="sch.DateTime>=maxDate">-</span>
-                    <span ng-hide="sch.DateTime>=maxDate">{{sch.DateTime|date:'EEEE'}}</span></td>
+                <td>
+                    <span ng-show="sch.DateTime>=maxDate">-</span>
+                    <span ng-hide="sch.DateTime>=maxDate">{{sch.DateTime|date:'EEEE'}}</span>
+                </td>
                 <td><span ng-show="sch.DateTime>=maxDate">-</span><span ng-hide="sch.DateTime>=maxDate">{{sch.DateTime|date:'MM/dd'}}</span></td>
                 <td>{{sch.Division}}</td>
                 <td>{{sch.Home}}</td>
@@ -59,17 +73,17 @@
                 <td>{{sch.Field}}</td>
                 <td><span ng-show="sch.DateTime<=minDate">TBD</span><span ng-hide="sch.DateTime>=minDate">{{sch.DateTime|date:'hh:mm a'}}</span></td>
                 @*<td>
-                    @if (ViewContext.HttpContext.User.Identity.IsAuthenticated && !ViewContext.HttpContext.User.IsInRole("Player"))
-                    {
-                        <div><a data-ng-href="@Url.Action("MatchScore", "Admin")#/?MatchId={{sch.ID}}" ng-if="IsMatchComplete(sch.MatchDate) ">Add Score</a></div>
-                    }
-                    <div><a data-ng-href="@Url.Action("ViewMatchScore", "Home")#/?MatchId={{sch.ID}}" ng-if="sch.Match.IsReviewed">View Score</a></div>
-                    <span ng-if="sch.Match.HomeTeamScore != null && sch.Match.AwayTeamScore != null && !sch.Match.IsReviewed">Under Review</span>
-                </td>*@
-                
+                        @if (ViewContext.HttpContext.User.Identity.IsAuthenticated && !ViewContext.HttpContext.User.IsInRole("Player"))
+                        {
+                            <div><a data-ng-href="@Url.Action("MatchScore", "Admin")#/?MatchId={{sch.ID}}" ng-if="IsMatchComplete(sch.MatchDate) ">Add Score</a></div>
+                        }
+                        <div><a data-ng-href="@Url.Action("ViewMatchScore", "Home")#/?MatchId={{sch.ID}}" ng-if="sch.Match.IsReviewed">View Score</a></div>
+                        <span ng-if="sch.Match.HomeTeamScore != null && sch.Match.AwayTeamScore != null && !sch.Match.IsReviewed">Under Review</span>
+                    </td>*@
+
             </tr>
         </tbody>
-    </table>  
+    </table>
 </div>
 
 

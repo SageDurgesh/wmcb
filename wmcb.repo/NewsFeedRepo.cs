@@ -51,5 +51,24 @@ namespace wmcb.repo
             }
             return news;
         }
+        public Result AddNewsFeed(NewsFeed news)
+        {
+            var result = new Result();
+            using (var context = new wmcbContext())
+            {
+                try
+                {
+                    context.NewsFeeds.Add(news);
+                    context.SaveChanges();
+                    result.Code = 0;
+                    result.Message = "success";
+                }
+                catch(Exception ex){
+                    result.Code = -1;
+                    result.Message = ex.Message;
+                }
+            }
+            return result;
+        }
     }
 }

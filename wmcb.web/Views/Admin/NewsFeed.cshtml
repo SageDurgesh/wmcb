@@ -1,33 +1,77 @@
-﻿<h3>News Feed</h3>
-
-<ul class="nav nav-pills pull-right">
-    <li role="presentation" class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-            Action <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Add</a></li>
-            <li><a href="#">View/Update</a></li>
-        </ul>
-    </li>
-</ul>
-<div>
-    <div ng-repeat="news in latestNewsFeed">
-        <table>
-            <tr>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr>
-                <td>{{news.Headline}}</td>
-                <td>
-                    <div ng-bind-html="news.Content | sanitize">
-                    </div>
-                </td>
-                <td>{{news.CreatedBy}}</td>
-                <td>{{news.CreatedOn | date: 'longDate'}}</td>
-                <td>{{news.Active}}</td>
-            </tr>
-        </table>
+﻿@{
+    ViewBag.Title = "News Feed";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Request.IsAuthenticated) 
+{
+    <script src="~/Scripts/char-counter.js"></script>
+    <script>
+    $(document).ready(function () {
+        $(".sidebar-nav li").removeClass("active");//this will remove the active class from
+        $('#managenewsfeed').addClass('active');
+        $("#add").show();
+        $("#viewupdate").hide();
+        $("#btnView").click(function () {
+            $("#viewupdate").show();
+            $("#add").hide();
+            $('#btnAdd').removeClass('active');
+        });
+        $("#btnAdd").click(function () {
+            $("#viewupdate").hide();
+            $("#add").show();
+        });
+        $(".counted").charCounter(60, { container: "#counter" });
+    });
+    </script>
+    <h3>Manage News Feed</h3>
+    <div class="btn-group" role="group">
+        <button type="button" class="btn btn-warning" id="btnView">View/Update Feed</button>
+        <button type="button" class="btn btn-warning active" id="btnAdd">Post New Feed</button>
     </div>
-</div>
+    <br/><br /><br />
+    <div ng-controller="NewsFeedAdminCtrl">
+        <div id="add">
+            <h3>Post New Feed</h3>
+            <div class="col-md-7 col-lg-7">
+                <form accept-charset="UTF-8" action="" method="POST">
+                    <div class="row">
+                        <label>Heading</label>
+                        <input class="form-control counted" name="heading" placeholder="Type a heading" ng-model="NewFeed.Headline" />
+                        <h6 class="pull-right" id="counter">60 characters remaining</h6>
+                    </div>
+                    <div class="row">
+                        <label>Content</label>
+                        <textarea ng-model="NewFeed.Content" class="form-control" name="message" placeholder="Type in your message" rows="5" style="margin-bottom:10px;"></textarea>                        
+                        <button class="btn btn-info" ng-click="AddNewFeed(NewFeed)">Post New Feed</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="viewupdate">
+            <div >
+                <h3>View/Update News Feeds</h3>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Headline</th>
+                        <th>Content</th>
+                        <th>CreatedBy</th>
+                        <th>CreatedOn</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr ng-repeat="news in AllNewsFeed">
+                        <td>{{news.Headline}}</td>
+                        <td>
+                            <div ng-bind-html="news.Content | sanitize">
+                            </div>
+                        </td>
+                        <td>{{news.CreatedBy}}</td>
+                        <td>{{news.CreatedOn | date: 'mm/dd/yy'}}</td>
+                        <td>{{news.Active}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+       
+    </div>
+}
+
