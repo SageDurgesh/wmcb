@@ -14,6 +14,8 @@
         $scope.Inn2BattingTeam = '';
         $scope.Inn1BowlingTeam = '';
         $scope.Inn2BowlingTeam = '';
+        $scope.Inn1TotalScore = 0;
+        $scope.Inn2TotalScore = 0;
         $scope.selectedRow = -1;
         MatchEntryService.getMatches().then(function (data) {
             $scope.Matches = data;
@@ -35,23 +37,26 @@
                     $scope.HomeTeamStats = $filter('filter')(data, function (s) { return s.TeamId == m.Schedule.HomeId });
                     $scope.AwayTeamStats = $filter('filter')(data, function (s) { return s.TeamId == m.Schedule.AwayId });
                 });
-                angular.forEach($scope.Scores, function (item) {
-                    if (item.HowOut != null) {
-                        var desc = item.HowOutDesc;
-                        if (item.HowOutDesc == "lbw" || item.HowOutDesc == "st" || item.HowOutDesc == "b") {
-                            desc = item.HowOutDesc + " b " + item.BowlerName;
-                        }
-                        else if (item.HowOutDesc == "c" || item.HowOutDesc == "run out") {
-                            if (item.BowlerId == item.FielderId) {
-                                desc = item.HowOutDesc + "&b " + item.BowlerName;
-                            }
-                            else {
-                                desc = item.HowOutDesc + " " + item.FielderName + " b " + item.BowlerName;
-                            }
-                        }
-                        item.HowOutDesc = desc;
-                    }
-                });
+                //angular.forEach($scope.Scores, function (item) {
+                //    //if (item.HowOut != null) {
+                    //    var desc = item.HowOutDesc;
+                    //    if (item.HowOutDesc == "b") {
+                    //        desc = item.HowOutDesc + " " + item.BowlerName;
+                    //    }
+                    //    else if (item.HowOutDesc == "lbw" || item.HowOutDesc == "st" || item.HowOutDesc == "b") {
+                    //        desc = item.HowOutDesc + "&b " + item.BowlerName;
+                    //    }
+                    //    else if (item.HowOutDesc == "c" || item.HowOutDesc == "run out") {
+                    //        if (item.BowlerId == item.FielderId) {
+                    //            desc = item.HowOutDesc + "&b " + item.BowlerName;
+                    //        }
+                    //        else {
+                    //            desc = item.HowOutDesc + " " + item.FielderName + ",<br/> b " + item.BowlerName;
+                    //        }
+                    //    }
+                    //    item.HowOutDesc = desc;
+                    //}
+                //});
                 $scope.HomeScores = $filter('filter')($scope.Scores, function (s) { return s.TeamId == m.Schedule.HomeId });
                 $scope.AwayScores = $filter('filter')($scope.Scores, function (s) { return s.TeamId == m.Schedule.AwayId });
 
@@ -64,6 +69,8 @@
                     $scope.Inn2BowlingTeam = m.Schedule.Away;
                     scoreInn1 = $scope.AwayScores;
                     scoreInn2 = $scope.HomeScores;
+                    $scope.Inn1TotalScore = m.Match.AwayTeamScore;
+                    $scope.Inn2TotalScore = m.Match.HomeTeamScore;
                 }
                 else {
                     $scope.Inn1BattingTeam = m.Schedule.Home;
@@ -72,6 +79,8 @@
                     $scope.Inn2BowlingTeam = m.Schedule.Home;
                     scoreInn1 = $scope.HomeScores;
                     scoreInn2 = $scope.AwayScores;
+                    $scope.Inn1TotalScore = m.Match.HomeTeamScore;
+                    $scope.Inn2TotalScore = m.Match.AwayTeamScore;
                 }
                
                 //Inning 1

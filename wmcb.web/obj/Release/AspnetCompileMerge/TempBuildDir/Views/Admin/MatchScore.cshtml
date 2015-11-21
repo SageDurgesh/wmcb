@@ -5,8 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{bool isAdmin = ViewContext.HttpContext.User.IsInRole("Admin");}
+<script>
+    $(document).ready(function () {
+        $(".sidebar-nav li").removeClass("active");//this will remove the active class from
+        $('#recordscore').addClass('active');
+    });
+</script>
+
 <script src="~/Scripts/angular/controllers/MatchScoreController.js"></script>
 <div ng-controller="MatchScoreCtrl" ng-init="init(@JsonConvert.SerializeObject(Model.hasPermission),@JsonConvert.SerializeObject(isAdmin),@Model.TeamID)">
+
     
     <div ng-show="done">
         <h3>  {{displaymessage}}</h3>
@@ -58,11 +66,11 @@
                     <div>Did <label>{{SelectedMatch.Home}}</label> bat first?</div>
                     <div>
                         <label class="radio-inline">
-                            <input type="radio" name="batfirst" value="1" ng-model="Battedfirst">
+                            <input type="radio" name="batfirst" value="1" ng-model="BattedFirst">
                             Yes
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="batfirst" value="0" ng-model="Battedfirst">
+                            <input type="radio" name="batfirst" value="0" ng-model="BattedFirst">
                             No
                         </label>
                     </div>
@@ -93,14 +101,19 @@
                                 <input class="has-error" type="text" ng-model="BattingScore[i].Batsman" empty-typeahead typeahead-editable="false" ng-blur="clearUnselected(i)" typeahead="player as player.FullName for player in HomePlayers  | filter:$viewValue:PlayerComparer">
                             </div>
                         </td>
-                        <td><input type="text" ng-model="BattingScore[i].HowOut" ng-blur="clearUnselected(i)" typeahead-editable="false" typeahead="out as out.Type for out in OutList  | filter:$viewValue" style="width:120px;" /></td>
+                        <td><input type="text" ng-model="BattingScore[i].HowOut" ng-blur="clearUnselected(i)" typeahead-editable="false" typeahead-template-url="HowOut.html"
+       typeahead="out as out.Type for out in OutList  | filter:$viewValue" style="width:120px;" /><br/>
+                            <span ng-show="ShowFielder(BattingScore[i].HowOut.Id)"> Fielder
+                                <input type="text" ng-model="BattingScore[i].Fielder" ng-blur="clearUnselected(i)"
+                                       empty-typeahead typeahead-editable="false" typeahead="player as player.FullName for player in AwayPlayers  | filter:$viewValue:PlayerComparer" />
+                            </span></td>
                         <td><input type="text" ng-model="BattingScore[i].Bowler" ng-blur="clearUnselected(i)" empty-typeahead typeahead-editable="false" typeahead="player as player.FullName for player in AwayPlayers  | filter:$viewValue:PlayerComparer" /></td>
                         <td><input type="text" ng-model="BattingScore[i].Runs" numbers-only="numbers-only" class="number-box" /></td>
-                        <td><input type="text" ng-model="BattingScore[i].Balls" class="number-box" /></td>
-                        <td><input type="number" ng-model="" class="number-box" /></td>
-                        <td><input type="number" ng-model="" class="number-box" /></td>
-                        <td><input type="number" ng-model="BattingScore[i].WicketNumber" class="number-box" /></td>
-                        <td><input type="number" ng-model="BattingScore[i].FOWRuns" class="number-box" /></td>
+                        <td><input type="text" ng-model="BattingScore[i].Balls" numbers-only="numbers-only" class="number-box" /></td>
+                        <td><input type="text" ng-model="BattingScore[i].Fours" numbers-only="numbers-only" class="number-box" /></td>
+                        <td><input type="text" ng-model="BattingScore[i].Sixes" numbers-only="numbers-only" class="number-box" /></td>
+                        <td><input type="text" ng-model="BattingScore[i].WicketNumber" numbers-only="numbers-only" class="number-box" /></td>
+                        <td><input type="text" ng-model="BattingScore[i].FOWRuns" numbers-only="numbers-only" class="number-box" /></td>
                     </tr>
                 </tbody>
             </table>
@@ -190,14 +203,21 @@
                                     <input class="has-error" type="text" ng-model="AwayBattingScore[i].Batsman" empty-typeahead typeahead-editable="false" ng-blur="clearUnselected(i)" typeahead="player as player.FullName for player in AwayPlayers   | filter:$viewValue:PlayerComparer">
                                 </div>
                             </td>
-                            <td><input type="text" ng-model="AwayBattingScore[i].HowOut" ng-blur="clearUnselected(i)" typeahead-editable="false" typeahead="out as out.Type for out in OutList  | filter:$viewValue" style="width:120px;" /></td>
+                            <td><input type="text" ng-model="AwayBattingScore[i].HowOut" ng-blur="clearUnselected(i)" typeahead-editable="false" typeahead-template-url="HowOut.html"
+       typeahead="out as out.Type for out in OutList  | filter:$viewValue" style="width:120px;" />
+                                <span ng-show="ShowFielder(AwayBattingScore[i].HowOut.Id)">
+                                    Fielder
+                                    <input type="text" ng-model="AwayBattingScore[i].Fielder" ng-blur="clearUnselected(i)"
+                                           empty-typeahead typeahead-editable="false" typeahead="player as player.FullName for player in HomePlayers  | filter:$viewValue:PlayerComparer" />
+                                </span>
+                            </td>
                             <td><input type="text" ng-model="AwayBattingScore[i].Bowler" ng-blur="clearUnselected(i)" empty-typeahead typeahead-editable="false" typeahead="player as player.FullName for player in HomePlayers  | filter:$viewValue:PlayerComparer" /></td>
                             <td><input type="text" ng-model="AwayBattingScore[i].Runs" numbers-only="numbers-only" class="number-box" /></td>
-                            <td><input type="text" ng-model="AwayBattingScore[i].Balls" class="number-box" /></td>
-                            <td><input type="number" ng-model="" class="number-box" /></td>
-                            <td><input type="number" ng-model="" class="number-box" /></td>
-                            <td><input type="number" ng-model="AwayBattingScore[i].WicketNumber" class="number-box" /></td>
-                            <td><input type="number" ng-model="AwayBattingScore[i].FOWRuns" class="number-box" /></td>
+                            <td><input type="text" ng-model="AwayBattingScore[i].Balls" numbers-only="numbers-only" class="number-box" /></td>
+                            <td><input type="text" ng-model="AwayBattingScore[i].Fours" class="number-box" numbers-only="numbers-only" /></td>
+                            <td><input type="number" ng-model="AwayBattingScore[i].Sixes" class="number-box" numbers-only="numbers-only" /></td>
+                            <td><input type="number" ng-model="AwayBattingScore[i].WicketNumber" numbers-only="numbers-only" class="number-box" /></td>
+                            <td><input type="number" ng-model="AwayBattingScore[i].FOWRuns" numbers-only="numbers-only" class="number-box" /></td>
                         </tr>
                     </tbody>
                 </table>
@@ -271,4 +291,10 @@
 </div>
 
 
-
+<script type="text/ng-template" id="HowOut.html">
+    <a>
+        <span>{{match.model.Type}} ({{match.model.Code}})</span>
+        @*<span bind-html-unsafe="match.label | typeaheadHighlight:query">           
+        </span>*@
+    </a>
+</script>

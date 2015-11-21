@@ -4,6 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model wmcb.model.View.TeamView
+<script>
+    $(document).ready(function () {
+        $(".sidebar-nav li").removeClass("active");//this will remove the active class from
+        $('#teammanger').addClass('active');
+    });
+</script>
 <div>
     <h2>Manage My Team</h2>
     <ul class="nav nav-pills pull-right">

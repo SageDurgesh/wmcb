@@ -23,12 +23,14 @@
         if ($scope.ShowAllGames) {
             wmcbService.getAllGames().then(function (data) {
                 $scope.schedules = data;
+                fixdates();
             });
         }
         else
         {
             wmcbService.getSchedule().then(function (data) {
                 $scope.schedules = data;
+                fixdates();
             });
         }
     }
@@ -109,4 +111,10 @@
         // functions have been describe process the data for display
         $scope.search();
     });
+
+    function fixdates() {
+        angular.forEach($scope.schedules, function (item) {
+            if(item)
+        });
+    }
 }]);

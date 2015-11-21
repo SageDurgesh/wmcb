@@ -1,17 +1,17 @@
 ﻿
-WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$location", "MatchEntryService",
+WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout", "$filter", "$location", "MatchEntryService",
     function ($scope, $timeout, $filter, $location, MatchEntryService) {
         $scope.OutList = [
-          { Id: 1, Type: "Bowled" , Code:"b"},
+          { Id: 1, Type: "Bowled", Code: "b" },
           { Id: 2, Type: "Caught", Code: "c" },
-          { Id: 3, Type: "Stumped", Code:"st" },
-          { Id: 4, Type: "Run Out", Code:"run out" },
+          { Id: 3, Type: "Stumped", Code: "st" },
+          { Id: 4, Type: "Run Out", Code: "run out" },
           { Id: 5, Type: "Not Out", Code: "not out" },
-          { Id: 6, Type:"Leg Before Wicket", Code: "lbw"},
-          { Id: 7, Type:"Did not bat", Code: "dnb"}];
+          { Id: 6, Type: "Leg Before Wicket", Code: "lbw" },
+          { Id: 7, Type: "Did not bat", Code: "dnb" }];
         $scope.hasPermission = '';
         $scope.HomePlayers = '';
-        $scope.AwayPlayers = '';        
+        $scope.AwayPlayers = '';
         $scope.TeamID = '';
         $scope.TossWon = '';
         $scope.BattedFirst = '';
@@ -83,17 +83,17 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$locati
                 MatchEntryService.getTeamPlayers(TeamID).then(function (data) {
                     $scope.HomePlayers = data;
                 });
-            }            
+            }
         };
         $scope.SelectMatchAsAdmin = function (match) {
             if (match) {
                 $scope.SelectedMatch = match;
                 $scope.TeamId = match.HomeId;
                 var dt = $filter('date')(match.DateTime, 'EEE, MM/dd');
-                $scope.SelectedMatchText = match.Home + " Vs " + match.Away + " - " + dt;                
-                    MatchEntryService.getTeamPlayers(match.HomeId).then(function (data) {
-                        $scope.HomePlayers = data;
-                    });
+                $scope.SelectedMatchText = match.Home + " Vs " + match.Away + " - " + dt;
+                MatchEntryService.getTeamPlayers(match.HomeId).then(function (data) {
+                    $scope.HomePlayers = data;
+                });
                 MatchEntryService.getTeamPlayers(match.AwayId).then(function (data) {
                     $scope.AwayPlayers = data;
                 });
@@ -103,7 +103,7 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$locati
             if (match) {
                 $scope.SelectedMatch = match.Match;
                 var dt = $filter('date')(match.DateTime, 'EEE, MM/dd');
-                $scope.SelectedMatchText = match.HomeTeamName + " Vs " + match.AgainstTeamName + " - " + dt;                
+                $scope.SelectedMatchText = match.HomeTeamName + " Vs " + match.AgainstTeamName + " - " + dt;
                 MatchEntryService.getTeamPlayers(match.AgainstTeamId).then(function (data) {
                     $scope.AwayPlayers = data;
                 });
@@ -119,7 +119,7 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$locati
                     $scope.BattingScore[index].Bowler = '';
                 }
                 if ($scope.BattingScore[index].HowOut == undefined) {   //the model was not set by the typeahead
-                    $scope.BattingScore[index].HowOut = '';                
+                    $scope.BattingScore[index].HowOut = '';
                 }
             }, 100);    //a 250 ms delay should be safe enough
         }
@@ -196,12 +196,12 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$locati
                             Sixes: 0,
                             Bowler: '',
                             BowlerNumber: i,
-                            OversBowled: item.Overs!=undefined?item.Overs:-1,
-                            Wickets: item.Wickets!=undefined?item.Wickets:0,
-                            MaidenOvers: item.Maiden!=undefined?item.Maiden:0,
-                            BowlingRuns: item.RunsGiven!=undefined?item.RunsGiven:0,
-                            Wide: item.Wide!=undefined?item.Wide:0,
-                            noBalls: item.NoBalls!=undefined?item.NoBalls:0,
+                            OversBowled: item.Overs != undefined ? item.Overs : -1,
+                            Wickets: item.Wickets != undefined ? item.Wickets : 0,
+                            MaidenOvers: item.Maiden != undefined ? item.Maiden : 0,
+                            BowlingRuns: item.RunsGiven != undefined ? item.RunsGiven : 0,
+                            Wide: item.Wide != undefined ? item.Wide : 0,
+                            noBalls: item.NoBalls != undefined ? item.NoBalls : 0,
                             FOWRuns: 0,
                             WicketNumber: 0
                         };
@@ -217,12 +217,12 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$locati
                             TeamId: $scope.SelectedMatch.AwayId,
                             MatchId: $scope.SelectedMatch.ID,
                             PlayerId: item.Batsman.ID,
-                            BattingRuns: item.Runs!=undefined?item.Runs:0,
-                            BallsFaced: item.Balls!=undefined? item.Balls: 0,
-                            Fours: item.Fours!=undefined? item.Fours: 0,
-                            Sixes: item.Sixes!=undefined? item.Sixes: 0,
-                            HowOut: item.HowOut != undefined?item.HowOut.Id:-1,
-                            Fielder:item.Fielder != undefined?item.Fielder.ID:null,
+                            BattingRuns: item.Runs != undefined ? item.Runs : 0,
+                            BallsFaced: item.Balls != undefined ? item.Balls : 0,
+                            Fours: item.Fours != undefined ? item.Fours : 0,
+                            Sixes: item.Sixes != undefined ? item.Sixes : 0,
+                            HowOut: item.HowOut != undefined ? item.HowOut.Id : -1,
+                            Fielder: item.Fielder != undefined ? item.Fielder.ID : null,
                             BowlerNumber: -1,
                             OversBowled: -1,
                             Wickets: 0,
@@ -230,9 +230,9 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$locati
                             BowlingRuns: 0,
                             Wide: 0,
                             noBalls: 0,
-                            Bowler: item.Bowler != undefined?item.Bowler.ID: null,
-                            FOWRuns: item.FOWRuns!=undefined? item.FOWRuns: 0,
-                            WicketNumber: item.WicketNumber!=undefined? item.WicketNumber: 0
+                            Bowler: item.Bowler != undefined ? item.Bowler.ID : null,
+                            FOWRuns: item.FOWRuns != undefined ? item.FOWRuns : 0,
+                            WicketNumber: item.WicketNumber != undefined ? item.WicketNumber : 0
                         };
                         $scope.ATBattingRuns = parseInt($scope.ATBattingRuns * 1) + parseInt(s.BattingRuns);
                         awayplayerstats.push(s);
@@ -240,16 +240,16 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$locati
                 });
                 angular.forEach($scope.AwayBowlingScore, function (item) {
                     if (item.Bowler != "" && item.Bowler.ID != undefined) {
-                        found = false;                        
+                        found = false;
                         var existPlayerID = item.Bowler.ID;
                         angular.forEach(awayplayerstats, function (player) {
                             if (existPlayerID == player.PlayerId) {
-                                player.OversBowled = item.Overs != undefined ?item.Overs:-1;
-                                player.Wickets = item.Wickets!= undefined ? item.Wickets:0;
-                                player.MaidenOvers = item.Maiden!= undefined ? item.Maiden:0;
-                                player.BowlingRuns = item.RunsGiven!= undefined ?item.RunsGiven:0;
-                                player.Wide = item.Wide!= undefined ?item.Wide:0;
-                                player.NoBalls = item.NoBalls!= undefined ?item.NoBalls:0;
+                                player.OversBowled = item.Overs != undefined ? item.Overs : -1;
+                                player.Wickets = item.Wickets != undefined ? item.Wickets : 0;
+                                player.MaidenOvers = item.Maiden != undefined ? item.Maiden : 0;
+                                player.BowlingRuns = item.RunsGiven != undefined ? item.RunsGiven : 0;
+                                player.Wide = item.Wide != undefined ? item.Wide : 0;
+                                player.NoBalls = item.NoBalls != undefined ? item.NoBalls : 0;
                                 player.BowlerNumber = j;
                                 j++;
                                 found = true;
@@ -264,7 +264,7 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$locati
                                 BallsFaced: -1,
                                 HowOut: -1,
                                 Bowler: '',
-                                Fielder:'',
+                                Fielder: '',
                                 Fours: 0,
                                 Sixes: 0,
                                 BowlerNumber: j,
@@ -283,21 +283,21 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$locati
                     }
                 });
             }
-            if(homeplayerstats.length>0)
+            if (homeplayerstats.length > 0)
                 MatchEntryService.SavePlayerStats(homeplayerstats);
-            
-            if (awayplayerstats.length>0) {
+
+            if (awayplayerstats.length > 0) {
                 MatchEntryService.SavePlayerStats(awayplayerstats);
             }
             var tosswinningnteam = '';
-            var battingteam ='';
-            if($scope.TossWon==1)
+            var battingteam = '';
+            if ($scope.TossWon == 1)
                 tosswinningnteam = $scope.SelectedMatch.HomeId;
             else
                 tosswinningnteam = $scope.SelectedMatch.AwayId;
 
-            if($scope.BattedFirst==1)
-                battingteam =$scope.SelectedMatch.HomeId;
+            if ($scope.BattedFirst == 1)
+                battingteam = $scope.SelectedMatch.HomeId;
             else
                 battingteam = $scope.SelectedMatch.AwayId;
 
@@ -314,7 +314,7 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$locati
                 "PenaltyRuns": $scope.HTPenaltyRuns,
                 "TeamScore": (parseInt($scope.HTBattingRuns) * 1) + (parseInt($scope.HTExtras) * 1)
             };
-           
+
             if (isAdmin) {
                 //AwayTeam Score
                 $scope.ATExtras = $scope.ATWides * 1 + $scope.ATByes * 1 + $scope.ATLegByes * 1 + $scope.ATNoBalls * 1 + $scope.ATPenaltyRuns * 1;
@@ -329,9 +329,9 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$locati
                     "NoBalls": $scope.ATNoBalls,
                     "PenaltyRuns": $scope.ATPenaltyRuns,
                     "TeamScore": (parseInt($scope.ATBattingRuns) * 1) + (parseInt($scope.ATExtras) * 1)
-                };               
+                };
                 MatchEntryService.setTeamStats(homeTeamStats).then(function () {
-                    MatchEntryService.setTeamStats(awayTeamStats).then(function () {                        
+                    MatchEntryService.setTeamStats(awayTeamStats).then(function () {
                         var dt = $filter('date')($scope.SelectedMatch.DateTime, 'MM/dd/yy hh:mm a EEEE');
                         var msg = "Score for  match '" + $scope.SelectedMatch.Home + " Vs " + $scope.SelectedMatch.Away + " - " + dt + "' has been sucessfully submitted for review.";
                         $scope.displaymessage = msg;
@@ -339,8 +339,7 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$locati
                     });
                 });
             }
-            else
-            {
+            else {
                 MatchEntryService.setTeamStats(homeTeamStats).then(function () {
                     var dt = $filter('date')($scope.SelectedMatch.DateTime, 'MM/dd/yy hh:mm a EEEE');
                     var msg = "Your team's score for  match '" + $scope.SelectedMatch.Home + " Vs " + $scope.SelectedMatch.Away + " - " + dt + "' has been sucessfully submitted for review.";
@@ -348,14 +347,27 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$locati
                     $scope.done = true;
                 });
             }
-                     
+
         }
         $scope.ShowFielder = function (howout) {
             if (howout == null || howout == undefined) return false;
             if (howout == 2 || howout == 4) return true;
             return false;
         }
+        function getExistingScore(matchID) {
+            MatchEntryService.getMatchPlayerStats(matchID).then(function (data) {
+                $scope.Scores.push.apply($scope.Scores, data);
+                MatchEntryService.getMatchTeamStats(match.ID).then(function (data) {
+                    $scope.HomeTeamStats = $filter('filter')(data, function (s) { return s.TeamId == m.Schedule.HomeId });
+                    $scope.AwayTeamStats = $filter('filter')(data, function (s) { return s.TeamId == m.Schedule.AwayId });
+                });
+                $scope.BattingScore = $filter('filter')($scope.Scores, function (s) { return (s.TeamId == m.Schedule.HomeId && (s.HowOut != null && s.HowOut > 0)) });
+                $scope.BowlingScore = $filter('filter')($scope.Scores, function (s) { return (s.TeamId == m.Schedule.HomeId && (s.OversBowled != null && s.OversBowled != -1)) });
 
+                $scope.AwayBattingScore = $filter('filter')($scope.Scores, function (s) { return (s.TeamId == m.Schedule.AwayId && (s.HowOut != null && s.HowOut > 0)) });
+                $scope.AwayBowlingScore = $filter('filter')($scope.Scores, function (s) { return (s.TeamId == m.Schedule.AwayId && (s.OversBowled != null && s.OversBowled != -1)) });
+            });
+        }
         function reset() {
             $scope.PlayerId = null;
             $scope.BattingRuns = null;
@@ -369,31 +381,32 @@ WMCBApp.controller('MatchScoreCtrl', ["$scope", "$timeout" , "$filter", "$locati
             $scope.BowlingRuns = null;
             $scope.Wickets = null;
             $scope.PlayerToAdd = null;
-        };       
+        };
     }]);
 
 var battingscore = {
-    Batsman: '',
+    PlayerName: '',
     HowOut: '',
-    Bowler: '',
-    Fielder:'',
+    BowlerId: '',
+    BowlerName:'',
+    Fielder: '',
     Runs: '',
     Balls: 0,
     Fours: 0,
     Sixes: 0,
     WicketNumber: '',
-    FOWRuns:''
+    FOWRuns: ''
 };
 
 var bowlingscore = {
     Bowler: '',
-    Fielder:'',
+    Fielder: '',
     Overs: '',
     Maiden: '',
     RunsGiven: '',
     Wickets: '',
-    Wide:'',
-    NoBalls:''
+    Wide: '',
+    NoBalls: ''
 };
 var awaybattingscore = {
     Batsman: '',

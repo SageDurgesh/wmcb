@@ -20,7 +20,7 @@
     <div class="col-md-6">
         <div ng-repeat="news in latestNewsFeed">
             <h3>{{news.Headline}}</h3>
-            <h5><small>{{news.CreatedBy}}. <em> {{news.CreatedOn | date: 'longDate'}}</em></small></h5>
+            <h5><small>WMCB. <em> {{news.CreatedOn | date: 'longDate'}}</em></small></h5>
             <div ng-bind-html="news.Content | sanitize">
             </div>
         </div>

@@ -9,6 +9,7 @@
         $("#ConfContent").hide();
         $("#Super8Content").hide();
         $("#InterContent").hide();
+        //$("#PlayoffContent").hide();
         // Initialize tooltip
         $('[data-toggle="tooltip"]').tooltip({
             placement: 'top'
@@ -18,32 +19,36 @@
             $("#ConfContent").hide();
             $("#Super8Content").hide();
             $("#InterContent").hide();
+            //$("#PlayoffContent").hide();
         });
         $("#btnConf").click(function () {
             $("#DivContent").hide();
             $("#ConfContent").show();
             $("#Super8Content").hide();
             $("#InterContent").hide();
+            $('#btnDiv').removeClass('active');
         });
         $("#btnSuper8").click(function () {
             $("#DivContent").hide();
             $("#ConfContent").hide();
             $("#Super8Content").show();
             $("#InterContent").hide();
+            $('#btnDiv').removeClass('active');
         });
         $("#btnInter").click(function () {
             $("#DivContent").hide();
             $("#ConfContent").hide();
             $("#Super8Content").hide();
             $("#InterContent").show();
+            $('#btnDiv').removeClass('active');
         });
     });
 </script>
 <script src="~/Scripts/angular/controllers/PointsController.js"></script>
 <div ng-controller="PointsCtrl">
-    <h3>WMCB Championship As Of May 31, 2015</h3>
+    <h2>WMCB Championship <small> as of September 14, 2015<sup>**</sup></small> </h2>
     <div class="btn-group" role="group">
-        <button type="button" class="btn btn-warning" id="btnDiv">Division</button>
+        <button type="button" class="btn btn-warning active" id="btnDiv">Division</button>
         <button type="button" class="btn btn-warning" id="btnConf">Conference</button>
         <button type="button" class="btn btn-warning" id="btnSuper8">Super 8</button>
         <button type="button" class="btn btn-warning" id="btnInter">Inter-Division</button>
@@ -235,5 +240,6 @@
             </table>
         </div>
     </div>
+    <p> **Note: <em>A makeup game will be played between W. Hurricanes and Renegades on Saturday, Sep 19<sup>th</sup> which will complete the table.</em></p>
     <br/><br/><br />
 </div>

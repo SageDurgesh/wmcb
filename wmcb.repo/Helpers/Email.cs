@@ -13,7 +13,7 @@ namespace wmcb.repo.Helpers
         public static void SendEmail(EmailMessage msg)
         {           
             MailMessage EmailMsg = new MailMessage();
-            EmailMsg.From = new MailAddress("web@wmcbleague.org");
+            EmailMsg.From = new MailAddress("web@wmcbleague.org","WMCB");
             EmailMsg.To.Add(new MailAddress(msg.EmailAddress));
             EmailMsg.Subject = msg.Subject;
             EmailMsg.Body = msg.Body;

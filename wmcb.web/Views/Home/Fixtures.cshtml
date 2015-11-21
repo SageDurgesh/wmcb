@@ -43,15 +43,15 @@
         <thead>
             <tr>
                 <th class="hidden">ID</th>
-                <th class="Tournament table-head-title">Tournament</th>
-                <th class="Week table-head-title">Week</th>
-                <th class="Day table-head-title">Day</th>
-                <th class="Date table-head-title">Date</th>
+                <th class="Tournament table-head-title">Tournament</th>               
                 <th class="Division table-head-title">Division</th>
-                <th class="Home table-head-title">Home Team</th>
-                <th class="table-head-title">Vs</th>
-                <th class="Away table-head-title">Away Team</th>
+                <th class="Home table-head-title">Home</th>
+                <th class="table-head-title  hidden-xs hidden-sm">Vs</th>
+                <th class="Away table-head-title">Away</th>
                 <th class="Field table-head-title">Ground</th>
+                <th class="Week table-head-title hidden-xs hidden-sm">Week</th>
+                <th class="Day table-head-title  hidden-xs hidden-sm">Day</th>
+                <th class="Date table-head-title">Date</th>
                 <th class="Time table-head-title">Time</th>
             </tr>
         </thead>
@@ -60,17 +60,18 @@
             <tr ng-repeat="sch in pagedItems[currentPage] ">
                 <td class="hidden">{{sch.ID}}</td>
                 <td class="col-md-2 col-lg-2">{{sch.Tournament}}</td>
-                <td>{{sch.Week}}</td>
-                <td>
+               
+                <td>{{sch.Division}}</td>
+                <td>{{sch.Home}}</td>
+                <td class=" hidden-xs hidden-sm">Vs</td>
+                <td>{{sch.Away}}</td>
+                <td>{{sch.Field}}</td>
+                <td class=" hidden-xs hidden-sm">{{sch.Week}}</td>
+                <td class=" hidden-xs hidden-sm">
                     <span ng-show="sch.DateTime>=maxDate">-</span>
                     <span ng-hide="sch.DateTime>=maxDate">{{sch.DateTime|date:'EEEE'}}</span>
                 </td>
                 <td><span ng-show="sch.DateTime>=maxDate">-</span><span ng-hide="sch.DateTime>=maxDate">{{sch.DateTime|date:'MM/dd'}}</span></td>
-                <td>{{sch.Division}}</td>
-                <td>{{sch.Home}}</td>
-                <td>Vs</td>
-                <td>{{sch.Away}}</td>
-                <td>{{sch.Field}}</td>
                 <td><span ng-show="sch.DateTime<=minDate">TBD</span><span ng-hide="sch.DateTime>=minDate">{{sch.DateTime|date:'hh:mm a'}}</span></td>
                 @*<td>
                         @if (ViewContext.HttpContext.User.Identity.IsAuthenticated && !ViewContext.HttpContext.User.IsInRole("Player"))

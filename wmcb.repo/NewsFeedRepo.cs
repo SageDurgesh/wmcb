@@ -22,7 +22,8 @@ namespace wmcb.repo
                                 Headline = n.Feed.Headline,
                                 Content = n.Feed.Content,
                                 CreatedBy = n.User.FirstName,// + ' ' + n.User.LastName,
-                                CreatedOn = n.Feed.CreatedOn
+                                CreatedOn = n.Feed.CreatedOn,
+                                Status = n.Feed.Status.HasValue?n.Feed.Status.Value: false
                             })
                             .Take(NewsFeedCount);
                if (feeds != null)
@@ -43,8 +44,8 @@ namespace wmcb.repo
                                  Headline = n.Feed.Headline,
                                  Content = n.Feed.Content,
                                  CreatedBy = n.User.FirstName,// + ' ' + n.User.LastName,
-                                 CreatedOn = n.Feed.CreatedOn
-                                
+                                 CreatedOn = n.Feed.CreatedOn,
+                                 Status = n.Feed.Status.HasValue?n.Feed.Status.Value: false
                              });
                 if (feeds != null)
                     news = feeds.ToList();

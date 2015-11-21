@@ -44,6 +44,7 @@
     <Compile Include="Data\Division.cs" />
     <Compile Include="Data\DivisionDto.cs" />
     <Compile Include="Data\Ground.cs" />
+    <Compile Include="Data\HowOut.cs" />
     <Compile Include="Data\MessageTemplateDto.cs" />
     <Compile Include="Data\ResultPoints.cs" />
     <Compile Include="Data\MatchDto.cs" />

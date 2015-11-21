@@ -12,5 +12,6 @@ namespace wmcb.model
         public string Content { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
+        public bool Status { get; set; }
     }
 }

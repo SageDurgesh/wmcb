@@ -94,6 +94,7 @@ namespace wmcb.web.Controllers
             {
                 news.CreatedBy = ((WmcbPrincipal)HttpContext.User).ID;
                 news.CreatedOn = DateTime.Now;
+                news.Status = true;
                 result = new NewsFeedRepo().AddNewsFeed(news);
             }
             else
